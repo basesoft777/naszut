@@ -1,10 +1,100 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Időjárás</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Időjárás – 2026-06-10</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;color:#1a202c;padding:1.5rem;max-width:720px;margin:0 auto}
+    header{text-align:center;margin-bottom:1.5rem}
+    header h1{font-size:1.4rem;font-weight:600;color:#2d3748}
+    header p{font-size:.9rem;color:#718096;margin-top:.25rem}
+    .card{background:#fff;border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid #e2e8f0}
+    .card-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid #e2e8f0}
+    .emoji{font-size:1.8rem;line-height:1}
+    .card-header h2{font-size:1.1rem;font-weight:600;color:#2d3748}
+    .badge{display:inline-block;font-size:.7rem;padding:.2rem .6rem;border-radius:20px;background:#ebf8ff;color:#2b6cb0;margin-top:.3rem}
+    .badge.active{background:#f0fff4;color:#276749}
+    .subtitle{font-size:.82rem;color:#718096;margin-bottom:.75rem}
+    .sources{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+    @media(max-width:480px){.sources{grid-template-columns:1fr}}
+    .source-block{background:#f7fafc;border-radius:8px;padding:.75rem;border:1px solid #e2e8f0}
+    .source-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4a90d9;margin-bottom:.5rem}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+    .stat{background:#fff;border-radius:6px;padding:.4rem .6rem;border:1px solid #e2e8f0}
+    .label{display:block;font-size:.65rem;color:#718096;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.1rem}
+    .value{font-size:.88rem;font-weight:600;color:#2d3748}
+    .table-wrap{overflow-x:auto;margin-bottom:1rem}
+    table{width:100%;border-collapse:collapse;font-size:.82rem}
+    th{background:#f7fafc;padding:.4rem .6rem;text-align:left;font-size:.68rem;text-transform:uppercase;color:#718096;border-bottom:1px solid #e2e8f0}
+    td{padding:.4rem .6rem;border-bottom:1px solid #f0f4f8}
+    .narracio{background:#ebf8ff;border-left:4px solid #4299e1;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;font-size:.92rem;line-height:1.65;color:#2c5282}
+    footer{text-align:center;font-size:.78rem;color:#a0aec0;margin-top:1.5rem}
+  </style>
 </head>
 <body>
-  <h1>Időjárás bot – hamarosan</h1>
+  <header>
+    <h1>🗓 Napi időjárás</h1>
+    <p>2026-06-10 · Open-Meteo + Yr.no · Claude AI összefoglaló</p>
+  </header>
+  
+    <div class="card">
+      <div class="card-header">
+        <span class="emoji">🌧</span>
+        <div><h2>Noszvaj</h2>
+        <span class="badge">⏳ 33 nap múlva kezdődik</span></div>
+      </div>
+      <p class="subtitle">Jelenlegi időjárás a helyszínen</p>
+      <div class="sources">
+        <div class="source-block">
+          <div class="source-label">Open-Meteo</div>
+          <div class="grid">
+            <div class="stat"><span class="label">Max / Min</span><span class="value">29.6° / 18.9°C</span></div>
+            <div class="stat"><span class="label">Csapadék</span><span class="value">74% · 6.5 mm</span></div>
+            <div class="stat"><span class="label">Szél</span><span class="value">26.3 km/h</span></div>
+            <div class="stat"><span class="label">UV · Pára</span><span class="value">6.4 · 59%</span></div>
+          </div>
+        </div>
+        <div class="source-block">
+          <div class="source-label">Yr.no</div>
+          <div class="grid">
+            <div class="stat"><span class="label">Max / Min</span><span class="value">27.9° / 19.8°C</span></div>
+            <div class="stat"><span class="label">Csapadék</span><span class="value">2.3 mm</span></div>
+            <div class="stat"><span class="label">Páratartalom</span><span class="value">59%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="narracio">⚠️ HTTP Error 404: Not Found</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="emoji">🌧</span>
+        <div><h2>Bélapátfalva</h2>
+        <span class="badge">⏳ 54 nap múlva kezdődik</span></div>
+      </div>
+      <p class="subtitle">Jelenlegi időjárás a helyszínen</p>
+      <div class="sources">
+        <div class="source-block">
+          <div class="source-label">Open-Meteo</div>
+          <div class="grid">
+            <div class="stat"><span class="label">Max / Min</span><span class="value">26.6° / 17.0°C</span></div>
+            <div class="stat"><span class="label">Csapadék</span><span class="value">77% · 11.0 mm</span></div>
+            <div class="stat"><span class="label">Szél</span><span class="value">22.3 km/h</span></div>
+            <div class="stat"><span class="label">UV · Pára</span><span class="value">6.35 · 61%</span></div>
+          </div>
+        </div>
+        <div class="source-block">
+          <div class="source-label">Yr.no</div>
+          <div class="grid">
+            <div class="stat"><span class="label">Max / Min</span><span class="value">26.2° / 18.8°C</span></div>
+            <div class="stat"><span class="label">Csapadék</span><span class="value">3.7 mm</span></div>
+            <div class="stat"><span class="label">Páratartalom</span><span class="value">61%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="narracio">⚠️ HTTP Error 404: Not Found</div>
+    </div>
+  <footer>Frissítve: 2026-06-10 07:00</footer>
 </body>
 </html>
