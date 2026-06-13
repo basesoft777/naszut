@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noszvaj Cabin · Étkezési lehetőségek</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gd:#1E4A08;--gm:#3E7A18;--gl:#EBF3E0;--gb:#C8DFB0;
+    --am:#7A5000;--al:#FFF8E8;
+    --ink:#1A1916;--muted:#6A6864;--border:#DDD9D0;
+    --cream:#FAF8F4;--white:#FFFFFF;
+    --sans:'DM Sans',sans-serif;--serif:'Cormorant Garamond',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;}
+
+  .hero{background:linear-gradient(rgba(235,243,224,.82),rgba(235,243,224,.95)),url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80') center/cover;border-bottom:2px solid var(--gb);padding:40px 40px 32px;text-align:center;}
+  .hero-ey{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gm);margin-bottom:10px;}
+  .hero h1{font-family:var(--serif);font-size:clamp(26px,4.5vw,44px);color:var(--gd);font-weight:400;}
+  .hero h1 em{font-style:italic;color:var(--gm);}
+  .hero-div{width:40px;height:2px;background:var(--gb);margin:12px auto;}
+  .hero-sub{font-size:13px;color:var(--gd);}
+  .hero-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+  .hero-chips a{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;text-decoration:none;padding:6px 12px;border-radius:20px;border:1px solid var(--gb);background:rgba(255,255,255,.75);color:var(--gd);transition:background .15s;}
+  .hero-chips a:hover{background:#fff;}
+
+  .wrap{max-width:900px;margin:0 auto;padding:28px 40px 60px;}
+
+  .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
+  .sbox{background:var(--gl);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;}
+  .sbox .sl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gm);margin-bottom:4px;}
+  .sbox .sv{font-size:18px;font-weight:600;color:var(--gd);}
+  .sbox .ss{font-size:11px;color:var(--muted);margin-top:2px;}
+
+  h2{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--gd);margin:28px 0 14px;}
+
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+
+  .rest-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:8px;}
+  .rest-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;}
+
+  .rest-card-header{background:var(--gl);border-bottom:1px solid var(--gb);padding:13px 16px;}
+  .rest-card-header .rn{font-size:15px;font-weight:600;color:var(--gd);}
+  .rest-card-header .rl{font-size:11px;color:var(--gm);margin-top:3px;}
+
+  .rest-card-body{padding:13px 16px;}
+  .rest-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:13px;margin-bottom:8px;gap:12px;}
+  .rest-row:last-child{margin-bottom:0;}
+  .rest-label{color:var(--muted);min-width:88px;font-size:12px;flex-shrink:0;}
+  .rest-val{color:var(--ink);text-align:right;font-size:13px;}
+  .rest-val.price{color:var(--gd);font-weight:600;}
+
+  .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin:1px 2px;}
+  .b-green{background:var(--gl);color:var(--gm);}
+  .b-amber{background:var(--al);color:var(--am);}
+  .b-blue{background:#E3EEF9;color:#1A4A7A;}
+  .b-purple{background:#F0EAF8;color:#5A1A8A;}
+
+  .nav-btns{display:flex;gap:8px;padding:10px 16px 4px;flex-wrap:wrap;}
+  .photo-links{display:flex;gap:8px;padding:10px 16px 0;}
+  .gps-btn,.waze-btn,.web-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;text-decoration:none;padding:7px 12px;border-radius:20px;transition:background .15s;}
+  .gps-btn{border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;}
+  .gps-btn:hover{background:#DCEBCB;}
+  .waze-btn{border:1px solid #B8D0F0;background:#EAF0FB;color:#0C3E72;}
+  .waze-btn:hover{background:#D4E4F7;}
+  .web-btn{border:1px solid var(--border);background:#F7F5F0;color:var(--muted);}
+  .web-btn:hover{background:#EEE;}
+  .gps-btn svg,.waze-btn svg,.web-btn svg{width:13px;height:13px;flex-shrink:0;}
+
+  .dist-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--gd);background:var(--gl);border:1px solid var(--gb);border-radius:20px;padding:2px 9px;margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;font-size:13px;margin-bottom:16px;}
+  th{padding:9px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--gl);border-bottom:1px solid var(--gb);text-align:left;}
+  th.r{text-align:right;}
+  td{padding:9px 12px;border-bottom:1px solid #F0EDE6;vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  td.r{text-align:right;}
+  td.dc{font-weight:600;color:var(--gd);}
+  .dist-pill{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--gl);color:var(--gd);font-weight:600;}
+
+  .notice{background:var(--al);border-left:4px solid #C8900A;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:var(--am);margin:20px 0;}
+  .tip-box{background:#F4F9EF;border:1.5px solid var(--gb);border-radius:10px;padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.7;}
+  .tip-box strong{color:var(--gd);}
+
+  footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;padding:20px;font-size:12px;color:var(--gm);font-style:italic;}
+
+  @media(max-width:640px){
+    .wrap{padding:16px 14px 48px;}
+    .hero{padding:28px 16px 22px;}
+    .summary{grid-template-columns:repeat(2,1fr);}
+    .rest-grid{grid-template-columns:1fr;}
+    .rest-row{flex-direction:column;gap:2px;}
+    .rest-label{min-width:unset;font-size:10px;text-transform:uppercase;letter-spacing:.04em;}
+    .rest-val{text-align:left;}
+    table{font-size:12px;display:block;overflow-x:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero-ey">6 nap · 2 fő · Bükk-alja</p>
+  <h1>Noszvaj <em>Cabin</em> · Étkezési lehetőségek</h1>
+  <div class="hero-div"></div>
+  <p class="hero-sub">Síkfőkút · Noszvaj · Bogács · Szilvásvárad · Eger</p>
+  <div class="hero-chips">
+    <a href="https://nomadhotel.hu/etterem" target="_blank" rel="noopener">🍽 Trakta by Nomád</a>
+    <a href="https://www.rozmaringetterem.hu" target="_blank" rel="noopener">🍕 Rozmaring</a>
+    <a href="https://csernusdoki.hu/csendulo" target="_blank" rel="noopener">☕ Csendülő</a>
+    <a href="https://www.szilvasvarad.hu/hu/gasztronomia/pisztrang-vendeglo" target="_blank" rel="noopener">🐟 Pisztráng Vendéglő</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary" id="summary-box">
+    <div class="sbox"><div class="sl">Helyi éttermek</div><div class="sv">5</div><div class="ss">Síkfőkút + Noszvaj</div></div>
+    <div class="sbox"><div class="sl">Legközelebbi</div><div class="sv">~300 m</div><div class="ss">Trakta by Nomád</div></div>
+    <div class="sbox"><div class="sl">Kirándulás közben</div><div class="sv">~30 km</div><div class="ss">Pisztráng – Szilvásvárad</div></div>
+    <div class="sbox"><div class="sl">Különlegesség</div><div class="sv">Csendülő</div><div class="ss">Csernus Imre helye</div></div>
+  </div>
+
+  <h2>Éttermek és vendéglők</h2>
+
+  <div class="section-label">🏕 Síkfőkút – gyalog is elérhető</div>
+  <div class="rest-grid">
+
+    <!-- TRAKTA -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9600,20.5148" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9600,20.5148&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://nomadhotel.hu/etterem" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Trakta by Nomád</div>
+        <div class="rl">Síkfőkút út 5. · <span class="dist-pill">~300 m gyalog</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">3–5 fogásos trakta vacsora, helyi alapanyagok, bohém légkör</span></div>
+        <div class="rest-row"><span class="rest-label">Ebéd</span><span class="rest-val">À la carte étlapról</span></div>
+        <div class="rest-row"><span class="rest-label">Vacsora</span><span class="rest-val">3 vagy 5 fogásos trakta menü</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 36 463-363</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">20 000–28 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Foglalás kötelező!</span> <span class="badge b-green">SZÉP kártya</span></span></div>
+      </div>
+    </div>
+
+    <!-- ROZMARING -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9590,20.5155" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9590,20.5155&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://www.rozmaringetterem.hu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Rozmaring Vendéglő és Pizzéria</div>
+        <div class="rl">Síkfőkút út 32. · <span class="dist-pill">~400 m gyalog</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Nápolyi pizza kövön sütve, magyaros ételek, házi desszert</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Minden nap 11:30–21:00</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 36 463-465 · +36 30 113-2261</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">12 000–16 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Naponta nyitva</span> <span class="badge b-green">Terasz</span> <span class="badge b-green">SZÉP kártya</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">🌿 Noszvaj faluközpont – ~2–3 km autóval</div>
+  <div class="rest-grid">
+
+    <!-- ZSENGE -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://zsengegourmet.hu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Zsenge – Konyha és Kávé</div>
+        <div class="rl">Kossuth Lajos út 68. · <span class="dist-pill">~2,5 km autóval</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Gourmet brunch, friss szendvics, tojásételek, kávé, helyi konyha</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Délelőtt–délután (brunch jellegű)</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 30 103-4500</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">6 000–8 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Ebédre ideális</span> <span class="badge b-amber">Délután zár</span></span></div>
+      </div>
+    </div>
+
+    <!-- CSENDÜLŐ -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9530,20.5075" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9530,20.5075&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://csernusdoki.hu/csendulo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Csendülő – Csernus Imre</div>
+        <div class="rl">Deák Ferenc út 46. · <span class="dist-pill">~3 km autóval</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Étterem, kávézó, kőszínház és nyugalmi zóna – mediterrán hangulat</span></div>
+        <div class="rest-row"><span class="rest-label">Konyha</span><span class="rest-val">Szezonális házias ételek, friss alapanyagok, kézműves sütemény</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Csütörtök–vasárnap (szezonális)</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 70 329-2120</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">8 000–13 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Csüt–Vas nyitva</span> <span class="badge b-purple">Különleges hely</span></span></div>
+      </div>
+    </div>
+
+    <!-- PANORÁMA -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9560,20.5020" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9560,20.5020&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://panoramahotelnoszvaj.hu/etterem" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Panoráma Étterem</div>
+        <div class="rl">Panoráma Hotel Noszvaj · <span class="dist-pill">~3 km autóval</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Svédasztalos reggeli, à la carte ebéd/vacsora, egri borvidéki kínálat</span></div>
+        <div class="rest-row"><span class="rest-label">Konyha</span><span class="rest-val">Magyar fogások helyi ízekkel, vegetáriánus opciók</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Minden vendégnek nyitva (nem csak szállóvendégeknek)</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">14 000–20 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Borkínálat</span> <span class="badge b-blue">Étterem + hotel</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">🐟 Kirándulás alatt – Szilvásvárad (~30 km)</div>
+  <div class="rest-grid">
+
+    <!-- PISZTRÁNG -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=48.0967,20.3936" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=48.0967,20.3936&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="web-btn" href="https://www.szilvasvarad.hu/hu/gasztronomia/pisztrang-vendeglo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Pisztráng Vendéglő</div>
+        <div class="rl">Szalajka út 7., Szilvásvárad · <span class="dist-pill">~30 km autóval</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Sült pisztráng, pisztrángburger, vadpörkölt, nápolyi pizza</span></div>
+        <div class="rest-row"><span class="rest-label">Konyha</span><span class="rest-val">Helyi hal és vad, gluténmentes opciók, kutyabarát terasz</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Szezonálisan (tavasz–ősz) – ellenőrizd érkezés előtt</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 30 578-7153</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">10 000–14 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Szezonális</span> <span class="badge b-green">Szalajka-völgy</span></span></div>
+      </div>
+    </div>
+
+    <!-- CABIN GRILL -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9605,20.5152" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9605,20.5152&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">Saját főzés – Cabin konyha & grill</div>
+        <div class="rl">Noszvaj Cabin terasz · <span class="dist-pill">Helyszínen</span></div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Lehetőség</span><span class="rest-val">Felszerelt konyha, kerti grill, reggeli + vacsora otthon</span></div>
+        <div class="rest-row"><span class="rest-label">Bevásárlás</span><span class="rest-val">COOP ABC Noszvaj ~2 km · Eger ~12 km</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">2 500–7 000 Ft / alkalom (alapanyag)</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Legtakarékosabb</span> <span class="badge b-green">Reggeli minden nap</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Távolságok a Cabintól</h2>
+  <table>
+    <thead>
+      <tr><th>Étterem</th><th>Helyszín</th><th>Jelleg</th><th class="r">Távolság</th><th class="r">Menetidő</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Trakta by Nomád</strong></td><td>Síkfőkút út 5.</td><td>Fine dining, trakta vacsora</td><td class="r dc">~300 m</td><td class="r">4 perc gyalog</td></tr>
+      <tr><td><strong>Rozmaring Vendéglő</strong></td><td>Síkfőkút út 32.</td><td>Pizza, magyaros</td><td class="r dc">~400 m</td><td class="r">5 perc gyalog</td></tr>
+      <tr><td><strong>Zsenge</strong></td><td>Kossuth L. út 68.</td><td>Gourmet brunch</td><td class="r dc">~2,5 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td><strong>Csendülő</strong></td><td>Deák Ferenc út 46.</td><td>Kávézó, étterem, kőszínház</td><td class="r dc">~3 km</td><td class="r">6 perc autóval</td></tr>
+      <tr><td><strong>Panoráma Étterem</strong></td><td>Panoráma Hotel</td><td>Magyar, egri bor</td><td class="r dc">~3 km</td><td class="r">6 perc autóval</td></tr>
+      <tr><td><strong>Pisztráng Vendéglő</strong></td><td>Szalajka út 7., Szilvásvárad</td><td>Pisztráng, vad</td><td class="r dc">~30 km</td><td class="r">35 perc autóval</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">
+    <strong>Fontos:</strong> A <strong>Trakta by Nomádban asztalfoglalás kötelező</strong> — +36 36 463-363. A <strong>Csendülő csak csütörtöktől vasárnapig</strong> tart nyitva. A <strong>Pisztráng Vendéglő és Zsenge szezonálisan</strong> üzemelnek — érdemes előre ellenőrizni. A Rozmaring minden nap 11:30-tól nyitva.
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Javasolt menetrend:</strong> Reggelit minden nap a Cabinban (felszerelt konyha). Ebédre túrázás alatt a <strong>Zsenge</strong> vagy a <strong>Pisztráng Vendéglő</strong> (kirándulós napon). Vacsorára váltakozva: <strong>Rozmaring</strong> (pizza, casual), <strong>Trakta by Nomád</strong> (különleges élmény — foglalj előre!), <strong>Csendülő</strong> hétvégén (ha csüt–vas-ra esik). Saját grill a <strong>Cabin teraszon</strong> a legtakarékosabb lehetőség.
+  </div>
+
+</div>
+
+<footer>Boldog nászutat! · Noszvaj Cabin, Síkfőkút · Bükk Nemzeti Park · 2025</footer>
+
+</body>
+</html>
