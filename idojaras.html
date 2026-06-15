@@ -1,48 +1,193 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Időjárás előrejelzés</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Időjárás – 2026-06-15</title>
+  <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #eef2f7;
   color: #1a202c;
-  padding: 2rem;
-  text-align: center;
+  padding: 1.25rem;
+  max-width: 740px;
+  margin: 0 auto;
 }
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+header h1 { font-size: 1.35rem; font-weight: 700; color: #2d3748; }
+header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
+
+/* CARD */
 .card {
   background: #fff;
   border-radius: 14px;
   border: 2px solid #cbd5e0;
-  padding: 2rem;
-  max-width: 500px;
-  margin: 2rem auto;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
-.icon { font-size: 3rem; margin-bottom: 1rem; }
-h1 { font-size: 1.2rem; color: #2d3748; margin-bottom: .5rem; }
-p { font-size: .9rem; color: #718096; line-height: 1.6; }
+.card-header {
+  background: #2b6cb0;
+  color: #fff;
+  padding: .9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.card-header .emoji { font-size: 1.6rem; line-height: 1; }
+.card-header h2    { font-size: 1.05rem; font-weight: 700; }
+.card-header .meta { font-size: .78rem; opacity: .85; margin-top: .15rem; }
+.card-header.aktiv { background: #276749; }
+.card-header.aktualis { background: #2c7a7b; }
+
+/* NARRÁCIÓS BLOKK */
+.narracio {
+  background: #ebf8ff;
+  border-left: 5px solid #2b6cb0;
+  padding: .85rem 1.1rem;
+  font-size: .92rem;
+  line-height: 1.7;
+  color: #1a365d;
+  margin: .75rem .75rem 0;
+  border-radius: 0 8px 8px 0;
+}
+.narracio.aktiv { background: #f0fff4; border-color: #276749; color: #1c4532; }
+
+/* ELŐREJELZÉS TÁBLÁZAT */
+.table-wrap {
+  padding: .75rem;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .84rem;
+}
+thead tr { background: #f7fafc; }
+th {
+  padding: .45rem .7rem;
+  text-align: left;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #4a5568;
+  border-bottom: 2px solid #cbd5e0;
+}
+td {
+  padding: .45rem .7rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr.ma td { background: #fffbeb; font-weight: 600; }
+tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e2e; }
+.pill {
+  display: inline-block;
+  padding: .15rem .55rem;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.pill-sun  { background: #fefcbf; color: #744210; }
+.pill-rain { background: #bee3f8; color: #2c5282; }
+.pill-cloud{ background: #e2e8f0; color: #4a5568; }
+
+/* AKTUÁLIS KÁRTYA GRID */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: .6rem;
+  padding: .75rem;
+}
+.stat-box {
+  background: #f7fafc;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 10px;
+  padding: .6rem .8rem;
+}
+.stat-box .lbl {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #718096;
+  margin-bottom: .2rem;
+}
+.stat-box .val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+footer {
+  text-align: center;
+  font-size: .75rem;
+  color: #a0aec0;
+  margin-top: 1.25rem;
+}
 </style>
 </head>
 <body>
+  <header>
+    <h1>🗓 Napi időjárás-előrejelzés</h1>
+    <p>Frissítve: 2026-06-15 · Open-Meteo · Claude AI összefoglaló</p>
+  </header>
+
 <div class="card">
-  <div class="icon">🌤️</div>
-  <h1>Előrejelzés hamarosan</h1>
-  <p>Az időjárás-bot naponta frissíti ezt az oldalt.<br>
-  Noszvaj & Bélapátfalva · Open-Meteo + AI narráció</p>
+  <div class="card-header aktualis">
+    <span class="emoji">📍</span>
+    <div>
+      <h2>Noszvaj</h2>
+      <div class="meta">⏳ 28 nap múlva kezdődik · Jelenlegi időjárás</div>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="lbl">Max hőmérséklet</div><div class="val">22.7°C</div></div>
+    <div class="stat-box"><div class="lbl">Min hőmérséklet</div><div class="val">12.2°C</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék esély</div><div class="val">10%</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék</div><div class="val">0.0 mm</div></div>
+    <div class="stat-box"><div class="lbl">Szél</div><div class="val">16.2 km/h</div></div>
+    <div class="stat-box"><div class="lbl">UV index</div><div class="val">6.7</div></div>
+  </div>
+  <div class="narracio"># Időjárás-összefoglaló Noszvajra 🌤️
+
+Noszvajban június 15-én kellemes, szinte csapadékmentes időjárásra számíthatsz – a nap során 12-23°C között lesz a hőmérséklet, és csupán 10% az esőzés esélye. A mérsékelt, 16 km/h-s szél és az erős UV-sugárzás (6,7-es index) miatt ajánlott a napvédelem. Az időszak hamarosan kezdődik, szóval készülj fel a kellemes nyári időre! ☀️</div>
+  <div style="height:.75rem"></div>
 </div>
+<div class="card">
+  <div class="card-header aktualis">
+    <span class="emoji">📍</span>
+    <div>
+      <h2>Bélapátfalva</h2>
+      <div class="meta">⏳ 49 nap múlva kezdődik · Jelenlegi időjárás</div>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="lbl">Max hőmérséklet</div><div class="val">19.6°C</div></div>
+    <div class="stat-box"><div class="lbl">Min hőmérséklet</div><div class="val">11.0°C</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék esély</div><div class="val">2%</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék</div><div class="val">0.0 mm</div></div>
+    <div class="stat-box"><div class="lbl">Szél</div><div class="val">15.1 km/h</div></div>
+    <div class="stat-box"><div class="lbl">UV index</div><div class="val">6.4</div></div>
+  </div>
+  <div class="narracio"># Időjárás-összefoglaló: Bélapátfalva 🌤️
+
+Június 15-én Bélapátfalvára szép, száraz idő vár: maximálisan 19-20 fokra melegszik fel, szinte semmilyen csapadék nem fenyeget, csak egy könnyű 15 km/h-s szél fog fújni. Az UV-sugárzás elég erős lesz, szóval ne felejtsd el a naptejat! Az esemény hamarosan rajtol, és úgy néz ki, tökéletes időjárásban indulhattok majd! 😊</div>
+  <div style="height:.75rem"></div>
+</div>
+  <footer>open-meteo.com · Anthropic Claude</footer>
 <script>
-// Magasság küldése a szülő oldalnak
 function sendHeight() {
   var h = document.body.scrollHeight;
   window.parent.postMessage({type:'iframeHeight', height: h}, '*');
 }
 window.addEventListener('load', function() {
   sendHeight();
-  // Újraküldés kép/font betöltés után
   setTimeout(sendHeight, 800);
   setTimeout(sendHeight, 2000);
 });
