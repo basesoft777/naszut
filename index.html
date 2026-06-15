@@ -149,8 +149,9 @@ body{background:var(--cream);font-family:var(--sans);color:var(--ink);font-size:
 
 #idojaras-frame {
   width:100%;border:none;
-  min-height:520px;display:block;
+  height:600px;display:block;
   background:var(--cream);
+  transition:height .3s ease;
 }
 
 .weather-loading {
@@ -375,53 +376,38 @@ footer strong {color:var(--gd);}
 </footer>
 
 <script>
-// Időjárás iframe kezelés
 const frame = document.getElementById('idojaras-frame');
 const loading = document.getElementById('weather-loading');
 const dateEl = document.getElementById('weather-date');
 
-// Dátum kiírás
 const now = new Date();
 dateEl.textContent = now.toLocaleDateString('hu-HU', {year:'numeric',month:'long',day:'numeric'});
-
-// Iframe magasság dinamikus figyelés
-let resizeTimer;
-function adjustFrameHeight() {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(function() {
-    try {
-      const h = frame.contentDocument && frame.contentDocument.body
-        ? frame.contentDocument.body.scrollHeight
-        : 0;
-      if (h > 100) frame.style.minHeight = (h + 20) + 'px';
-    } catch(e) {
-      // cross-origin esetén nem elérhető — fix magasság marad
-    }
-  }, 200);
-}
 
 function frameLoaded() {
   loading.style.display = 'none';
   frame.style.display = 'block';
-  adjustFrameHeight();
+  setTimeout(function() {
+    frame.contentWindow.postMessage('getHeight', '*');
+  }, 400);
 }
 
 function frameError() {
   loading.innerHTML = '<div class="weather-error">' +
     '⚠️ Az előrejelzés jelenleg nem elérhető.<br>' +
-    '<a href="https://basesoft777.github.io/idojaras/idojaras.html" target="_blank" rel="noopener">Megnyitás külön ablakban →</a>' +
+    '<a href="https://basesoft777.github.io/naszut/idojaras.html" target="_blank" rel="noopener">Megnyitás külön ablakban →</a>' +
     '</div>';
 }
 
-// Timeout: ha 10mp után sem tölt be
-setTimeout(function() {
-  if (frame.style.display === 'none') {
-    frameError();
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'iframeHeight') {
+    var h = parseInt(e.data.height);
+    if (h > 100) frame.style.height = (h + 32) + 'px';
   }
-}, 10000);
+});
 
-// Ablak átméretezéskor igazítás
-window.addEventListener('resize', adjustFrameHeight);
+setTimeout(function() {
+  if (frame.style.display === 'none') { frameError(); }
+}, 10000);
 </script>
 </body>
 </html>
