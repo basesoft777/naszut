@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="hu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noszvaj — Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gd:#1E4A08;--gm:#3E7A18;--gl:#EBF3E0;--gb:#C8DFB0;--brown:#5A3820;--cream:#FAF8F4;--meal-bg:#F7F5F0;--ink:#1A1916;--muted:#6A6864;--border:#DDD9D0;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--cream);font-family:var(--sans);font-size:19px;color:var(--ink);line-height:1.6;}
+.hero{background:linear-gradient(rgba(235,243,224,.82),rgba(235,243,224,.95)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80') center/cover;border-bottom:2px solid var(--gb);padding:44px 40px;text-align:center;}
+.hero h1{font-family:var(--serif);font-size:clamp(28px,5vw,46px);color:var(--gd);font-weight:400;}
+.hero h1 em{font-style:italic;color:var(--gm);}
+.hero p{font-size:17px;color:var(--gd);margin-top:10px;}
+.main{max-width:860px;margin:28px auto 60px;padding:0 40px;}
+.day{margin-bottom:28px;}
+.day-header{background:var(--gl);border:1px solid var(--gb);border-left:4px solid var(--gm);border-radius:0 6px 6px 0;padding:11px 16px;margin-bottom:2px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.day-num{font-size:15px;font-weight:600;color:var(--gm);letter-spacing:.08em;text-transform:uppercase;}
+.day-title{font-family:var(--serif);font-size:25px;color:var(--gd);}
+.activities{display:flex;flex-direction:column;gap:2px;}
+.act{display:grid;grid-template-columns:54px 1fr 2fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.act.meal .act-left{background:var(--meal-bg);}.act.meal .act-right{background:var(--meal-bg);}
+.act-time{padding:12px 7px;font-size:15px;color:var(--muted);text-align:center;border-right:1px solid var(--border);background:#FAFAF7;display:flex;align-items:flex-start;justify-content:center;padding-top:14px;}
+.act-left{padding:9px 13px;border-right:1px solid var(--border);background:#fff;}
+.act-name{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.act.meal .act-name{color:var(--brown);}
+.act-right{padding:9px 14px;font-size:17px;color:var(--muted);line-height:1.55;background:#fff;}
+.tag{display:inline-block;font-size:14px;padding:2px 8px;border-radius:10px;font-weight:500;margin-top:2px;}
+.tag-t{background:#DFF0CC;color:#274D0A;}.tag-e{background:#FFF3CC;color:#7A5000;}.tag-k{background:#EDE9F5;color:#4A3B8C;}
+.act-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px 16px;margin-bottom:6px;}
+.act-card.act-auto{background:var(--gl);border:1.5px dashed var(--gb);}
+.act-card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.act-icon{font-size:24px;flex-shrink:0;margin-top:1px;}
+.act-card-title{flex:1;}
+.act-name{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.act-name.meal-n{color:var(--brown);}
+.act-desc{font-size:15px;color:var(--muted);line-height:1.55;margin-bottom:8px;border-left:3px solid var(--gb);padding-left:10px;}
+.act-rows{background:var(--cream);border-radius:6px;padding:8px 10px;margin-top:4px;}
+.act-photo-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;}
+@media(max-width:600px){.act-rows{font-size:13px;}}
+footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;padding:22px;font-size:16px;color:var(--gm);font-style:italic;}
+@media(max-width:600px){.act{grid-template-columns:44px 1fr;}.act-right{display:none;}.main{padding:0 16px;}.hero{padding:36px 20px;}}
+</style></head><body>
+<div class="hero"><h1>Noszvaj · <em>Tervezett program</em></h1><p>Noszvaj Cabin · Bükki Nemzeti Park</p></div>
+<main class="main">
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">1. nap</span>
+        <span class="day-title">Érkezés & tóparti séta</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🌿</span>
+            <div class="act-card-title">
+              <div class="act-name">Síkfőkúti tó & pihenő</div>
+              <span class="tag tag-k">program</span>
+            </div>
+          </div>
+          <div class="act-desc">A Cabin melletti Síkfőkúti tó — úszás, kajakezés, tóparti pihenés, hordszkál.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⏱ Időtartam</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">~1 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~200%20m%20gyalog%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~200 m gyalog</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Délután, érkezés napján, bármikor</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Fürdőruha, törülköző</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">ℹ️ Részletek</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Közvetlenül a Cabin mellett · Strandbelépő szezonálisan · Kajakbérlés a tónál</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAti%20t%C3%B3%20%26%20pihen%C5%91%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🍽</span>
+            <div class="act-card-title">
+              <div class="act-name">Trakta Étterem by Nomad</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⭐ Értékelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">★ 4.8 (173 értékelés)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">✦ Specialitás</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Friss, szezonális menü, kis választék</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Helyszín</span>
+            <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAt%2C%20Nomad%20park%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Síkfőkút, Nomad park</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~200%20m%20gyalog%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~200 m gyalog</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Nyitva</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Ebéd 12–15, vacsora 18–19:30</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📞 Tel.</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">—</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">💬 Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Igényes, változó kínálat a Nomad parkban. Foglalás ajánlott, szűk nyitvatartás.</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/dir/?api=1&destination=47.9562,20.5195" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">2. nap</span>
+        <span class="day-title">Kövesdi-kilátó körtúra</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Ebéd — hátizsák-picnic</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🔭</span>
+            <div class="act-card-title">
+              <div class="act-name">Síkfőkút – Kövesdi-kilátó kör</div>
+              <span class="tag tag-t">túra</span>
+            </div>
+          </div>
+          <div class="act-desc">A környék klasszikus családi köre: tavak, forrás, turistaház és Kövesdi-kilátó. Két ivóvízpont (Attila-kút, Várkút) és tűzrakóhelyek útközben.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⛰ Távolság</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">7,3 km · 300 m szint · 3 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎯 Fitness</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Könnyű · Kezdő</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Indulópont</span>
+            <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAt%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Síkfőkút</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~500%20m%20gyalog%20a%20Cabint%C3%B3l%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~500 m gyalog a Cabintól</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Egész napos program — reggel 9-re indulni</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Túracipő, víz, snack</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⚠️ Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Két ivóvízpont és tűzrakóhely útközben. A Cabin mellől indul.</span>
+          </div></div>
+          <div style="margin-top:8px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3E7A18;margin-bottom:5px">Látnivalók</div><div style="display:flex;flex-wrap:wrap;gap:5px"><a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAti%20t%C3%B3%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Síkfőkúti tó</a><a href="https://www.google.com/maps/search/Attila-forr%C3%A1s%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Attila-forrás</a><a href="https://www.google.com/maps/search/V%C3%A1rk%C3%BAti%20turistah%C3%A1z%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Várkúti turistaház</a><a href="https://www.google.com/maps/search/K%C3%B6vesdi-kil%C3%A1t%C3%B3%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Kövesdi-kilátó</a><a href="https://www.google.com/maps/search/Novaji-kunyh%C3%B3%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Novaji-kunyhó</a></div></div>
+          <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAt%20%E2%80%93%20K%C3%B6vesdi-kil%C3%A1t%C3%B3%20k%C3%B6r%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🔥</span>
+            <div class="act-card-title">
+              <div class="act-name">Grillezés & tábortűz</div>
+              <span class="tag tag-k">program</span>
+            </div>
+          </div>
+          <div class="act-desc">A Cabin saját kertjében grill és tűzrakóhely — BBQ este a csillagos ég alatt.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⏱ Időtartam</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">~2 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/0%20m%20(Cabinban)%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> 0 m (Cabinban)</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Este, vacsora helyett</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Hozzávalók bevásárolva (Rozmaring Vendéglő melletti bolt)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">ℹ️ Részletek</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Cabin kert · Grill ingyenes · Tűzifa helyben</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/search/Grillez%C3%A9s%20%26%20t%C3%A1bort%C5%B1z%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">3. nap</span>
+        <span class="day-title">Kultúrtúra & barlanglakások</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Ebéd — hátizsák-picnic</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🏰</span>
+            <div class="act-card-title">
+              <div class="act-name">Falut kerülő kultúrtúra</div>
+              <span class="tag tag-t">túra</span>
+            </div>
+          </div>
+          <div class="act-desc">Kulturális kör a faluközpontból: barokk De la Motte-kastély, tufába vájt barlanglakások, Imány-tető kilátás. Kávézók, cukrászdák útközben.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⛰ Távolság</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">6 km · 150 m szint · 2 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎯 Fitness</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Könnyű · Kezdő</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Indulópont</span>
+            <a href="https://www.google.com/maps/search/Noszvaj%20k%C3%B6zpontja%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Noszvaj központja</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~2%20km%20aut%C3%B3val%20(5%20perc)%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~2 km autóval (5 perc)</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Délelőtt vagy délután — esős napra is ideális</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Kényelmes cipő, kamera</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⚠️ Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Kávézók és cukrászdák útközben. Kulturális napra tökéletes.</span>
+          </div></div>
+          <div style="margin-top:8px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3E7A18;margin-bottom:5px">Látnivalók</div><div style="display:flex;flex-wrap:wrap;gap:5px"><a href="https://www.google.com/maps/search/De%20la%20Motte-kast%C3%A9ly%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> De la Motte-kastély</a><a href="https://www.google.com/maps/search/Barlanglak%C3%A1sok%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Barlanglakások</a><a href="https://www.google.com/maps/search/Im%C3%A1ny-tet%C5%91%20kil%C3%A1t%C3%A1s%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Imány-tető kilátás</a><a href="https://www.google.com/maps/search/Reform%C3%A1tus%20templom%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Református templom</a></div></div>
+          <a href="https://www.google.com/maps/search/Falut%20ker%C3%BCl%C5%91%20kult%C3%BArt%C3%BAra%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🌙</span>
+            <div class="act-card-title">
+              <div class="act-name">Csillagos égbolt</div>
+              <span class="tag tag-k">program</span>
+            </div>
+          </div>
+          <div class="act-desc">Minimális fényszennyezés Síkfőkúton — Tejút, csillagképek, teljes erdei csend.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⏱ Időtartam</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Este</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/0%20m%20(Cabin%20kert)%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> 0 m (Cabin kert)</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Felhőtlen éjszakán, 21:00 után</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Pokróc, csillagtérkép app</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">ℹ️ Részletek</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Síkfőkút és környéke · Legjobb: felhőtlen nyári éjszakák</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/search/Csillagos%20%C3%A9gbolt%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">4. nap</span>
+        <span class="day-title">Kaptárkövek & Hór-völgy</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Ebéd — helyi étterem</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🗿</span>
+            <div class="act-card-title">
+              <div class="act-name">Szomolyai Kaptárkövek tanösvény</div>
+              <span class="tag tag-t">túra</span>
+            </div>
+          </div>
+          <div class="act-desc">A titokzatos, fülkékkel faragott kaptárkövek tanösvénye Szomolyán. Rövid, de látványos; néhol lépcsős szakaszokkal.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⛰ Távolság</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">4 km · 130 m szint · 1,5 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎯 Fitness</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Könnyű · Kezdő</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Indulópont</span>
+            <a href="https://www.google.com/maps/search/Szomolya%20(~7%20km%20Noszvajt%C3%B3l)%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Szomolya (~7 km Noszvajtól)</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~7%20km%20aut%C3%B3val%20(10%20perc)%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~7 km autóval (10 perc)</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Délelőtt, Hór-völgyi étteremmel kombinálható</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Kényelmes cipő, kamera kötelező</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⚠️ Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Rövid de különleges — a titokzatos kaptárkövek egyedi látnivalók.</span>
+          </div></div>
+          <div style="margin-top:8px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3E7A18;margin-bottom:5px">Látnivalók</div><div style="display:flex;flex-wrap:wrap;gap:5px"><a href="https://www.google.com/maps/search/13%20kapt%C3%A1rk%C5%91%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> 13 kaptárkő</a><a href="https://www.google.com/maps/search/V%C3%A9n-hegy%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Vén-hegy</a><a href="https://www.google.com/maps/search/Riolittufa-form%C3%A1ci%C3%B3k%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Riolittufa-formációk</a></div></div>
+          <a href="https://www.google.com/maps/search/Szomolyai%20Kapt%C3%A1rk%C3%B6vek%20tan%C3%B6sv%C3%A9ny%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🌿</span>
+            <div class="act-card-title">
+              <div class="act-name">Hórvölgyi Remete Étterem</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⭐ Értékelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">★ 4.6 (1578 értékelés)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">✦ Specialitás</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Magyaros konyha, terasz, játszótér</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Helyszín</span>
+            <a href="https://www.google.com/maps/search/Cser%C3%A9pfalu%2C%20H%C3%B3r-v%C3%B6lgy%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Cserépfalu, Hór-völgy</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~8%20km%20aut%C3%B3val%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~8 km autóval</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Nyitva</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Naponta nyitva</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📞 Tel.</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">—</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">💬 Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">A Hór-völgyben, a kaptárköves túrák után ideális. Gyerekbarát, terasszal.</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/dir/?api=1&destination=47.948,20.535" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">5. nap</span>
+        <span class="day-title">Noszvaji Forrástúra</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Ebéd — hátizsák-picnic</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">💦</span>
+            <div class="act-card-title">
+              <div class="act-name">Noszvaji Forrástúra · 8 forrás</div>
+              <span class="tag tag-t">túra</span>
+            </div>
+          </div>
+          <div class="act-desc">Nyolc forrást fűz fel egy erdei kör. A Harmónia cukrászdában kapható verses térkép és kitűző teszi játékossá. Nagyobb gyerekekkel is teljesíthető.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⛰ Távolság</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">7,5 km · 350 m szint · 3–3,5 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎯 Fitness</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Közepes · Középhaladó</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Indulópont</span>
+            <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAt%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Síkfőkút</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~500%20m%20gyalog%20a%20Cabint%C3%B3l%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~500 m gyalog a Cabintól</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Délelőtt — a verses térképet előre szerezd be a Harmónia cukrászdából</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Túracipő, víz (2L), verses térkép (Harmónia cukrászda)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⚠️ Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">A Harmónia cukrászdában kapható verses térkép és kitűző — ajánlott előre beszerezni.</span>
+          </div></div>
+          <div style="margin-top:8px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3E7A18;margin-bottom:5px">Látnivalók</div><div style="display:flex;flex-wrap:wrap;gap:5px"><a href="https://www.google.com/maps/search/8%20forr%C3%A1s%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> 8 forrás</a><a href="https://www.google.com/maps/search/Verses%20interakt%C3%ADv%20%C3%B6sv%C3%A9ny%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Verses interaktív ösvény</a><a href="https://www.google.com/maps/search/Erd%C5%91f%C3%BCrd%C5%91-szakaszok%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> Erdőfürdő-szakaszok</a></div></div>
+          <a href="https://www.google.com/maps/search/Noszvaji%20Forr%C3%A1st%C3%BAra%20%C2%B7%208%20forr%C3%A1s%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">☕</span>
+            <div class="act-card-title">
+              <div class="act-name">Harmónia Kávézó és Cukrászda</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⭐ Értékelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">★ 4.4 (446 értékelés)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">✦ Specialitás</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Fagylalt, kávé, sütemény; a Forrástúra verses térképe</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Helyszín</span>
+            <a href="https://www.google.com/maps/search/Noszvaj%2C%20B%C3%A9ke%20%C3%BAt%201%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Noszvaj, Béke út 1</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~2%20km%20aut%C3%B3val%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~2 km autóval</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Nyitva</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Kedden zárva; egyébként 10–18</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📞 Tel.</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">+36 20 586 6897</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">💬 Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">A Noszvaji Forrástúra verses térképe és kitűzője itt kapható. Kedves kiszolgálás.</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/dir/?api=1&destination=47.9533,20.5095" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">6. nap</span>
+        <span class="day-title">Hazaút & búcsú</span>
+      </div>
+      <div class="activities">
+        
+        <div class="act-card act-auto">
+          <div class="act-card-head">
+            <span class="act-icon"></span>
+            <div class="act-card-title">
+              <div class="act-name meal-n">Reggeli — faházikó konyha</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🌿</span>
+            <div class="act-card-title">
+              <div class="act-name">Síkfőkúti tó & pihenő</div>
+              <span class="tag tag-k">program</span>
+            </div>
+          </div>
+          <div class="act-desc">A Cabin melletti Síkfőkúti tó — úszás, kajakezés, tóparti pihenés, hordszkál.</div>
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⏱ Időtartam</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">~1 óra</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~200%20m%20gyalog%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~200 m gyalog</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Mikor?</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Délután, érkezés napján, bármikor</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🎒 Felszerelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Fürdőruha, törülköző</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">ℹ️ Részletek</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Közvetlenül a Cabin mellett · Strandbelépő szezonálisan · Kajakbérlés a tónál</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/search/S%C3%ADkf%C5%91k%C3%BAti%20t%C3%B3%20%26%20pihen%C5%91%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <span class="act-icon">🍕</span>
+            <div class="act-card-title">
+              <div class="act-name">Rozmaring Vendéglő & Pizzéria</div>
+              <span class="tag tag-e">étkezés</span>
+            </div>
+          </div>
+          
+          <div class="act-rows"><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">⭐ Értékelés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">★ 4.5 (2777 értékelés)</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">✦ Specialitás</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Bőséges magyaros fogások, pizza, házi fagylalt</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📍 Helyszín</span>
+            <a href="https://www.google.com/maps/search/Noszvaj%2C%20S%C3%ADkf%C5%91k%C3%BAt%20%C3%BAt%2032%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> Noszvaj, Síkfőkút út 32</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🏠 Szállástól</span>
+            <a href="https://www.google.com/maps/search/~300%20m%20gyalog%20Noszvaj%20S%C3%ADkf%C5%91k%C3%BAt" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ~300 m gyalog</a>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">🕐 Nyitva</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">Naponta 11:30–21:00</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">📞 Tel.</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">+36 36 463 465</span>
+          </div><div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">💬 Megjegyzés</span>
+            <span style="color:#1A1916;flex:1;line-height:1.4">A legtöbb erdei túra rajtjánál; megbízható, minden nap nyitva. Túra utáni ebédhez kényelmes.</span>
+          </div></div>
+          
+          <a href="https://www.google.com/maps/dir/?api=1&destination=47.9558,20.52" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        </div>
+      </div>
+    </div></main>
+<footer>Kellemes pihenést! · Noszvaj Cabin, Noszvaj · Bükki Nemzeti Park</footer>
+</body></html>
