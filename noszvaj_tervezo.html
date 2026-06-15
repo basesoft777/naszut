@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noszvaj · Cabin · Úttervező</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff; --meal:#F4F9EF;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --mid-bg:#FFF3CC;  --mid:#7A5000;
+  --hard-bg:#FAECE7; --hard:#8B2B10;
+  --drop-glow: 0 0 0 2px var(--gm), 0 4px 24px rgba(62,122,24,.25);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--cream);display:flex;flex-direction:column;}
+
+/* ═══════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════ */
+.topbar{
+  flex-shrink:0;
+  background:var(--gd);
+  padding:0 24px;
+  height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  box-shadow:0 2px 16px rgba(0,0,0,.3);
+  z-index:300;
+}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.logo{font-family:var(--serif);font-size:28px;color:#fff;font-weight:400;line-height:1;}
+.logo em{font-style:italic;color:#B8D89A;}
+.topbar-badge{font-size:13px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.2);padding-left:14px;}
+.topbar-right{display:flex;gap:8px;align-items:center;}
+.tbtn{display:inline-flex;align-items:center;gap:5px;font-size:15px;font-weight:500;padding:7px 14px;border-radius:20px;cursor:pointer;border:none;font-family:var(--sans);transition:all .15s;}
+.tbtn-ghost{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);}
+.tbtn-ghost:hover{background:rgba(255,255,255,.2);}
+.tbtn-green{background:var(--gb);color:var(--gd);}
+.tbtn-green:hover{background:#b0d490;}
+.counter{font-size:14px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;}
+
+/* ═══════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════ */
+.app{flex:1;display:grid;grid-template-columns:380px 1fr;overflow:hidden;}
+
+/* ═══════════════════════════════════════
+   LIBRARY (LEFT)
+═══════════════════════════════════════ */
+.library{
+  background:var(--white);
+  border-right:1.5px solid var(--border);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.lib-head{
+  background:var(--gl);
+  border-bottom:1px solid var(--gb);
+  padding:18px 20px 14px;
+  flex-shrink:0;
+}
+.lib-head h2{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--gd);margin-bottom:2px;}
+.lib-head p{font-size:18px;color:var(--muted);margin-top:4px;}
+.lib-tabs{display:flex;flex-shrink:0;border-bottom:1.5px solid var(--border);}
+.ltab{flex:1;font-size:13px;font-weight:500;padding:9px 4px;text-align:center;cursor:pointer;background:none;border:none;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;color:var(--muted);font-family:var(--sans);transition:color .15s;}
+.ltab.on{color:var(--gd);border-bottom-color:var(--gm);}
+.lib-scroll{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:20px;}
+.lib-scroll::-webkit-scrollbar{width:6px;}
+.lib-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+/* ─ lib card ─ */
+.lcard{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  overflow:visible;
+  height:auto;
+  cursor:grab;
+  user-select:none;
+  transition:border-color .15s, box-shadow .15s, transform .15s;
+  position:relative;
+}
+.lcard:hover{border-color:var(--gb);box-shadow:0 3px 12px rgba(0,0,0,.09);}
+.lcard.is-dragging{transform:rotate(2deg) scale(1.03);box-shadow:0 10px 32px rgba(30,74,8,.22);opacity:.85;z-index:999;}
+.lcard-body{padding:12px 14px;}
+.lcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:8px;}
+.lcard-name{font-weight:600;font-size:17px;color:var(--gd);line-height:1.25;}
+.lcard-type{font-size:15px;color:var(--muted);font-style:italic;margin-top:1px;}
+.dpill{font-size:14px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em;}
+.dp-k{background:var(--easy-bg);color:var(--easy);}
+.dp-koz{background:var(--mid-bg);color:var(--mid);}
+.dp-n{background:var(--hard-bg);color:var(--hard);}
+.drag-tip{font-size:14px;color:var(--gb);margin-top:8px;display:flex;align-items:center;gap:3px;}
+.lcard-img{width:100%;height:240px;object-fit:cover;display:block;background:var(--gl);}
+.lcard-img-ph{width:100%;height:180px;background:linear-gradient(135deg,var(--gl),#d0e8c0);display:flex;align-items:center;justify-content:center;font-size:66px;}
+.lcard-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;}
+.lcsg-item{background:var(--gl);border-radius:6px;padding:7px 4px;text-align:center;}
+.lcsg-val{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--gd);line-height:1;}
+.lcsg-key{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.lcard-divider{height:1px;background:var(--border);margin:8px 0;}
+.lcard-detail-row{display:flex;gap:6px;margin-bottom:5px;align-items:flex-start;}
+.ldd-label{font-size:13px;color:var(--muted);min-width:88px;flex-shrink:0;padding-top:1px;}
+.ldd-val{font-size:15px;color:var(--ink);line-height:1.4;flex:1;}
+.ldd-dist{color:var(--gm);font-weight:600;}
+.ldd-note{color:var(--muted);font-style:italic;}
+.sight-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.sight-chip{font-size:12px;background:var(--cream);color:var(--muted);border:1px solid var(--border);padding:2px 7px;border-radius:4px;}
+/* eat lcard */
+.lcard.eat{border-left:3px solid var(--gm);}
+.eat-rat{font-size:15px;color:var(--gm);font-weight:600;}
+/* other lcard */
+.lcard.other{padding:10px 12px;}
+
+/* ═══════════════════════════════════════
+   PLANNER (RIGHT)
+═══════════════════════════════════════ */
+.planner{
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.plan-toolbar{
+  flex-shrink:0;
+  background:var(--white);
+  border-bottom:1.5px solid var(--border);
+  padding:10px 20px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.plan-toolbar-title{font-family:var(--serif);font-size:21px;color:var(--gd);flex:1;}
+.plan-days-scroll{flex:1;overflow:auto;padding:20px;}
+.plan-days-scroll::-webkit-scrollbar{height:6px;width:6px;}
+.plan-days-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+.days-row{display:flex;gap:16px;min-height:100%;align-items:flex-start;}
+
+/* ─ day column ─ */
+.day-col{
+  min-width:260px;
+  flex:1;
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color .15s;
+}
+.day-col.accepting{border-color:var(--gm);}
+.day-head{
+  background:var(--gl);
+  border-bottom:1px solid var(--gb);
+  padding:12px 14px;
+  flex-shrink:0;
+}
+.day-head-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.day-n{font-size:14px;font-weight:700;color:var(--gm);letter-spacing:.1em;text-transform:uppercase;}
+.day-title-input{
+  font-family:var(--serif);font-size:22px;font-weight:400;color:var(--gd);
+  border:none;background:transparent;outline:none;width:100%;
+  border-bottom:1.5px solid transparent;transition:border-color .15s;
+}
+.day-title-input:focus{border-bottom-color:var(--gm);}
+.day-stats-row{display:flex;gap:12px;flex-wrap:wrap;}
+.dstat{font-size:15px;color:var(--muted);}
+.dstat strong{color:var(--gd);}
+
+/* ─ drop zone ─ */
+.dropzone{
+  flex:1;
+  min-height:120px;
+  padding:10px;
+  display:flex;flex-direction:column;gap:8px;
+  transition:background .2s;
+  position:relative;
+}
+.dropzone.over{
+  background:rgba(62,122,24,.06);
+}
+.dropzone.over::after{
+  content:'';position:absolute;inset:6px;
+  border:2px dashed var(--gm);border-radius:8px;pointer-events:none;
+  animation:pulse-border .8s ease-in-out infinite alternate;
+}
+@keyframes pulse-border{from{opacity:.5}to{opacity:1}}
+.dropzone-empty{
+  display:flex;align-items:center;justify-content:center;
+  flex:1;min-height:80px;
+  font-size:15px;color:var(--border);font-style:italic;text-align:center;
+  pointer-events:none;
+}
+.day-foot{
+  border-top:1px solid var(--border);
+  background:#FAFAF7;
+  padding:8px 14px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  flex-shrink:0;
+}
+.foot-stat{font-size:15px;color:var(--muted);}
+.foot-stat strong{color:var(--gd);font-size:16px;}
+.arr-time{font-size:15px;font-weight:600;color:var(--gm);background:var(--gl);padding:3px 10px;border-radius:12px;border:1px solid var(--gb);}
+
+/* ─ placed card ─ */
+.pcard{
+  background:var(--cream);
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  padding:9px 10px;
+  display:flex;align-items:flex-start;gap:8px;
+  cursor:grab;user-select:none;
+  transition:box-shadow .15s,transform .15s,border-color .15s;
+  animation:drop-in .25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes drop-in{
+  from{opacity:0;transform:translateY(-10px) scale(.96);}
+  to{opacity:1;transform:none;}
+}
+.pcard:hover{border-color:var(--gb);box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.pcard.is-dragging{opacity:.4;transform:scale(.97);}
+.pcard.eat-p{border-left:3px solid var(--gm);background:var(--meal);}
+.pcard.auto-p{border:1.5px dashed var(--gb);background:var(--gl);cursor:default;opacity:.8;}
+.pcard.suggest-p{border:1.5px dashed #C8900A;background:#FFFBF0;cursor:default;}
+.suggest-label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C8900A;margin-bottom:3px;}
+.suggest-note{font-size:12px;color:#8A6A50;font-style:italic;margin-top:3px;}
+.pc-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.pc-body{flex:1;min-width:0;}
+.pc-name{font-size:17px;font-weight:500;color:var(--gd);line-height:1.2;margin-bottom:2px;}
+.pc-meta{font-size:15px;color:var(--muted);line-height:1.4;}
+.pc-tag{display:inline-block;font-size:14px;padding:1px 7px;border-radius:10px;margin-top:3px;font-weight:500;}
+.pct-t{background:var(--easy-bg);color:var(--easy);}
+.pct-e{background:#F0EDE6;color:#5A5650;}
+.pct-o{background:#D8EAF8;color:#0C3E72;}
+.pc-x{background:none;border:none;color:var(--border);font-size:18px;cursor:pointer;padding:2px 3px;border-radius:4px;flex-shrink:0;line-height:1;transition:color .15s;}
+.pc-x:hover{color:#c0392b;}
+
+
+
+/* ═══════════════════════════════════════
+   EXPORT MODAL
+═══════════════════════════════════════ */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:var(--white);border-radius:14px;padding:30px 28px;max-width:440px;width:92%;box-shadow:0 24px 70px rgba(0,0,0,.28);}
+.modal h3{font-family:var(--serif);font-size:24px;color:var(--gd);margin-bottom:8px;}
+.modal p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end;}
+.mbtn{display:inline-flex;align-items:center;gap:5px;font-size:15px;font-weight:500;padding:9px 18px;border-radius:20px;cursor:pointer;border:none;font-family:var(--sans);}
+.mbtn-cancel{background:var(--cream);color:var(--muted);border:1px solid var(--border);}
+.mbtn-cancel:hover{background:var(--border);}
+.mbtn-do{background:var(--gd);color:#fff;}
+.mbtn-do:hover{background:#2c6010;}
+
+/* ═══════════════════════════════════════
+   CONFIRM TOAST
+═══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--gd);color:#fff;font-size:15px;font-weight:500;
+  padding:10px 22px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:999;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── LEGEND BAR ── */
+.legend-bar{background:#FAFAF7;border-top:1px solid var(--border);padding:5px 16px;display:flex;align-items:center;gap:5px;flex-shrink:0;flex-wrap:wrap;}
+.legend-bar-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.legend-sep{width:1px;height:22px;background:var(--border);flex-shrink:0;margin:0 6px;}
+.legend-items{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1;}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--muted);line-height:1.3;}
+.legend-item strong{font-weight:600;color:var(--ink);}
+.legend-pill{font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.lb-auto{background:var(--gl);border:1.5px dashed var(--gb);color:var(--gd);}
+.lb-suggest{background:#FFFBF0;border:1.5px dashed #C8900A;color:#7A5000;}
+.lb-placed{background:var(--cream);border:1.5px solid var(--border);color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Noszvaj <em>Cabin</em> · Úttervező</div>
+    <div class="topbar-badge">Noszvaj Cabin</div>
+  </div>
+  <div class="topbar-right">
+    <span class="counter" id="totalCounter">0 elem tervezve</span>
+    <button class="tbtn tbtn-ghost" onclick="clearAll()">↺ Törlés</button>
+    <button class="tbtn tbtn-green" onclick="openModal()">⬇ Program generálása</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- LIBRARY -->
+  <aside class="library">
+    <div class="lib-head">
+      <h2>Elemek</h2>
+      <p>Húzd a kívánt napba ↕</p>
+    </div>
+    <div class="lib-tabs">
+      <button class="ltab on" data-tab="tura" onclick="switchTab(this)">⛰ Túrák (9)</button>
+      <button class="ltab" data-tab="eat" onclick="switchTab(this)">🍴 Éttermek (6)</button>
+      <button class="ltab" data-tab="other" onclick="switchTab(this)">✦ Programok (7)</button>
+    </div>
+    <div class="lib-scroll" id="libScroll"></div>
+  </aside>
+
+  <!-- PLANNER -->
+  <main class="planner">
+    <div class="plan-toolbar">
+      <span class="plan-toolbar-title">Program tervezése — 6 nap</span>
+    </div>
+    <div class="plan-days-scroll">
+      <div class="days-row" id="daysRow"></div>
+    </div>
+  </main>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <h3>Program generálása</h3>
+    <p>Az összeállított program letölthető HTML fájlként generálódik — kinézete megegyezik a többi Bélapátfalva programfájllal.</p>
+    <div class="modal-btns">
+      <button class="mbtn mbtn-cancel" onclick="closeModal()">Mégse</button>
+      <button class="mbtn mbtn-do" onclick="doExport()">Letöltés →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* ════════════════════════════════════════
+   NOSZVAJ ADATOK
+════════════════════════════════════════ */
+
+const ROUTES = [
+  {id:'r1',img:null,icon:'💧',
+   name:"Attila-forrás séta",
+   type:"↕ Oda-vissza · forrás",
+   dist:2, distL:"2", distNote:"oda-vissza, rövid",
+   elev:60, time:"40 perc", timeH:0.7, diff:"Könnyű", fit:"Kezdő",
+   start:"Síkfőkút",
+   marker:"Zöld négyzet",
+   terrain:"Rövid, árnyas erdei sétaút",
+   desc:"A legrövidebb séta a síkfőkúti üdülőterületről egy hűsítő erdei forráshoz. Kisgyerekkel is könnyű, a szintkülönbség elhanyagolható.",
+   mikor:"Bármikor, különösen nyári melegben — délelőtt ajánlott",
+   felszereles:"Semmi különös — cipő elegendő",
+   note:"A legrövidebb noszvaji séta. Forrás a végén friss vízzel.",
+   fromFahaz:"~500 m gyalog a Cabintól",
+   eat:['e1','e2'],
+   sights:["Attila-forrás","Árnyas erdei ösvény"]},
+
+  {id:'r2',img:null,icon:'🏰',
+   name:"Falut kerülő kultúrtúra",
+   type:"◯ Körtúra · kulturális",
+   dist:6, distL:"6", distNote:"falu + sétautak",
+   elev:150, time:"2 óra", timeH:2, diff:"Könnyű", fit:"Kezdő",
+   start:"Noszvaj központja",
+   marker:"Helyi / utcai jelzés",
+   terrain:"Falusi utcák és rövid sétautak",
+   desc:"Kulturális kör a faluközpontból: barokk De la Motte-kastély, tufába vájt barlanglakások, Imány-tető kilátás. Kávézók, cukrászdák útközben.",
+   mikor:"Délelőtt vagy délután — esős napra is ideális",
+   felszereles:"Kényelmes cipő, kamera",
+   note:"Kávézók és cukrászdák útközben. Kulturális napra tökéletes.",
+   fromFahaz:"~2 km autóval (5 perc)",
+   eat:['e4','e5','e6','e8'],
+   sights:["De la Motte-kastély","Barlanglakások","Imány-tető kilátás","Református templom"]},
+
+  {id:'r3',img:null,icon:'🌲',
+   name:"Novaji-kunyhó kör",
+   type:"◯ Körtúra",
+   dist:6.1, distL:"6,1", distNote:"erdei körtúra",
+   elev:200, time:"2 óra", timeH:2, diff:"Könnyű", fit:"Kezdő",
+   start:"Síkfőkút",
+   marker:"Piros kereszt",
+   terrain:"Erdei utak, enyhe emelkedők",
+   desc:"Kellemes, árnyas erdei körtúra a Novaji-kunyhóhoz, pihenőhelyekkel. Jó választás nyári melegben, kevésbé ismert útvonal.",
+   mikor:"Délelőtt, nyári melegben különösen ajánlott az árnyék miatt",
+   felszereles:"Túracipő, víz",
+   note:"Árnyas erdei kör, pihenőhelyekkel. Csendes, kevésbé látogatott.",
+   fromFahaz:"~500 m gyalog a Cabintól",
+   eat:['e1','e2'],
+   sights:["Novaji-kunyhó","Erdei pihenőhelyek","Síkfőkúti erdő"]},
+
+  {id:'r4',img:null,icon:'🔭',
+   name:"Síkfőkút – Kövesdi-kilátó kör",
+   type:"◯ Körtúra · kilátó",
+   dist:7.3, distL:"7,3", distNote:"teljes kör",
+   elev:300, time:"3 óra", timeH:3, diff:"Könnyű", fit:"Kezdő",
+   start:"Síkfőkút",
+   marker:"Zöld négyzet + piros/zöld sáv",
+   terrain:"Árnyas erdei ösvény, rövid meredek a Várkúthoz",
+   desc:"A környék klasszikus családi köre: tavak, forrás, turistaház és Kövesdi-kilátó. Két ivóvízpont (Attila-kút, Várkút) és tűzrakóhelyek útközben.",
+   mikor:"Egész napos program — reggel 9-re indulni",
+   felszereles:"Túracipő, víz, snack",
+   note:"Két ivóvízpont és tűzrakóhely útközben. A Cabin mellől indul.",
+   fromFahaz:"~500 m gyalog a Cabintól",
+   eat:['e1','e2','e3'],
+   sights:["Síkfőkúti tó","Attila-forrás","Várkúti turistaház","Kövesdi-kilátó","Novaji-kunyhó"]},
+
+  {id:'r5',img:null,icon:'🗿',
+   name:"Szomolyai Kaptárkövek tanösvény",
+   type:"◯ Tanösvény · 13 kaptárkő",
+   dist:4, distL:"4", distNote:"jelzett tanösvény",
+   elev:130, time:"1,5 óra", timeH:1.5, diff:"Könnyű", fit:"Kezdő",
+   start:"Szomolya (~7 km Noszvajtól)",
+   marker:"Jelzett tanösvény",
+   terrain:"Tufafalak, helyenként lépcső / fémjárda",
+   desc:"A titokzatos, fülkékkel faragott kaptárkövek tanösvénye Szomolyán. Rövid, de látványos; néhol lépcsős szakaszokkal.",
+   mikor:"Délelőtt, Hór-völgyi étteremmel kombinálható",
+   felszereles:"Kényelmes cipő, kamera kötelező",
+   note:"Rövid de különleges — a titokzatos kaptárkövek egyedi látnivalók.",
+   fromFahaz:"~7 km autóval (10 perc)",
+   eat:['e9','e10'],
+   sights:["13 kaptárkő","Vén-hegy","Riolittufa-formációk"]},
+
+  {id:'r6',img:null,icon:'💦',
+   name:"Noszvaji Forrástúra · 8 forrás",
+   type:"◯ Körtúra · 8 forrás",
+   dist:7.5, distL:"7,5", distNote:"8 forrás érintésével",
+   elev:350, time:"3–3,5 óra", timeH:3.25, diff:"Közepes", fit:"Középhaladó",
+   start:"Síkfőkút",
+   marker:"Sárga kereszt",
+   terrain:"Erdei ösvény, közepes emelkedőkkel",
+   desc:"Nyolc forrást fűz fel egy erdei kör. A Harmónia cukrászdában kapható verses térkép és kitűző teszi játékossá. Nagyobb gyerekekkel is teljesíthető.",
+   mikor:"Délelőtt — a verses térképet előre szerezd be a Harmónia cukrászdából",
+   felszereles:"Túracipő, víz (2L), verses térkép (Harmónia cukrászda)",
+   note:"A Harmónia cukrászdában kapható verses térkép és kitűző — ajánlott előre beszerezni.",
+   fromFahaz:"~500 m gyalog a Cabintól",
+   eat:['e1','e7'],
+   sights:["8 forrás","Verses interaktív ösvény","Erdőfürdő-szakaszok"]},
+
+  {id:'r7',img:null,icon:'⛰',
+   name:"Kánya-hegy panorámatúra",
+   type:"◯ Körtúra · panoráma",
+   dist:9, distL:"9", distNote:"erdei kör a csúcsig",
+   elev:360, time:"3,5 óra", timeH:3.5, diff:"Közepes", fit:"Középhaladó",
+   start:"Síkfőkút",
+   marker:"Kék jelzés",
+   terrain:"Erdei emelkedő a csúcsig",
+   desc:"Hosszabb erdei kör a Kánya-hegy panorámapontjáig, csendes patakvölgyön át. Kevésbé látogatott, igazi bükki hangulat.",
+   mikor:"Egész napos — reggel 8-ra indulni",
+   felszereles:"Túracipő, 2L víz, szendvics",
+   note:"Csendes, kevésbé látogatott útvonal. Igazi bükki hangulat.",
+   fromFahaz:"~500 m gyalog a Cabintól",
+   eat:['e1','e2'],
+   sights:["Kánya-hegy csúcspanoráma","Kánya-patak völgye","Bükk élővilága"]},
+
+  {id:'r8',img:null,icon:'🗺',
+   name:"Szomolya–Noszvaj kaptárkövek nagytúra",
+   type:"→ Pont–pont · nagytúra",
+   dist:13, distL:"~13", distNote:"pont-pont, busz vissza",
+   elev:420, time:"4,5 óra", timeH:4.5, diff:"Közepes", fit:"Haladó",
+   start:"Szomolya (busszal vissza)",
+   marker:"Piros háromszög + jelzett",
+   terrain:"Tufapincék, kaptárkövek, erdei utak",
+   desc:"A leglátványosabb kaptárköves útvonal Szomolyától Noszvajig, pincesorokkal és kilátóval. Pont-pont túra — vissza busszal érdemes tervezni.",
+   mikor:"Egész napos program — előre nézd meg a buszrendet!",
+   felszereles:"Túracipő, 2L víz, ebéd + snack, buszjegy",
+   note:"Pont-pont túra — visszafelé busszal. Előre ellenőrizd a menetrendet.",
+   fromFahaz:"~7 km autóval Szomolyáig",
+   eat:['e9','e10'],
+   sights:["Pincesor és barlanglakások","Nagy-Völgy-Tetői kilátó","Számos kaptárkő"]},
+
+  {id:'r9',img:null,icon:'🏔',
+   name:"Nagy-Eged-hegy kihívás",
+   type:"◯ Körtúra · kihívás",
+   dist:10, distL:"10", distNote:"meredek csúcstúra",
+   elev:560, time:"4 óra", timeH:4, diff:"Nehéz", fit:"Haladó",
+   start:"Eger / Noszvaj környéke",
+   marker:"Piros + kék jelzés",
+   terrain:"Tartós, meredek emelkedő",
+   desc:"A környék legnagyobb kihívása: tartós, meredek kapaszkodó a Nagy-Eged 536 m-es csúcsára. Körpanoráma és Európa egyik legmagasabban fekvő szőlője vár.",
+   mikor:"Kora reggeli indulás (8:00) — egész napos program",
+   felszereles:"Túrabakancs kötelező, 3L víz, ebéd + snack, elsősegély",
+   note:"Nagyon meredek. Jó kondíciót igényel. Nem ajánlott esős időben.",
+   fromFahaz:"~12 km autóval Egerig",
+   eat:[],
+   sights:["Nagy-Eged csúcs (536 m)","Körpanoráma","Európa legmagasabb szőlője"]}
+];
+
+const DINING = [
+  {id:'e1',icon:'🍕',
+   name:"Rozmaring Vendéglő & Pizzéria",
+   type:"Magyaros + pizza",
+   loc:"Noszvaj, Síkfőkút út 32",
+   near:"Síkfőkúti túrák kiindulásánál",
+   spec:"Bőséges magyaros fogások, pizza, házi fagylalt",
+   rating:4.5, cnt:2777,
+   hours:"Naponta 11:30–21:00",
+   phone:"+36 36 463 465",
+   note:"A legtöbb erdei túra rajtjánál; megbízható, minden nap nyitva. Túra utáni ebédhez kényelmes.",
+   lat:47.9558, lng:20.5200, fromFahaz:"~300 m gyalog"},
+
+  {id:'e2',icon:'🍽',
+   name:"Trakta Étterem by Nomad",
+   type:"Szezonális · bisztró",
+   loc:"Síkfőkút, Nomad park",
+   near:"Síkfőkúti túrák",
+   spec:"Friss, szezonális menü, kis választék",
+   rating:4.8, cnt:173,
+   hours:"Ebéd 12–15, vacsora 18–19:30",
+   phone:null,
+   note:"Igényes, változó kínálat a Nomad parkban. Foglalás ajánlott, szűk nyitvatartás.",
+   lat:47.9562, lng:20.5195, fromFahaz:"~200 m gyalog"},
+
+  {id:'e3',icon:'🥩',
+   name:"LUMBERJACK",
+   type:"Fine dining · kóstolómenü",
+   loc:"Síkfőkút közelében",
+   near:"Síkfőkúti túrák",
+   spec:"Többfogásos kóstolómenü, különleges alkalomra",
+   rating:4.7, cnt:144,
+   hours:"Csak péntek–hétfő, foglalással",
+   phone:null,
+   note:"Kiemelt gasztroélmény túra utáni vacsorára. Csak előzetes foglalással.",
+   lat:47.9560, lng:20.5190, fromFahaz:"~400 m gyalog"},
+
+  {id:'e4',icon:'🍷',
+   name:"Csendülő Étterem",
+   type:"Magyaros · borozó, kert",
+   loc:"Noszvaj, Deák Ferenc út 46",
+   near:"Falut kerülő kultúrtúra",
+   spec:"Sült tarja, házi sütemények, nagy borválaszték",
+   rating:4.6, cnt:2266,
+   hours:"Kedd–szerda zárva",
+   phone:"+36 30 148 6015",
+   note:"Hangulatos kert a faluközpontban, kiváló bor- és sütiválasztékkal.",
+   lat:47.9540, lng:20.5110, fromFahaz:"~2 km autóval"},
+
+  {id:'e5',icon:'🏡',
+   name:"Kant-Inn lakásétterem",
+   type:"Foglalós · napi menü",
+   loc:"Noszvaj központja",
+   near:"Falut kerülő kultúrtúra",
+   spec:"Napi és tematikus menü, kis létszámnak",
+   rating:5.0, cnt:39,
+   hours:"Foglalással (szerda–vasárnap)",
+   phone:null,
+   note:"Kicsi, foglalós lakásétterem kiemelkedő értékelésekkel. Előzetes egyeztetés szükséges.",
+   lat:47.9538, lng:20.5105, fromFahaz:"~2 km autóval"},
+
+  {id:'e6',icon:'🎂',
+   name:"Rozika Kávézó & Sütiző",
+   type:"Cukrászda · kávézó",
+   loc:"Noszvaj falu",
+   near:"Túra előtti megálló",
+   spec:"Kávé, croissant, házi sütemények",
+   rating:4.8, cnt:881,
+   hours:"Hétfőn zárva",
+   phone:null,
+   note:"Tökéletes reggeli megálló indulás előtt a faluban.",
+   lat:47.9535, lng:20.5100, fromFahaz:"~2 km autóval"},
+
+  {id:'e7',icon:'☕',
+   name:"Harmónia Kávézó és Cukrászda",
+   type:"Cukrászda · fagylalt",
+   loc:"Noszvaj, Béke út 1",
+   near:"Forrástúra (térkép itt kapható)",
+   spec:"Fagylalt, kávé, sütemény; a Forrástúra verses térképe",
+   rating:4.4, cnt:446,
+   hours:"Kedden zárva; egyébként 10–18",
+   phone:"+36 20 586 6897",
+   note:"A Noszvaji Forrástúra verses térképe és kitűzője itt kapható. Kedves kiszolgálás.",
+   lat:47.9533, lng:20.5095, fromFahaz:"~2 km autóval"},
+
+  {id:'e8',icon:'🥗',
+   name:"Zsenge – Konyha és Kávé",
+   type:"Reggeli · brunch · kávé",
+   loc:"Noszvaj, Kossuth L. u. 68",
+   near:"Túra előtti megálló",
+   spec:"Reggeli és brunch helyi termékekkel, jó kávé",
+   rating:4.7, cnt:198,
+   hours:"H–Szo 9–17, vasárnap 9–15",
+   phone:"+36 30 103 4500",
+   note:"Friss reggeli helyi alapanyagokból; helyi termékek (bor, lekvár) is kaphatók.",
+   lat:47.9540, lng:20.5108, fromFahaz:"~2 km autóval"},
+
+  {id:'e9',icon:'🌿',
+   name:"Hórvölgyi Remete Étterem",
+   type:"Magyaros · terasz",
+   loc:"Cserépfalu, Hór-völgy",
+   near:"Kaptárköves túrák után",
+   spec:"Magyaros konyha, terasz, játszótér",
+   rating:4.6, cnt:1578,
+   hours:"Naponta nyitva",
+   phone:null,
+   note:"A Hór-völgyben, a kaptárköves túrák után ideális. Gyerekbarát, terasszal.",
+   lat:47.9480, lng:20.5350, fromFahaz:"~8 km autóval"},
+
+  {id:'e10',icon:'🍷',
+   name:"Almárium Kert",
+   type:"Magyaros · borkert",
+   loc:"Bogács, Bükkalja",
+   near:"Kaptárköves túrák felé",
+   spec:"Igényes konyha, helyi borok, kerthelyiség",
+   rating:4.9, cnt:64,
+   hours:"Vasárnap zárva",
+   phone:null,
+   note:"Igényes konyha és helyi borok a Bükkalján, kellemes kerthelyiséggel.",
+   lat:47.9390, lng:20.5580, fromFahaz:"~10 km autóval"}
+];
+
+const OTHER = [
+  {id:'o1',icon:'🏰',name:"De la Motte-kastély",type:"Kultúra",
+   timeH:1.0, time:"~1 óra", diff:"Könnyű",
+   desc:"Barokk stílusú kastély Noszvaj faluközpontjában — a Bükk-alja egyik legszebb kastélya.",
+   mikor:"Délelőtt vagy délután, falut kerülő kultúrtúrával kombinálható",
+   felszereles:"Semmi különös",
+   details:"Noszvaj, Kossuth L. u. · Nyitva: szezonálisan · Belépő: ~1000 Ft",
+   fromFahaz:"~2 km autóval (5 perc)"},
+
+  {id:'o2',icon:'🪨',name:"Noszvaji barlanglakások",type:"Kultúra",
+   timeH:0.75, time:"~45 perc", diff:"Könnyű",
+   desc:"Tufába vájt barlanglakások Noszvaj keleti domboldalán — a falut kerülő kultúrtúra egyik csúcspontja.",
+   mikor:"Bármikor, különösen délelőtt",
+   felszereles:"Kényelmes cipő",
+   details:"Noszvaj keleti oldal · Ingyenesen megtekinthető · Fotózásra kiváló",
+   fromFahaz:"~2 km autóval"},
+
+  {id:'o3',icon:'🌟',name:"Kövesdi-kilátó",type:"Természet",
+   timeH:3.0, time:"~3 ó (túrával)", diff:"Könnyű",
+   desc:"A Síkfőkút–Kövesdi-kilátó körtúra végpontja. Panoráma a Bükk-aljára és a síkságra.",
+   mikor:"A 7,3 km-es kilátó körtúra részeként délelőtt",
+   felszereles:"Túracipő, víz",
+   details:"Síkfőkúttól ~3 ó a kilátókörtúrán · Ingyenes · Ivóvíz útközben",
+   fromFahaz:"~500 m gyalog (túra részeként)"},
+
+  {id:'o4',icon:'🌿',name:"Síkfőkúti tó & pihenő",type:"Természet",
+   timeH:1.0, time:"~1 óra", diff:"Könnyű",
+   desc:"A Cabin melletti Síkfőkúti tó — úszás, kajakezés, tóparti pihenés, hordszkál.",
+   mikor:"Délután, érkezés napján, bármikor",
+   felszereles:"Fürdőruha, törülköző",
+   details:"Közvetlenül a Cabin mellett · Strandbelépő szezonálisan · Kajakbérlés a tónál",
+   fromFahaz:"~200 m gyalog"},
+
+  {id:'o5',icon:'🔥',name:"Grillezés & tábortűz",type:"Pihenés",
+   timeH:2.0, time:"~2 óra", diff:"Pihenés",
+   desc:"A Cabin saját kertjében grill és tűzrakóhely — BBQ este a csillagos ég alatt.",
+   mikor:"Este, vacsora helyett",
+   felszereles:"Hozzávalók bevásárolva (Rozmaring Vendéglő melletti bolt)",
+   details:"Cabin kert · Grill ingyenes · Tűzifa helyben",
+   fromFahaz:"0 m (Cabinban)"},
+
+  {id:'o6',icon:'🌙',name:"Csillagos égbolt",type:"Pihenés",
+   timeH:1.5, time:"Este", diff:"Pihenés",
+   desc:"Minimális fényszennyezés Síkfőkúton — Tejút, csillagképek, teljes erdei csend.",
+   mikor:"Felhőtlen éjszakán, 21:00 után",
+   felszereles:"Pokróc, csillagtérkép app",
+   details:"Síkfőkút és környéke · Legjobb: felhőtlen nyári éjszakák",
+   fromFahaz:"0 m (Cabin kert)"},
+
+  {id:'o7',icon:'🚴',name:"Kerékpározás Noszvaj körül",type:"Természet",
+   timeH:2.0, time:"2–3 óra", diff:"Könnyű",
+   desc:"Noszvaj és Síkfőkút kerékpáros körök — aszfaltozott és erdei utakon, enyhe domborzaton.",
+   mikor:"Délelőtt vagy délután",
+   felszereles:"Kerékpár (Cabinnál bérlés lehetséges), sisak",
+   details:"Kerékpárbérlés: érdeklődj a Cabinnál · Enyhe domborzat",
+   fromFahaz:"0 m (Cabintól indul)"}
+];
+
+// Shared sights across multiple routes
+var sharedSights = {
+  'Attila-forrás': ['Attila-forrás séta','Kövesdi-kilátó kör'],
+  'Síkfőkúti tó': ['Kövesdi-kilátó kör'],
+  'Barlanglakások': ['Falut kerülő kultúrtúra','Szomolya–Noszvaj nagytúra'],
+  'kaptárkő': ['Szomolyai Kaptárkövek','Szomolya–Noszvaj nagytúra'],
+};
+
+let days = [
+  {id:'d1', name:'Érkezés & tóparti séta', arrival:true, items:[
+    {type:'other', id:'o4'},
+    {type:'eat',   id:'e2'},
+  ]},
+  {id:'d2', name:'Kövesdi-kilátó körtúra', items:[
+    {type:'tura',  id:'r4'},
+    {type:'other', id:'o5'},
+  ]},
+  {id:'d3', name:'Kultúrtúra & barlanglakások', items:[
+    {type:'tura',  id:'r2'},
+    {type:'other', id:'o6'},
+  ]},
+  {id:'d4', name:'Kaptárkövek & Hór-völgy', items:[
+    {type:'tura',  id:'r5'},
+    {type:'eat',   id:'e9'},
+  ]},
+  {id:'d5', name:'Noszvaji Forrástúra', items:[
+    {type:'tura',  id:'r6'},
+    {type:'eat',   id:'e7'},
+  ]},
+  {id:'d6', name:'Hazaút & búcsú', items:[
+    {type:'other', id:'o4'},
+    {type:'eat',   id:'e1'},
+  ]},
+];
+
+let currentTab = 'tura';
+let dragging = null;
+
+function getItem(type,id){
+  if(type==='tura')  return ROUTES.find(r=>r.id===id);
+  if(type==='eat')   return DINING.find(d=>d.id===id);
+  if(type==='other') return OTHER.find(o=>o.id===id);
+}
+
+function imgFallback(img, icon){
+  var ph = document.createElement('div');
+  ph.className = 'lcard-img-ph';
+  ph.textContent = icon;
+  img.parentNode.replaceChild(ph, img);
+}
+// On load: if all Wikimedia images fail (CORS), show placeholder
+window.addEventListener('load', function(){
+  document.querySelectorAll('.lcard-img').forEach(function(img){
+    if(!img.complete || img.naturalWidth===0){
+      imgFallback(img, '⛰');
+    }
+  });
+});
+
+function switchTab(btn){
+  document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  currentTab = btn.dataset.tab;
+  renderLib();
+}
+
+function renderLib(){
+  const el = document.getElementById('libScroll');
+  el.innerHTML = '';
+
+  if(currentTab==='tura'){
+    ROUTES.forEach(function(r){
+      const diffColor = r.diff==='Könnyű'?'#2E6010':r.diff==='Közepes'?'#7A5000':'#8B2B10';
+      const diffBg    = r.diff==='Könnyű'?'#DFF0CC':r.diff==='Közepes'?'#FFF3CC':'#FAECE7';
+
+      const card = document.createElement('div');
+      card.className = 'lcard';
+      card.draggable = true;
+      card.addEventListener('dragstart', function(e){ libDragStart(e,'tura',r.id); });
+      card.addEventListener('dragend', dragEnd);
+
+
+
+      // Banner
+      const banner = document.createElement('div');
+      banner.style.cssText = 'width:100%;background:linear-gradient(135deg,#EBF3E0,#D0E8C0);padding:20px 18px;display:flex;align-items:flex-start;gap:14px;';
+      banner.innerHTML =
+        '<span style="font-size:30px;flex-shrink:0">'+r.icon+'</span>'
+        +'<div style="flex:1;min-width:0">'
+          +'<div style="font-family:DM Serif Display,serif;font-size:21px;font-weight:400;color:#1E4A08;line-height:1.2;margin-bottom:4px">'+r.name+'</div>'
+          +'<div style="font-size:13px;color:#5A7A40;font-style:italic">'+r.type+'</div>'
+        +'</div>'
+        +'<span style="font-size:13px;font-weight:700;padding:3px 9px;border-radius:20px;background:'+diffBg+';color:'+diffColor+';white-space:nowrap;flex-shrink:0">'+r.diff+'</span>';
+
+      const body = document.createElement('div');
+      body.style.cssText = 'padding:18px 18px;display:flex;flex-direction:column;gap:0;';
+
+      // Stats grid
+      const stats = document.createElement('div');
+      stats.style.cssText = 'display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;';
+      [[r.distL+' km','Táv'],[r.elev+' m','Szint'],[r.time,'Idő']].forEach(function(p){
+        const b = document.createElement('div');
+        b.style.cssText = 'background:#EBF3E0;border-radius:8px;padding:13px 8px;text-align:center;';
+        b.innerHTML = '<div style="font-family:Cormorant Garamond,serif;font-size:24px;font-weight:600;color:#1E4A08;line-height:1">'+p[0]+'</div>'
+          +'<div style="font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:#6A6864;margin-top:5px">'+p[1]+'</div>';
+        stats.appendChild(b);
+      });
+      // Fitness badge
+      const fitB = document.createElement('div');
+      fitB.style.cssText = 'background:#F0EDE6;border-radius:7px;padding:10px 12px;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:14px;';
+      fitB.innerHTML = '<span style="font-size:15px;color:#6A6864">🎯 Ajánlott:</span>'
+        +'<span style="font-size:16px;font-weight:600;color:#1E4A08">'+r.fit+'</span>';
+      body.appendChild(stats);
+      body.appendChild(fitB);
+
+      // Description
+      const dEl = document.createElement('div');
+      dEl.style.cssText = 'font-size:16px;color:#1A1916;line-height:1.7;margin-bottom:14px;';
+      dEl.textContent = r.desc;
+      body.appendChild(dEl);
+
+      // Divider
+      function addDivider(){ const d=document.createElement('div'); d.style.cssText='height:1px;background:#DDD9D0;margin-bottom:12px;'; body.appendChild(d); }
+      addDivider();
+
+      // Detail rows helper
+      function addRow(icon, label, val, valColor){
+        if(!val) return;
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;';
+        row.innerHTML = '<span style="font-size:14px;color:#6A6864;min-width:90px;flex-shrink:0;padding-top:1px">'+icon+' '+label+'</span>'
+          +'<span style="font-size:15px;color:'+(valColor||'#1A1916')+';line-height:1.4;flex:1;'+(valColor==='#3E7A18'?'font-weight:600;':'')+'">'+(val||'—')+'</span>';
+        body.appendChild(row);
+      }
+
+      addRow('📍','Indulópont', r.start);
+      addRow('🏠','Szállástól',  r.fromFahaz, '#3E7A18');
+      addRow('🗺','Jelzés',      r.marker);
+      addRow('🌄','Terep',       r.terrain);
+      addRow('🕐','Mikor?',      r.mikor);
+      addRow('🎒','Felszerelés', r.felszereles);
+      addRow('⚠️','Megjegyzés',  r.note, '#8A6A50');
+      if(r.distNote){ addRow('📏','Táv megjegyzés', r.distNote); }
+
+      // Sights
+      if(r.sights && r.sights.length){
+        addDivider();
+        const label = document.createElement('div');
+        label.style.cssText = 'font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5A7A40;margin-bottom:6px;display:flex;align-items:center;gap:8px;';
+        label.innerHTML = 'Látnivalók <span style="font-size:11px;font-weight:400;color:#8A5C00;background:#FFF8E8;border:1px solid #E8C870;padding:2px 8px;border-radius:10px;letter-spacing:0;text-transform:none">🔄 ×N = több útvonalon · hover = részletek</span>';
+        body.appendChild(label);
+        const chips = document.createElement('div');
+        chips.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;';
+        // Shared sights: sight name → routes list
+        var sharedSights = {
+          'Ciszterci apátság': ['Tókerülő','Bél-kői tanösvény','Bél-kői körtúra','Barangolás'],
+          'Bél-kő 815 m kilátó': ['Bél-kői tanösvény','Bél-kői körtúra','Barangolás'],
+          'Szikla-forrás': ['Millenniumi tanösvény','Szalajka-völgy'],
+          'Pala-bánya': ['Bél-kői tanösvény','Bél-kői körtúra'],
+          'Lak-völgyi tó': ['Tókerülő','Bél-kői körtúra'],
+        };
+
+        r.sights.forEach(function(s){ var sightUrl = 'https://www.google.com/maps/search/' + encodeURIComponent(s + ' Noszvaj Bükk');
+          // Find matching shared sight (normalize)
+          var matchKey = null;
+          var matchRoutes = null;
+          Object.keys(sharedSights).forEach(function(k){
+            if(s.toLowerCase().includes(k.toLowerCase().replace(' (1232)',''))){
+              matchKey = k; matchRoutes = sharedSights[k];
+            }
+          });
+          const isShared = matchKey !== null;
+          const ch = document.createElement('a');
+          ch.target = '_blank'; ch.rel = 'noopener';
+          ch.onclick = function(e){ e.stopPropagation(); };
+          ch.style.textDecoration = 'none';
+
+          if(isShared){
+            var count = matchRoutes.length;
+            var routeList = matchRoutes.join(' · ');
+            ch.href = sightUrl;
+            ch.style.cssText = 'font-size:13px;background:#FFF8E8;color:#8A5C00;border:1px solid #E8C870;padding:4px 10px;border-radius:20px;line-height:1.6;cursor:pointer;display:inline-flex;align-items:center;gap:5px;position:relative;text-decoration:none;';
+            ch.title = 'Elérhető útvonalakon: ' + routeList;
+            // icon + name + count badge
+            ch.innerHTML = '🔄 ' + s
+              + ' <span style="background:#E8C870;color:#5A3800;font-size:12px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:3px;">×'+count+'</span>';
+          } else {
+            ch.href = sightUrl;
+            ch.style.cssText = 'font-size:13px;background:#FAF8F4;color:#5A7A40;border:1px solid #C8DFB0;padding:4px 10px;border-radius:20px;line-height:1.6;text-decoration:none;';
+            ch.textContent = '📷 '+s;
+          }
+          chips.appendChild(ch);
+        });
+        body.appendChild(chips);
+      }
+
+      // Google Fotók gomb
+      var photoBtn = document.createElement('a');
+      photoBtn.href = 'https://www.google.com/maps/search/' + encodeURIComponent(r.name + ' Noszvaj Síkfőkút');
+      photoBtn.target = '_blank'; photoBtn.rel = 'noopener';
+      photoBtn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:500;text-decoration:none;padding:7px 14px;border-radius:20px;border:1px solid var(--gb);background:var(--gl);color:var(--gd);transition:background .15s;';
+      photoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)';
+      photoBtn.onclick = function(e){ e.stopPropagation(); };
+      body.appendChild(photoBtn);
+
+      // Drag tip
+      const tip = document.createElement('div');
+      tip.style.cssText = 'font-size:15px;color:#C8DFB0;margin-top:10px;';
+      tip.textContent = '☰ húzd a napba';
+      body.appendChild(tip);
+
+      card.appendChild(banner);
+      card.appendChild(body);
+      el.appendChild(card);
+    });
+
+  } else if(currentTab==='eat'){
+    DINING.forEach(function(d){
+      const card = document.createElement('div');
+      card.className = 'lcard';
+      card.style.borderLeft = '3px solid #3E7A18';
+      card.draggable = true;
+      card.addEventListener('dragstart', function(e){ libDragStart(e,'eat',d.id); });
+      card.addEventListener('dragend', dragEnd);
+
+      // Banner
+      const banner = document.createElement('div');
+      banner.style.cssText = 'background:#EBF3E0;padding:20px 18px;display:flex;align-items:flex-start;gap:14px;';
+      banner.innerHTML =
+        '<span style="font-size:30px;flex-shrink:0">'+d.icon+'</span>'
+        +'<div style="flex:1;min-width:0">'
+          +'<div style="font-family:DM Serif Display,serif;font-size:21px;font-weight:400;color:#1E4A08;line-height:1.2;margin-bottom:3px">'+d.name+'</div>'
+          +'<div style="font-size:15px;color:#5A7A40;font-style:italic;margin-bottom:4px">'+d.type+'</div>'
+          +'<div style="font-size:16px;color:#2E6010;font-weight:600">★ '+d.rating+' <span style="font-weight:400;color:#6A6864;font-size:13px">('+d.cnt+' értékelés)</span></div>'
+        +'</div>';
+
+      const body = document.createElement('div');
+      body.style.cssText = 'padding:18px 18px;';
+
+      function addRow2(icon, label, val, color){
+        if(!val) return;
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;';
+        row.innerHTML = '<span style="font-size:14px;color:#6A6864;min-width:90px;flex-shrink:0;padding-top:1px">'+icon+' '+label+'</span>'
+          +'<span style="font-size:15px;color:'+(color||'#1A1916')+';line-height:1.4;flex:1;'+(color==='#3E7A18'?'font-weight:600;':'')+'">'+(val||'—')+'</span>';
+        body.appendChild(row);
+      }
+
+      // Spec highlight box
+      const specBox = document.createElement('div');
+      specBox.style.cssText = 'background:#F4F9EF;border-left:3px solid #3E7A18;border-radius:0 6px 6px 0;padding:13px 14px;margin-bottom:16px;font-size:16px;color:#1E4A08;line-height:1.5;font-style:italic;';
+      specBox.textContent = '✦ ' + d.spec;
+      body.appendChild(specBox);
+
+      addRow2('📍','Helyszín',    d.loc);
+      addRow2('🏔','Közel ehhez', d.near);
+      addRow2('🏠','Szállástól',  d.fromFahaz, '#3E7A18');
+      addRow2('🕐','Nyitva',      d.hours);
+      addRow2('📞','Telefon',     d.phone);
+      addRow2('💬','Megjegyzés',  d.note, '#8A6A50');
+
+      // Nav buttons
+      const btns = document.createElement('div');
+      btns.style.cssText = 'display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;';
+      btns.innerHTML =
+        '<a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination='+d.lat+','+d.lng+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+          +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Maps</a>'
+        +'<a class="waze-btn" href="https://waze.com/ul?ll='+d.lat+','+d.lng+'&navigate=yes" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+          +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>'
+        +(d.phone ? '<a class="call-btn" href="tel:'+d.phone.replace(/\s/g,'')+'" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 12px;border-radius:20px;border:1px solid var(--gb);background:white;color:var(--gm)">📞 '+d.phone+'</a>' : '');
+
+      // Google Fotók gomb
+      var ePhotoBtn = document.createElement('a');
+      ePhotoBtn.href = 'https://www.google.com/maps/search/' + encodeURIComponent(d.name + ' ' + d.loc);
+      ePhotoBtn.target = '_blank'; ePhotoBtn.rel = 'noopener';
+      ePhotoBtn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;margin-top:4px;margin-bottom:4px;font-size:13px;font-weight:500;text-decoration:none;padding:7px 14px;border-radius:20px;border:1px solid var(--gb);background:var(--gl);color:var(--gd);transition:background .15s;';
+      ePhotoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)';
+      ePhotoBtn.onclick = function(e){ e.stopPropagation(); };
+      body.appendChild(ePhotoBtn);
+
+      // Drag tip
+      const tip = document.createElement('div');
+      tip.style.cssText = 'font-size:15px;color:#C8DFB0;margin-top:10px;';
+      tip.textContent = '☰ húzd a napba';
+
+      body.appendChild(btns);
+      body.appendChild(tip);
+      card.appendChild(banner);
+      card.appendChild(body);
+      el.appendChild(card);
+    });
+  } else {
+    const typeColors = {
+      'Kultúra':   {bg:'#D8EAF8', fg:'#0C3E72'},
+      'Természet': {bg:'#DFF0CC', fg:'#2E6010'},
+      'Pihenés':   {bg:'#FFF3CC', fg:'#7A5000'},
+    };
+    OTHER.forEach(function(o){
+      const col = typeColors[o.type] || {bg:'#F0EDE6', fg:'#5A5650'};
+      const card = document.createElement('div');
+      card.className = 'lcard';
+      card.draggable = true;
+      card.addEventListener('dragstart', function(e){ libDragStart(e,'other',o.id); });
+      card.addEventListener('dragend', dragEnd);
+
+      // Banner
+      const banner = document.createElement('div');
+      banner.style.cssText = 'width:100%;background:'+col.bg+';padding:20px 18px;display:flex;align-items:center;gap:14px;flex-shrink:0;';
+      banner.innerHTML = '<span style="font-size:26px">'+o.icon+'</span>'
+        +'<div style="flex:1">'
+        +'<div style="font-family:DM Serif Display,serif;font-size:19px;font-weight:400;color:#1E4A08;line-height:1.2">'+o.name+'</div>'
+        +'<div style="font-size:13px;font-weight:700;color:'+col.fg+';margin-top:3px;text-transform:uppercase;letter-spacing:.06em">'+o.type+'</div>'
+        +'</div>';
+
+      // Body
+      const body = document.createElement('div');
+      body.style.cssText = 'padding:18px 18px;';
+
+      // Desc
+      const desc = document.createElement('div');
+      desc.style.cssText = 'font-size:16px;color:#1A1916;line-height:1.7;margin-bottom:14px;';
+      desc.textContent = o.desc;
+      body.appendChild(desc);
+
+      // Divider
+      const dv = document.createElement('div');
+      dv.style.cssText = 'height:1px;background:#DDD9D0;margin-bottom:8px;';
+      body.appendChild(dv);
+
+      // Időtartam + nehézség stat sor
+      const statRow = document.createElement('div');
+      statRow.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;';
+      [['⏱ Időtartam', o.time||'—'], ['📊 Kategória', o.diff||'—']].forEach(function(pair){
+        const box = document.createElement('div');
+        box.style.cssText = 'background:#EBF3E0;border-radius:6px;padding:6px 8px;';
+        box.innerHTML = '<div style="font-size:12px;color:#6A6864;text-transform:uppercase;letter-spacing:.06em">'+pair[0]+'</div>'
+          +'<div style="font-size:15px;font-weight:600;color:#1E4A08;margin-top:2px">'+pair[1]+'</div>';
+        statRow.appendChild(box);
+      });
+      body.appendChild(statRow);
+
+      // Mikor highlight
+      const mikorBox = document.createElement('div');
+      mikorBox.style.cssText = 'background:#FFF8E8;border-left:3px solid #C8900A;border-radius:0 6px 6px 0;padding:13px 14px;margin-bottom:16px;font-size:16px;color:#7A5000;line-height:1.5;';
+      mikorBox.innerHTML = '<span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C8900A;display:block;margin-bottom:3px">🕐 Mikor?</span>' + (o.mikor||'—');
+      body.appendChild(mikorBox);
+
+      // Details rows
+      [
+        ['ℹ️ Részletek', o.details],
+        ['🎒 Felszerelés', o.felszereles],
+      ].forEach(function(row){
+        if(!row[1]) return;
+        const det = document.createElement('div');
+        det.style.cssText = 'display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;';
+        det.innerHTML = '<span style="font-size:14px;color:#6A6864;min-width:92px;flex-shrink:0;padding-top:1px">'+row[0]+'</span>'
+          +'<span style="font-size:15px;color:#6A6864;line-height:1.55;flex:1">'+row[1]+'</span>';
+        body.appendChild(det);
+      });
+
+      // Distance
+      const distEl = document.createElement('div');
+      distEl.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:12px;';
+      distEl.innerHTML = '<span style="font-size:13px;color:#6A6864;min-width:16px">🏠</span>'
+        +'<span style="font-size:16px;color:#3E7A18;font-weight:600">'+o.fromFahaz+'</span>';
+      body.appendChild(distEl);
+
+      // Google Fotók gomb
+      var oPhotoBtn = document.createElement('a');
+      oPhotoBtn.href = 'https://www.google.com/maps/search/' + encodeURIComponent(o.name + ' Szilvásvárad Noszvaj');
+      oPhotoBtn.target = '_blank'; oPhotoBtn.rel = 'noopener';
+      oPhotoBtn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;margin-top:4px;margin-bottom:4px;font-size:13px;font-weight:500;text-decoration:none;padding:7px 14px;border-radius:20px;border:1px solid var(--gb);background:var(--gl);color:var(--gd);transition:background .15s;';
+      oPhotoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)';
+      oPhotoBtn.onclick = function(e){ e.stopPropagation(); };
+      body.appendChild(oPhotoBtn);
+
+      // Drag tip
+      const tip = document.createElement('div');
+      tip.style.cssText = 'font-size:15px;color:#C8DFB0;margin-top:10px;';
+      tip.textContent = '☰ húzd a napba';
+      body.appendChild(tip);
+
+      card.appendChild(banner);
+      card.appendChild(body);
+      el.appendChild(card);
+    });
+  }
+}
+
+/* ════════════════════════════════════════
+   PLANNER RENDER
+════════════════════════════════════════ */
+function calcStats(items, isArrival){
+  let km=0,elev=0,routes=0,turahours=0,otherhours=0;
+  items.forEach(it=>{
+    if(it.type==='tura'){
+      const r=ROUTES.find(x=>x.id===it.id);
+      if(r){km+=r.dist;elev+=r.elev;routes++;turahours+=(r.timeH||3);}
+    } else if(it.type==='other'){
+      const o=OTHER.find(x=>x.id===it.id);
+      if(o) otherhours+=(o.timeH||1);
+    } else if(it.type==='eat'){
+      const d=DINING.find(x=>x.id===it.id);
+      if(d) otherhours+=(d.timeH||1.5);
+    }
+  });
+  const totalActiveH = Math.round((turahours+otherhours)*10)/10;
+  return{km:km.toFixed(1),elev,routes,eats:items.filter(i=>i.type==='eat').length,
+         turahours:totalActiveH, hasItems:items.length>0};
+}
+
+function autoMealCards(items, isArrival){
+  if(!items.length) return '';
+  const hasTura = items.some(i=>i.type==='tura');
+  const hasEat  = items.some(i=>i.type==='eat');
+  const km = items.filter(i=>i.type==='tura').reduce((s,i)=>{const r=ROUTES.find(x=>x.id===i.id);return s+(r?r.dist:0);},0);
+  let html='';
+
+  // Reggeli — csak ha nem érkezési nap
+  if(!isArrival){
+    html+=`<div class="pcard auto-p">
+      <span class="pc-icon">☕</span>
+      <div class="pc-body">
+        <div class="pc-name">Reggeli — faházikó konyha</div>
+        <div class="pc-meta">Automatikus · 08:30</div>
+      </div>
+    </div>`;
+  } else {
+    html+=`<div class="pcard auto-p">
+      <span class="pc-icon">🚗</span>
+      <div class="pc-body">
+        <div class="pc-name">Érkezés — becsekkolás</div>
+        <div class="pc-meta">Automatikus · 14:00 után</div>
+      </div>
+    </div>`;
+  }
+
+  // Ebéd — only if no eat card added AND there's a tura
+  if(hasTura && !hasEat){
+    const ebedName = km>5 ? 'Ebéd — hátizsák-picnic' : 'Ebéd — Bélkő Étterem / Szomjas Csuka';
+    const ebedNote = km>5 ? 'Hosszú túra ('+km.toFixed(1)+' km) — vigyél szendvicset' : 'Rövid túra — ebédelj helyi étteremben';
+    html+=`<div class="pcard auto-p">
+      <span class="pc-icon">🥪</span>
+      <div class="pc-body">
+        <div class="pc-name">${ebedName}</div>
+        <div class="pc-meta">Automatikus · ${ebedNote}</div>
+      </div>
+    </div>`;
+  } else if(hasTura && hasEat){
+    html+=`<div class="pcard auto-p">
+      <span class="pc-icon">🥪</span>
+      <div class="pc-body">
+        <div class="pc-name">Ebéd — hozzáadott étteremnél</div>
+        <div class="pc-meta">Automatikus · az étteremkártya alapján</div>
+      </div>
+    </div>`;
+  }
+
+  // Vacsora javaslat — based on first tura's eat recommendations
+  const turaItems = items.filter(i=>i.type==='tura');
+  if(turaItems.length > 0 && !hasEat){
+    const firstTura = ROUTES.find(r=>r.id===turaItems[0].id);
+    if(firstTura && firstTura.eat && firstTura.eat.length>0){
+      const suggestedEatId = firstTura.eat[0];
+      const suggestedEat = DINING.find(d=>d.id===suggestedEatId);
+      if(suggestedEat){
+        html+=`<div class="pcard suggest-p">
+          <span class="pc-icon">🍽️</span>
+          <div class="pc-body">
+            <div class="suggest-label">💡 Vacsora javaslat</div>
+            <div class="pc-name">${suggestedEat.name}</div>
+            <div class="pc-meta">${suggestedEat.type} · ★ ${suggestedEat.rating} · ${suggestedEat.fromFahaz}</div>
+            <div class="suggest-note">${suggestedEat.spec} · ${suggestedEat.hours}</div>
+          </div>
+        </div>`;
+      }
+    }
+  } else if(!hasTura && !hasEat && items.length>0){
+    // No tura, no eat — suggest Bélkő as default vacsora
+    const def = DINING.find(d=>d.id==='e2');
+    if(def) html+=`<div class="pcard suggest-p">
+      <span class="pc-icon">🍽️</span>
+      <div class="pc-body">
+        <div class="suggest-label">💡 Vacsora javaslat</div>
+        <div class="pc-name">${def.name}</div>
+        <div class="pc-meta">${def.type} · ★ ${def.rating} · ${def.fromFahaz}</div>
+        <div class="suggest-note">${def.spec} · ${def.hours}</div>
+      </div>
+    </div>`;
+  }
+
+  return html;
+}
+
+function renderPlanner(){
+  const row = document.getElementById('daysRow');
+  row.innerHTML = '';
+  days.forEach((day,di)=>{
+    const st = calcStats(day.items, day.arrival);
+    const col = document.createElement('div');
+    col.className='day-col';
+    col.id='col-'+day.id;
+
+    const itemsHtml = day.items.map((it,idx)=>{
+      const data=getItem(it.type,it.id);
+      if(!data) return '';
+      const isEat=it.type==='eat';
+      const tag = it.type==='tura'?'túra':it.type==='eat'?'étkezés':'program';
+      const tagC = it.type==='tura'?'t':it.type==='eat'?'e':'o';
+      const meta = it.type==='tura'
+        ? `${data.distL} km · ${data.elev} m szint · ${data.time} · ${data.diff} · ${data.fit} · 🏠 ${data.fromFahaz}`
+        : it.type==='eat'
+        ? `★ ${data.rating} (${data.cnt}) · ${data.spec} · ${data.hours} · 🏠 ${data.fromFahaz}`
+        : `${data.desc} · ${data.mikor||''} · 🏠 ${data.fromFahaz}`;
+      return `<div class="pcard${isEat?' eat-p':''}" draggable="true"
+        ondragstart="placedDragStart(event,'${day.id}',${idx})"
+        ondragend="dragEnd(event)">
+        <span class="pc-icon">${data.icon||'📌'}</span>
+        <div class="pc-body">
+          <div class="pc-name">${data.name}</div>
+          <div class="pc-meta">${meta}</div>
+          <span class="pc-tag pct-${tagC}">${tag}</span>
+        </div>
+        <button class="pc-x" onclick="removeIt('${day.id}',${idx})" title="Eltávolítás">×</button>
+      </div>`;
+    }).join('');
+
+    const autoHtml = autoMealCards(day.items, day.arrival||false);
+    const isEmpty = day.items.length===0;
+
+    col.innerHTML=`
+      <div class="day-head">
+        <div class="day-head-top">
+          <span class="day-n">${di+1}. nap</span>
+        </div>
+        <input class="day-title-input" value="${day.name}" onchange="renameDay('${day.id}',this.value)" placeholder="Nap neve...">
+        <div class="day-stats-row">
+          ${st.routes>0?`<span class="dstat">⛰ <strong>${st.km} km · ${st.elev} m</strong></span>`:'<span class="dstat" style="color:var(--border)">Nincs túra</span>'}
+          ${st.turahours>0?`<span class="dstat">⏱ <strong>${st.turahours} ó program</strong></span>`:''}
+          ${st.eats>0?`<span class="dstat">🍴 <strong>${st.eats}</strong> étterem</span>`:''}
+        </div>
+      </div>
+      <div class="dropzone${isEmpty?' dropzone-has-empty':''}" id="dz-${day.id}"
+        ondragover="dzOver(event,'${day.id}')"
+        ondragleave="dzLeave(event,'${day.id}')"
+        ondrop="dzDrop(event,'${day.id}')">
+        ${isEmpty?'<div class="dropzone-empty">Húzz ide elemet a könyvtárból</div>':''}
+        ${autoHtml}${itemsHtml}
+      </div>
+      <div class="day-foot">
+        <span class="foot-stat">${day.items.length} elem</span>
+        ${st.turahours>0?`<span class="foot-stat">⏱ Programok összesen: <strong>${st.turahours} ó</strong></span>`:''}
+        ${day.items.length>0?`<button class="tbtn tbtn-ghost" style="font-size:13px;padding:4px 10px;background:none;color:var(--muted);border-color:var(--border)" onclick="clearDay('${day.id}')">Nap törlése</button>`:''}
+      </div>`;
+
+    row.appendChild(col);
+  });
+
+
+
+  // update counter
+  const total = days.reduce((s,d)=>s+d.items.length,0);
+  document.getElementById('totalCounter').textContent = total + ' elem tervezve';
+}
+
+/* ════════════════════════════════════════
+   DRAG & DROP
+════════════════════════════════════════ */
+function libDragStart(e, type, id){
+  dragging = {type, id, fromDay:null, fromIdx:-1};
+  e.dataTransfer.effectAllowed='copy';
+  e.currentTarget.classList.add('is-dragging');
+}
+
+function placedDragStart(e, dayId, idx){
+  const day=days.find(d=>d.id===dayId);
+  dragging={...day.items[idx], fromDay:dayId, fromIdx:idx};
+  e.dataTransfer.effectAllowed='move';
+  e.currentTarget.classList.add('is-dragging');
+  e.stopPropagation();
+}
+
+function dragEnd(e){
+  e.currentTarget.classList.remove('is-dragging');
+  document.querySelectorAll('.dropzone').forEach(z=>z.classList.remove('over'));
+  document.querySelectorAll('.day-col').forEach(c=>c.classList.remove('accepting'));
+}
+
+function dzOver(e, dayId){
+  e.preventDefault();
+  e.dataTransfer.dropEffect = dragging?.fromDay ? 'move':'copy';
+  document.getElementById('dz-'+dayId).classList.add('over');
+  document.getElementById('col-'+dayId).classList.add('accepting');
+}
+
+function dzLeave(e, dayId){
+  if(!e.currentTarget.contains(e.relatedTarget)){
+    document.getElementById('dz-'+dayId).classList.remove('over');
+    document.getElementById('col-'+dayId).classList.remove('accepting');
+  }
+}
+
+function dzDrop(e, dayId){
+  e.preventDefault();
+  document.getElementById('dz-'+dayId).classList.remove('over');
+  document.getElementById('col-'+dayId).classList.remove('accepting');
+  if(!dragging) return;
+  const target = days.find(d=>d.id===dayId);
+  if(dragging.fromDay){
+    const src=days.find(d=>d.id===dragging.fromDay);
+    const [moved]=src.items.splice(dragging.fromIdx,1);
+    target.items.push(moved);
+  } else {
+    // prevent duplicate per day
+    if(target.items.some(i=>i.id===dragging.id && i.type===dragging.type)){
+      showToast('Ez az elem már ezen a napon van!');
+      dragging=null; return;
+    }
+    target.items.push({type:dragging.type, id:dragging.id});
+  }
+  dragging=null;
+  renderPlanner();
+  showToast('✓ Hozzáadva');
+}
+
+/* ════════════════════════════════════════
+   ACTIONS
+════════════════════════════════════════ */
+function removeIt(dayId,idx){
+  days.find(d=>d.id===dayId).items.splice(idx,1);
+  renderPlanner();
+}
+function clearDay(dayId){
+  days.find(d=>d.id===dayId).items=[];
+  renderPlanner();
+}
+function renameDay(dayId,val){
+  days.find(d=>d.id===dayId).name=val;
+  renderPlanner();
+}
+function addDay(){
+  const n=days.length+1;
+  days.push({id:'d'+Date.now(),name:`${n}. nap`,items:[]});
+  renderPlanner();
+  setTimeout(()=>document.querySelector('.days-row').scrollLeft=99999,50);
+}
+function clearAll(){
+  if(!confirm('Törlöd az összes elemet?')) return;
+  days=[{id:'d1',name:'Érkezés & tóparti séta',arrival:true,items:[]},{id:'d2',name:'2. nap',items:[]},{id:'d3',name:'3. nap',items:[]},{id:'d4',name:'4. nap',items:[]},{id:'d5',name:'5. nap',items:[]},{id:'d6',name:'Hazaút',items:[]}];
+  renderPlanner();
+}
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+/* ════════════════════════════════════════
+   EXPORT MODAL
+════════════════════════════════════════ */
+function openModal(){document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+function doExport(){
+  closeModal();
+  const tagClass={tura:'tag-t',eat:'tag-e',other:'tag-k'};
+  const tagLabel={tura:'túra',eat:'étkezés',other:'program'};
+
+  const daysHtml = days.map((day,di)=>{
+    const hasTura=day.items.some(i=>i.type==='tura');
+    const km=day.items.filter(i=>i.type==='tura').reduce((s,i)=>{const r=ROUTES.find(x=>x.id===i.id);return s+(r?r.dist:0);},0);
+    const autoItems = hasTura||day.items.some(i=>i.type==='eat') ? [
+      {name:'Reggeli — faházikó konyha',tag:'étkezés',tc:'e',meta:'Saját főzés, terasz.',time:'08:00',auto:true},
+      ...(hasTura?[{name:km>5?'Ebéd — hátizsák-picnic':'Ebéd — helyi étterem',tag:'étkezés',tc:'e',meta:km>5?'Szendvics, gyümölcs, termosz.':'Helyi vendéglő.',time:'12:30',auto:true}]:[]),
+    ] : [];
+    const allItems = [
+      ...autoItems,
+      ...day.items.map(it=>{
+        const data=getItem(it.type,it.id);
+        let rows = [];
+        if(it.type==='tura'){
+          rows = [
+            ['⛰ Távolság', `${data.distL} km · ${data.elev} m szint · ${data.time}`],
+            ['🎯 Fitness',  `${data.diff} · ${data.fit}`],
+            ['📍 Indulópont', data.start],
+            ['🏠 Szállástól', data.fromFahaz],
+            ['🕐 Mikor?',   data.mikor],
+            ['🎒 Felszerelés', data.felszereles],
+            ['⚠️ Megjegyzés', data.note],
+          ];
+        } else if(it.type==='eat'){
+          rows = [
+            ['⭐ Értékelés', `★ ${data.rating} (${data.cnt} értékelés)`],
+            ['✦ Specialitás', data.spec],
+            ['📍 Helyszín',  data.loc],
+            ['🏠 Szállástól', data.fromFahaz],
+            ['🕐 Nyitva',    data.hours],
+            ['📞 Tel.',       data.phone||'—'],
+            ['💬 Megjegyzés', data.note],
+          ];
+        } else {
+          rows = [
+            ['⏱ Időtartam', data.time||'—'],
+            ['🏠 Szállástól', data.fromFahaz],
+            ['🕐 Mikor?',    data.mikor||'—'],
+            ['🎒 Felszerelés', data.felszereles||'—'],
+            ['ℹ️ Részletek',  data.details||'—'],
+          ];
+        }
+        // Location fields that get a Maps link
+        const mapsFields = ['📍 Indulópont','📍 Helyszín','🏠 Szállástól'];
+        const rowsHtml = rows.filter(r=>r[1]&&r[1]!=='undefined'&&r[1]!=='null').map(r=>{
+          const isLoc = mapsFields.includes(r[0]);
+          const valHtml = isLoc
+            ? `<a href="https://www.google.com/maps/search/${encodeURIComponent(r[1]+' Noszvaj Síkfőkút')}" target="_blank" rel="noopener" style="color:#1E4A08;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><polygon points='3 11 22 2 13 21 11 13 3 11'/></svg> ${r[1]}</a>`
+            : `<span style="color:#1A1916;flex:1;line-height:1.4">${r[1]}</span>`;
+          return `<div style="display:flex;gap:6px;margin-bottom:4px;font-size:14px">
+            <span style="color:#6A6864;min-width:90px;flex-shrink:0">${r[0]}</span>
+            ${valHtml}
+          </div>`;
+        }).join('');
+        const desc = it.type==='tura' ? (data.desc||'') : it.type==='other' ? (data.desc||'') : '';
+        const sightsHtml = (it.type==='tura' && data.sights && data.sights.length)
+          ? `<div style="margin-top:8px"><div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3E7A18;margin-bottom:5px">Látnivalók</div><div style="display:flex;flex-wrap:wrap;gap:5px">${data.sights.map(s=>`<a href="https://www.google.com/maps/search/${encodeURIComponent(s+' Noszvaj Síkfőkút')}" target="_blank" rel="noopener" style="font-size:13px;background:#EBF3E0;color:#1E4A08;border:1px solid #C8DFB0;padding:3px 9px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:3px"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' width='10' height='10'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='M21 15l-5-5L5 21'/></svg> ${s}</a>`).join('')}</div></div>`
+          : '';
+        const photoUrl = it.type==='tura'
+          ? 'https://www.google.com/maps/search/'+encodeURIComponent(data.name+' Noszvaj Síkfőkút')
+          : it.type==='eat'
+          ? 'https://www.google.com/maps/dir/?api=1&destination='+data.lat+','+data.lng
+          : 'https://www.google.com/maps/search/'+encodeURIComponent(data.name+' Noszvaj Síkfőkút');
+        return{name:data.name,icon:data.icon||'',tag:tagLabel[it.type],tc:it.type==='tura'?'t':it.type==='eat'?'e':'k',
+               desc, rowsHtml, sightsHtml, photoUrl, time:'', auto:false};
+      })
+    ];
+    return `
+    <div class="day">
+      <div class="day-header">
+        <span class="day-num">${di+1}. nap</span>
+        <span class="day-title">${day.name}</span>
+      </div>
+      <div class="activities">
+        ${allItems.map(a=>`
+        <div class="act-card${a.auto?' act-auto':''}">
+          <div class="act-card-head">
+            <span class="act-icon">${a.icon||''}</span>
+            <div class="act-card-title">
+              <div class="act-name${a.auto?' meal-n':''}">${a.name}</div>
+              <span class="tag tag-${a.tc}">${a.tag}</span>
+            </div>
+          </div>
+          ${a.desc?`<div class="act-desc">${a.desc}</div>`:''}
+          ${a.rowsHtml?`<div class="act-rows">${a.rowsHtml}</div>`:''}
+          ${a.sightsHtml||''}
+          ${a.photoUrl?`<a href="${a.photoUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>`:''}
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  const html=`<!DOCTYPE html>
+<html lang="hu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noszvaj — Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gd:#1E4A08;--gm:#3E7A18;--gl:#EBF3E0;--gb:#C8DFB0;--brown:#5A3820;--cream:#FAF8F4;--meal-bg:#F7F5F0;--ink:#1A1916;--muted:#6A6864;--border:#DDD9D0;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--cream);font-family:var(--sans);font-size:19px;color:var(--ink);line-height:1.6;}
+.hero{background:linear-gradient(rgba(235,243,224,.82),rgba(235,243,224,.95)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80') center/cover;border-bottom:2px solid var(--gb);padding:44px 40px;text-align:center;}
+.hero h1{font-family:var(--serif);font-size:clamp(28px,5vw,46px);color:var(--gd);font-weight:400;}
+.hero h1 em{font-style:italic;color:var(--gm);}
+.hero p{font-size:17px;color:var(--gd);margin-top:10px;}
+.main{max-width:860px;margin:28px auto 60px;padding:0 40px;}
+.day{margin-bottom:28px;}
+.day-header{background:var(--gl);border:1px solid var(--gb);border-left:4px solid var(--gm);border-radius:0 6px 6px 0;padding:11px 16px;margin-bottom:2px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.day-num{font-size:15px;font-weight:600;color:var(--gm);letter-spacing:.08em;text-transform:uppercase;}
+.day-title{font-family:var(--serif);font-size:25px;color:var(--gd);}
+.activities{display:flex;flex-direction:column;gap:2px;}
+.act{display:grid;grid-template-columns:54px 1fr 2fr;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.act.meal .act-left{background:var(--meal-bg);}.act.meal .act-right{background:var(--meal-bg);}
+.act-time{padding:12px 7px;font-size:15px;color:var(--muted);text-align:center;border-right:1px solid var(--border);background:#FAFAF7;display:flex;align-items:flex-start;justify-content:center;padding-top:14px;}
+.act-left{padding:9px 13px;border-right:1px solid var(--border);background:#fff;}
+.act-name{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.act.meal .act-name{color:var(--brown);}
+.act-right{padding:9px 14px;font-size:17px;color:var(--muted);line-height:1.55;background:#fff;}
+.tag{display:inline-block;font-size:14px;padding:2px 8px;border-radius:10px;font-weight:500;margin-top:2px;}
+.tag-t{background:#DFF0CC;color:#274D0A;}.tag-e{background:#FFF3CC;color:#7A5000;}.tag-k{background:#EDE9F5;color:#4A3B8C;}
+.act-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:13px 16px;margin-bottom:6px;}
+.act-card.act-auto{background:var(--gl);border:1.5px dashed var(--gb);}
+.act-card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.act-icon{font-size:24px;flex-shrink:0;margin-top:1px;}
+.act-card-title{flex:1;}
+.act-name{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.act-name.meal-n{color:var(--brown);}
+.act-desc{font-size:15px;color:var(--muted);line-height:1.55;margin-bottom:8px;border-left:3px solid var(--gb);padding-left:10px;}
+.act-rows{background:var(--cream);border-radius:6px;padding:8px 10px;margin-top:4px;}
+.act-photo-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:14px;font-weight:500;text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;}
+@media(max-width:600px){.act-rows{font-size:13px;}}
+footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;padding:22px;font-size:16px;color:var(--gm);font-style:italic;}
+@media(max-width:600px){.act{grid-template-columns:44px 1fr;}.act-right{display:none;}.main{padding:0 16px;}.hero{padding:36px 20px;}}
+</style></head><body>
+<div class="hero"><h1>Noszvaj · <em>Tervezett program</em></h1><p>Noszvaj Cabin · Bükki Nemzeti Park</p></div>
+<main class="main">${daysHtml}</main>
+<footer>Kellemes pihenést! · Noszvaj Cabin, Noszvaj · Bükki Nemzeti Park</footer>
+</body></html>`;
+
+  const b=new Blob([html],{type:'text/html'});
+  const u=URL.createObjectURL(b);
+  const a=document.createElement('a');
+  a.href=u;a.download='noszvaj_program.html';a.click();
+  URL.revokeObjectURL(u);
+  showToast('✓ Program letöltve!');
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+renderLib();
+renderPlanner();
+
+</script>
+
+<div class="legend-bar">
+  <span class="legend-bar-title">Jelmagyarázat</span>
+  <div class="legend-sep"></div>
+  <div class="legend-items">
+    <div class="legend-item">
+      <div class="legend-pill lb-auto">Automatikus</div>
+      <span>reggeli &amp; ebéd — program alapján számítva</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pill lb-suggest">💡 Javaslat</div>
+      <span>vacsora — az útvonal alapján; húzz rá éttermet a cseréhez</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pill lb-placed">Saját elem</div>
+      <span>húzd be a könyvtárból — átrendezhető, törölhető</span>
+    </div>
+    <div class="legend-item">
+      <span style="font-size:13px">🔄</span>
+      <span><strong>Átfedő látnivaló</strong> — több útvonalon is elérhető</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
