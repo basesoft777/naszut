@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Szomolya–Noszvaj Nagytúra · Noszvaj Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--gd:#1E4A08;--gm:#3E7A18;--gl:#EBF3E0;--gb:#C8DFB0;--gm2:#5A9A28;--amber:#7A5000;--al:#FFF8E8;--amber-border:#E8D5A0;--ink:#1A1916;--muted:#6A6864;--border:#DDD9D0;--cream:#FAF8F4;--easy-bg:#DFF0CC;--easy:#2E6010;--med-bg:#FFF3D0;--hard-bg:#FFE8E8;--hard:#8A1A1A;--serif:'Cormorant Garamond',Georgia,serif;--display:'DM Serif Display',Georgia,serif;--sans:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(184,216,154,.12) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(90,154,40,.15) 0%,transparent 50%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(28px,5vw,48px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+.chip-easy{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.chip-med{background:var(--med-bg);color:var(--amber);border-color:var(--amber-border);}
+.chip-hard{background:var(--hard-bg);color:var(--hard);border-color:#F0B0B0;}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stats-bar::-webkit-scrollbar{display:none;}
+.stat{flex:1;min-width:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 10px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--gm);line-height:1;}
+.stat-lbl{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:center;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.warn{background:var(--hard-bg);border-left:3px solid #C05050;padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--hard);margin-top:14px;font-weight:500;}
+.amber-note{background:var(--al);border-left:3px solid var(--amber);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--amber);margin-top:14px;font-weight:500;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:grid;grid-template-columns:40px 1fr;gap:0 16px;position:relative;}
+.step:not(:last-child) .step-line{position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--gb);z-index:0;}
+.step-dot{width:40px;height:40px;flex-shrink:0;background:var(--gm);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;position:relative;z-index:1;box-shadow:0 2px 8px rgba(62,122,24,.3);}
+.step-dot.dot-start,.step-dot.dot-end{background:var(--gd);}
+.step-dot.dot-mid{background:var(--gm2);width:34px;height:34px;font-size:14px;margin:3px;}
+.step-body{padding:8px 0 24px;}
+.step-body h4{font-size:15px;font-weight:600;color:var(--gd);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--muted);line-height:1.6;}
+.step-dist{display:inline-block;font-size:12px;font-weight:600;background:var(--gl);color:var(--gm);border:1px solid var(--gb);padding:2px 8px;border-radius:10px;margin-top:4px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;}
+.tip-text{font-size:14px;line-height:1.6;}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+.tip.tip-warn{border-color:#F0B0B0;background:var(--hard-bg);}
+.tip.tip-warn .tip-text strong{color:var(--hard);}
+.sights-row{display:flex;flex-wrap:wrap;gap:8px;}
+.sight-chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;background:var(--gl);color:var(--gd);border:1px solid var(--gb);border-radius:20px;padding:5px 12px;text-decoration:none;transition:background .15s;}
+.sight-chip:hover{background:var(--gb);}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-waze:hover{background:#D0DFFA;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.nav-photos:hover{background:#FAEFD0;}
+.elev-wrap{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:20px 20px 14px;}
+.elev-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.elev-svg{width:100%;height:90px;display:block;}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge">Noszvaj · Túra Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_turak.html">← Összes túra</a>
+</nav>
+<header class="hero" style="background:linear-gradient(160deg,#3A2800 0%,#5A4000 55%,#7A5800 100%)">
+  <span class="hero-icon">🗺</span>
+  <h1 class="hero-title">Szomolya–Noszvaj <em>kaptárkövek nagytúra</em></h1>
+  <p class="hero-sub">Szomolya → Noszvaj · Pont–pont · Busz vissza</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-hard">▲ Nehéz</span>
+    <span class="hero-chip chip-hard">Haladó szint</span>
+    <span class="hero-chip">→ Pont–pont · ~13 km</span>
+    <span class="hero-chip">🚗 Autóval Szomolyáig</span>
+    <span class="hero-chip">🚌 Busz vissza</span></div>
+</header>
+<div class="stats-bar">
+    <div class="stat"><span class="stat-val">~13</span><span class="stat-lbl">km</span></div>
+    <div class="stat"><span class="stat-val">4,5 ó</span><span class="stat-lbl">menetidő</span></div>
+    <div class="stat"><span class="stat-val">420</span><span class="stat-lbl">m szintkülönbség</span></div>
+    <div class="stat"><span class="stat-val">🚌</span><span class="stat-lbl">Busz vissza</span></div></div>
+<main class="content">
+  <section class="section">
+    <h2 class="section-title">🌿 A túráról</h2>
+    <div class="desc-card"><p>Ez a körzet legnehezebb és leglátványosabb kaptárköves programja — Szomolyától indul és Noszvajon ér véget, pincesorokon, kilátókon és számtalan kaptárkövön keresztül. Pont-pont túra, tehát autóval Szomolyáig kell menni, és vissza busszal jönni Noszvajra.</p>
+    <p>A Nagy-Völgy-Tetői kilátóból az egész kaptárköves vonulat belátható. Ez a nap a tájjal való igazi megismerkedés — de komoly testi megterheléssel jár, és alapos előkészítést igényel (buszrend, elegendő víz, ebéd).</p>
+    <div class="warn">⚠️ Pont-pont túra — ELŐRE ellenőrizd a buszrendet Szomolyáról Noszvajra! Nélküle a visszaút nem megoldható.</div></div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">📍 Útvonal lépései</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-start">🚌</div>
+        <div class="step-body">
+          <h4>Buszrend ellenőrzés — ELŐRE!</h4>
+          <p>Mielőtt indulsz, keresd meg a Szomolya → Noszvaj buszt. Nélküle a visszaút nem megoldható. Vonalkód a buszjegyre érdemes előre megvenni.</p>
+          <span class="step-dist">Előkészítés</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🚗</div>
+        <div class="step-body">
+          <h4>Autóval Szomolyáig</h4>
+          <p>Az autót hagyd a szomolyai parkolóban (kaptárkövek közelében). Onnan a piros háromszöges jelzéssel indul a nagy túra.</p>
+          <span class="step-dist">0 km · rajt</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🗿</div>
+        <div class="step-body">
+          <h4>Szomolyai kaptárkövek és pincesor</h4>
+          <p>Az első nagy szakasz a szomolyai kaptárkövek és pincesor érintésével halad — ezek a legjobban megőrzött kaptárkőformációk.</p>
+          <span class="step-dist">~3 km</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🔝</div>
+        <div class="step-body">
+          <h4>Nagy-Völgy-Tetői kilátó</h4>
+          <p>A kör legmagasabb pontján a Nagy-Völgy-Tető kilátója az egész kaptárköves vonulatot megmutatja. Tájékozódáshoz és fotókhoz egyaránt kiváló megálló.</p>
+          <span class="step-dist">~7 km</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🗿</div>
+        <div class="step-body">
+          <h4>Noszvaj felőli kaptárkövek</h4>
+          <p>A Noszvajhoz közeledve újabb kaptárkőcsoportok bukkannak fel — ezek némelyike még feltáratlan, jelöletlen.</p>
+          <span class="step-dist">~10 km</span>
+        </div>
+      </div>
+      <div class="step">
+        
+        <div class="step-dot dot-end">🏕</div>
+        <div class="step-body">
+          <h4>Noszvaj · Célba érés</h4>
+          <p>A túra Noszvajon, a falubejáratnál ér véget. Buszjárat vissza Szomolyáig az autóhoz.</p>
+          <span class="step-dist">~13 km · vége</span>
+        </div>
+      </div></div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">📈 Magassági profil</h2>
+    <div class="elev-wrap">
+      <div class="elev-title">Közelítő szintvonal · 420 m össz-emelkedés</div>
+      <svg class="elev-svg" viewBox="0 0 700 90" preserveAspectRatio="none"><defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3E7A18" stop-opacity=".25"/><stop offset="100%" stop-color="#3E7A18" stop-opacity=".03"/></linearGradient></defs><path d="M0,82 C60,78 130,65 220,48 C290,34 340,22 390,14 C420,9 450,10 490,16 C530,24 570,38 620,56 C650,66 675,74 700,80 L700,90 L0,90 Z" fill="url(#eg)"/><path d="M0,82 C60,78 130,65 220,48 C290,34 340,22 390,14 C420,9 450,10 490,16 C530,24 570,38 620,56 C650,66 675,74 700,80" fill="none" stroke="#3E7A18" stroke-width="2.5" stroke-linejoin="round"/><circle cx="0" cy="82" r="5" fill="#1E4A08"/><circle cx="420" cy="9" r="5" fill="#5A9A28"/><circle cx="700" cy="80" r="5" fill="#1E4A08"/><text x="4" y="75" font-size="10" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="start">Szomolya</text><text x="370" y="4" font-size="10" fill="#5A9A28" font-family="DM Sans,sans-serif" text-anchor="start">Nagy-Völgy-Tető</text><text x="645" y="75" font-size="10" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="start">Noszvaj</text><line x1="190" y1="86" x2="190" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="190" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">3 km</text><line x1="390" y1="86" x2="390" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="390" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">6,5 km</text><line x1="580" y1="86" x2="580" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="580" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">10 km</text></svg>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">ℹ️ Gyakorlati információk</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">🏁 Indulópont</div>
+        <div class="ic-val">Kaptárkövek parkolója, Szomolya<br><small style="color:var(--muted)">~7 km autóval, 10 perc</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🎯 Jelzés</div>
+        <div class="ic-val">△ Piros háromszög + jelzett utak<br><small style="color:var(--muted)">Folyamatosan jelzett útvonal</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🌄 Terep</div>
+        <div class="ic-val">Tufapincék, kaptárkövek, erdei utak<br><small style="color:var(--muted)">Változatos, de hosszú</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🕐 Mikor menjünk?</div>
+        <div class="ic-val">Reggel 8 — egész napos program<br><small style="color:var(--muted)">Előre ellenőrizd a buszrendet!</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">👟 Felszerelés</div>
+        <div class="ic-val">Túracipő, 2L víz, ebéd + snack, buszjegy<br><small style="color:var(--muted)">Hosszú nap — jól készülj fel</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🚌 Visszaút</div>
+        <div class="ic-val">Szomolya → Noszvaj buszjárat<br><small style="color:var(--muted)">Előre ellenőrizd és vedd meg a jegyet!</small></div>
+      </div></div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">💡 Tippek & tudnivalók</h2>
+    <div class="tip-list">
+      <div class="tip tip-warn">
+        <span class="tip-icon">🚌</span>
+        <div class="tip-text"><strong>A buszrend az alap!</strong> Pont-pont túra, és a visszaút busz nélkül nem megoldható. Mielőtt elindul, keresd fel a VOLÁNBUSZ menetrendet vagy a Google Térképet a Szomolya → Noszvaj járathoz.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🥪</span>
+        <div class="tip-text"><strong>Vigyél ebédet!</strong> A 4,5 órás túrán nincs étterem az útvonalon. Szendvics, snack, elegendő víz — nélkülük a nap kellemetlen lesz.</div>
+      </div>
+      <div class="tip tip-amber">
+        <span class="tip-icon">📸</span>
+        <div class="tip-text"><strong>A leglátványosabb kaptárköves útvonal.</strong> Ha csak egy kaptárköves programot csináltok, ez legyen az — a teljes vonulat, pincesorokkal, kilátóval és a Noszvaj felőli kevésbé ismert formációkkal.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">⚡</span>
+        <div class="tip-text"><strong>Komoly fizikai megterhelés.</strong> 13 km és 420 m szintkülönbség — a noszvaji körzet leghosszabb programja. Csak akkor ajánlott, ha rendszeresen jártok kirándulni.</div>
+      </div></div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">👁️ Látnivalók az úton</h2>
+    <div class="sights-row"><a class="sight-chip" href="https://www.google.com/maps/search/Szomolya+pincesor+barlanglakás" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Pincesor és barlanglakások</a><a class="sight-chip" href="https://www.google.com/maps/search/Nagy-Völgy-Tető+kilátó+Szomolya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Nagy-Völgy-Tetői kilátó</a><a class="sight-chip" href="https://www.google.com/maps/search/kaptárkő+Szomolya+Noszvaj" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Kaptárkővonulat</a></div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">🧭 Navigáció & fotók</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Navigálj az indulópontra.</p>
+    <div class="nav-row">
+      <a class="nav-btn nav-maps" href="https://www.google.com/maps/dir/?api=1&destination=47.9470,20.4550&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Google Maps</a>
+      <a class="nav-btn nav-waze" href="https://waze.com/ul?ll=47.9470,20.4550&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Waze</a>
+      <a class="nav-btn nav-photos" href="https://www.google.com/maps/search/Szomolyai+kaptárkövek+indulópont" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Fotók (Google)</a>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">🔗 Kapcsolódó túrák</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">🗿</span>
+        <div class="tip-text"><strong>Szomolyai Kaptárkövek tanösvény (r5)</strong> — ha a nagytúra túl sok, de a kaptárkövek érdekelnek, az r5 a rövidebb, könnyebb alternatíva ugyanarról az indulópontból.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🏔</span>
+        <div class="tip-text"><strong>Nagy-Eged-hegy kihívás (r9)</strong> — ha a nagytúrát teljesítettétek és még egy komoly kihívásra vágytok, a Nagy-Eged a következő szint. De ne ugyanazon a napon!</div>
+      </div></div>
+  </section>
+</main>
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_turak.html">Összes túra</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>

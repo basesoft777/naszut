@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noszvaj Programok · Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --kultur-bg:#EEF2FF; --kultur:#3A40A0; --kultur-border:#C0C8F0;
+  --pihen-bg:#FFF3D0; --pihen:#7A5000; --pihen-border:#E8D5A0;
+  --termeszet-bg:#DFF0CC; --termeszet:#2E6010; --termeszet-border:#C8DFB0;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+
+/* TOPBAR */
+.topbar{
+  background:var(--gd);padding:0 24px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;
+}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.logo{font-family:var(--display);font-size:22px;color:#fff;font-weight:400;}
+.logo em{font-style:italic;color:#B8D89A;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.2);padding-left:14px;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+
+/* HERO */
+.hero{
+  background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);
+  padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 25% 75%,rgba(184,216,154,.12) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(90,154,40,.15) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-icon{font-size:56px;display:block;margin-bottom:14px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(28px,5vw,46px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+
+/* FILTER BAR */
+.filter-bar{
+  background:#fff;border-bottom:1.5px solid var(--border);
+  padding:14px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:58px;z-index:90;
+}
+.filter-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:4px;}
+.fbtn{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);
+  background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.fbtn:hover{border-color:var(--gm);color:var(--gm);}
+.fbtn.active{background:var(--gl);border-color:var(--gm);color:var(--gd);}
+.fbtn.f-kultur.active{background:var(--kultur-bg);border-color:var(--kultur-border);color:var(--kultur);}
+.fbtn.f-termeszet.active{background:var(--termeszet-bg);border-color:var(--termeszet-border);color:var(--termeszet);}
+.fbtn.f-pihen.active{background:var(--pihen-bg);border-color:var(--pihen-border);color:var(--pihen);}
+
+/* CONTENT */
+.content{max-width:900px;margin:0 auto;padding:36px 20px 60px;}
+
+/* SECTION */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1.5px solid var(--gb);}
+.sec-head-icon{font-size:22px;}
+.sec-head-title{font-family:var(--display);font-size:20px;color:var(--gd);}
+.sec-head-badge{
+  font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;
+  margin-left:auto;letter-spacing:.05em;text-transform:uppercase;
+}
+.badge-kultur{background:var(--kultur-bg);color:var(--kultur);}
+.badge-termeszet{background:var(--termeszet-bg);color:var(--termeszet);}
+.badge-pihen{background:var(--pihen-bg);color:var(--pihen);}
+
+.section{margin-bottom:44px;}
+
+/* PROGRAM CARDS */
+.routes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.routes-grid{grid-template-columns:1fr;}}
+
+.rcard{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  overflow:hidden;transition:box-shadow .15s,transform .15s;
+  display:flex;flex-direction:column;
+}
+.rcard:hover{box-shadow:0 4px 20px rgba(30,74,8,.12);transform:translateY(-2px);}
+
+.rcard-top{
+  padding:18px 18px 14px;display:flex;align-items:flex-start;gap:12px;
+}
+.rcard-icon{font-size:32px;flex-shrink:0;line-height:1;}
+.rcard-info{flex:1;min-width:0;}
+.rcard-name{font-family:var(--display);font-size:17px;color:var(--gd);line-height:1.2;margin-bottom:4px;}
+.rcard-type{font-size:12px;color:var(--muted);}
+
+.rcard-stats{
+  display:flex;border-top:1px solid var(--border);
+}
+.rstat{
+  flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--border);
+}
+.rstat:last-child{border-right:none;}
+.rstat-val{font-family:var(--serif);font-size:18px;color:var(--gm);font-weight:600;display:block;line-height:1;}
+.rstat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+
+.rcard-foot{
+  padding:12px 18px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+
+.type-badge{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;white-space:nowrap;}
+.type-kultur{background:var(--kultur-bg);color:var(--kultur);}
+.type-termeszet{background:var(--termeszet-bg);color:var(--termeszet);}
+.type-pihen{background:var(--pihen-bg);color:var(--pihen);}
+
+.from-fahaz{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+
+.guide-link{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:6px 14px;border-radius:20px;
+  background:var(--gl);color:var(--gd);border:1px solid var(--gb);
+  text-decoration:none;white-space:nowrap;transition:background .15s;
+}
+.guide-link:hover{background:var(--gb);}
+.guide-link.done{background:var(--gd);color:#fff;border-color:var(--gd);}
+.guide-link.done:hover{background:#2A5A10;}
+
+.rcard-desc{padding:0 18px 16px;font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* LEGEND */
+.legend{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  padding:18px 20px;margin-bottom:32px;
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
+}
+.leg-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:4px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:13px;}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.leg-kultur{background:var(--kultur);}
+.leg-termeszet{background:var(--termeszet);}
+.leg-pihen{background:var(--pihen);}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge" style="border-left:none;padding-left:0;">Noszvaj · Program Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-icon">🎯</span>
+  <h1 class="hero-title">Noszvaj <em>programok</em></h1>
+  <p class="hero-sub">Síkfőkút · Bükk-alja · 7 program</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🏰 2 kultúra · 🌿 3 természet · 🔥 2 pihenés</span>
+    <span class="hero-chip">📍 Legtöbb a Cabin közelében</span>
+    <span class="hero-chip">🌲 Nászút hangulat</span>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label">Szűrő:</span>
+  <button class="fbtn active" onclick="filter(this,'all')">Összes (7)</button>
+  <button class="fbtn f-kultur" onclick="filter(this,'kultur')">🏰 Kultúra (2)</button>
+  <button class="fbtn f-termeszet" onclick="filter(this,'termeszet')">🌿 Természet (3)</button>
+  <button class="fbtn f-pihen" onclick="filter(this,'pihen')">🔥 Pihenés (2)</button>
+</div>
+
+<main class="content">
+
+  <div class="legend">
+    <span class="leg-title">Kategória:</span>
+    <span class="leg-item"><span class="leg-dot leg-kultur"></span>Kultúra · Történelem</span>
+    <span class="leg-item"><span class="leg-dot leg-termeszet"></span>Természet · Aktív</span>
+    <span class="leg-item"><span class="leg-dot leg-pihen"></span>Pihenés · Hangulat</span>
+  </div>
+
+  <!-- KULTÚRA -->
+  <section class="section" id="sec-kultur">
+    <div class="sec-head">
+      <span class="sec-head-icon">🏰</span>
+      <span class="sec-head-title">Kultúra & Történelem</span>
+      <span class="sec-head-badge badge-kultur">Látnivalók</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- o1 -->
+      <div class="rcard" data-cat="kultur">
+        <div class="rcard-top">
+          <span class="rcard-icon">🏰</span>
+          <div class="rcard-info">
+            <div class="rcard-name">De la Motte-kastély</div>
+            <div class="rcard-type">Kultúra · Barokk műemlék</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A Bükk-alja egyik legszebb barokk kastélya Noszvaj faluközpontjában — kultúrtúrával kombinálva tökéletes délelőtti program.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~1 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">~1000</span><span class="rstat-lbl">Ft belépő</span></div>
+          <div class="rstat"><span class="rstat-val">18.sz.</span><span class="rstat-lbl">Barokk</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-kultur">🏰 Kultúra</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link done" href="noszvaj_o1_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o2 -->
+      <div class="rcard" data-cat="kultur">
+        <div class="rcard-top">
+          <span class="rcard-icon">🪨</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Noszvaji barlanglakások</div>
+            <div class="rcard-type">Kultúra · Népi építészet</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Tufába vájt barlanglakások Noszvaj keleti domboldalán — különleges népi emlék, ingyenes, fotózásra kiváló.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~45'</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">Ingy.</span><span class="rstat-lbl">belépő</span></div>
+          <div class="rstat"><span class="rstat-val">Tufa</span><span class="rstat-lbl">kőzetbe vájt</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-kultur">🏰 Kultúra</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link done" href="noszvaj_o2_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TERMÉSZET -->
+  <section class="section" id="sec-termeszet">
+    <div class="sec-head">
+      <span class="sec-head-icon">🌿</span>
+      <span class="sec-head-title">Természet & Aktív kikapcsolódás</span>
+      <span class="sec-head-badge badge-termeszet">Szabadtér</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- o3 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌟</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Kövesdi-kilátó</div>
+            <div class="rcard-type">Természet · Panoráma</div>
+          </div>
+        </div>
+        <div class="rcard-desc">360 fokos panoráma a Bükk-aljára és a síkságra — a Síkfőkút–Kövesdi-kilátó körtúra (r4) csúcspontja, önállóan is látogatható.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~3 ó</span><span class="rstat-lbl">túrával</span></div>
+          <div class="rstat"><span class="rstat-val">360°</span><span class="rstat-lbl">panoráma</span></div>
+          <div class="rstat"><span class="rstat-val">Ingy.</span><span class="rstat-lbl">belépő</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link done" href="noszvaj_o3_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o4 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌿</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Síkfőkúti tó & pihenő</div>
+            <div class="rcard-type">Természet · Fürdőzés · Kajak</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A Cabin melletti erdei tó — úszás, kajakozás, tóparti napolás. Az érkezés napján tökéletes első program.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">1–3 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">Strand</span><span class="rstat-lbl">+ kajak</span></div>
+          <div class="rstat"><span class="rstat-val">200</span><span class="rstat-lbl">m Cabintól</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🏕 ~200 m · gyalog</span>
+          <a class="guide-link done" href="noszvaj_o4_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o7 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🚴</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Kerékpározás Noszvaj körül</div>
+            <div class="rcard-type">Természet · Aktív · Enyhe domborzat</div>
+          </div>
+        </div>
+        <div class="rcard-desc">10–25 km-es kerékpáros körök aszfalton és erdei utakon — reggeli friss levegőn, a Cabin kerékpárjával.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">10–25</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">2–3 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">Enyhe</span><span class="rstat-lbl">domborzat</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🏕 0 m · Cabintól indul</span>
+          <a class="guide-link done" href="noszvaj_o7_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIHENÉS -->
+  <section class="section" id="sec-pihen">
+    <div class="sec-head">
+      <span class="sec-head-icon">🔥</span>
+      <span class="sec-head-title">Pihenés & Hangulat</span>
+      <span class="sec-head-badge badge-pihen">Cabin élmény</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- o5 -->
+      <div class="rcard" data-cat="pihen">
+        <div class="rcard-top">
+          <span class="rcard-icon">🔥</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Grillezés & tábortűz</div>
+            <div class="rcard-type">Pihenés · Esti BBQ · Cabin kert</div>
+          </div>
+        </div>
+        <div class="rcard-desc">BBQ este a csillagos ég alatt a Cabin saját kertjében — grill és tűzifa helyben, az erdő csendje tökéletes háttér.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~2 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">Este</span><span class="rstat-lbl">~19:00-tól</span></div>
+          <div class="rstat"><span class="rstat-val">Ingyen</span><span class="rstat-lbl">tűzifa</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-pihen">🔥 Pihenés</span>
+          <span class="from-fahaz">🏕 0 m · Cabin kert</span>
+          <a class="guide-link done" href="noszvaj_o5_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o6 -->
+      <div class="rcard" data-cat="pihen">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌙</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Csillagos égbolt</div>
+            <div class="rcard-type">Pihenés · Éjszakai · Tejút</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Síkfőkúton minimális a fényszennyezés — felhőtlen éjszakán a Tejút szabad szemmel látható. Perseida meteorraj júliusban.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">Tejút</span><span class="rstat-lbl">szabad szemmel</span></div>
+          <div class="rstat"><span class="rstat-val">21:00+</span><span class="rstat-lbl">start</span></div>
+          <div class="rstat"><span class="rstat-val">Ingyen</span><span class="rstat-lbl">természet</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-pihen">🔥 Pihenés</span>
+          <span class="from-fahaz">🏕 0 m · Cabin kert</span>
+          <a class="guide-link done" href="noszvaj_o6_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_turak.html">Túrák</a> · <a href="noszvaj_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+
+<script>
+function filter(btn, type) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.rcard');
+  cards.forEach(c => {
+    if (type === 'all' || c.dataset.cat === type) {
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+
+  ['kultur','termeszet','pihen'].forEach(cat => {
+    const sec = document.getElementById('sec-' + cat);
+    if (!sec) return;
+    const visible = sec.querySelectorAll('.rcard:not(.hidden)').length;
+    sec.style.display = (type === 'all' || type === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

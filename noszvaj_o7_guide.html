@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerékpározás Noszvaj körül · Program Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.logo{font-family:var(--display);font-size:24px;color:#fff;font-weight:400;}
+.logo em{font-style:italic;color:#B8D89A;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.2);padding-left:14px;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(184,216,154,.12) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(90,154,40,.15) 0%,transparent 50%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(32px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);backdrop-filter:blur(4px);}
+.chip-green{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.chip-amber{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stats-bar::-webkit-scrollbar{display:none;}
+.stat{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--gm);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:grid;grid-template-columns:40px 1fr;gap:0 16px;position:relative;}
+.step:not(:last-child) .step-line{position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--gb);z-index:0;}
+.step-dot{width:40px;height:40px;flex-shrink:0;background:var(--gm);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;position:relative;z-index:1;box-shadow:0 2px 8px rgba(62,122,24,.3);}
+.step-dot.dot-start{background:var(--gd);}
+.step-dot.dot-end{background:var(--gd);}
+.step-dot.dot-mid{background:var(--gm2);width:34px;height:34px;font-size:14px;margin:3px;}
+.step-body{padding:8px 0 24px;}
+.step-body h4{font-size:15px;font-weight:600;color:var(--gd);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--muted);line-height:1.6;}
+.step-dist{display:inline-block;font-size:12px;font-weight:600;background:var(--gl);color:var(--gm);border:1px solid var(--gb);padding:2px 8px;border-radius:10px;margin-top:4px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+.sights-row{display:flex;flex-wrap:wrap;gap:8px;}
+.sight-chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;background:var(--gl);color:var(--gd);border:1px solid var(--gb);border-radius:20px;padding:5px 12px;text-decoration:none;transition:background .15s;}
+.sight-chip:hover{background:var(--gb);}
+.sight-chip svg{flex-shrink:0;}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;cursor:pointer;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-waze:hover{background:#D0DFFA;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.nav-photos:hover{background:#FAEFD0;}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge" style="border-left:none;padding-left:0;">Noszvaj · Program Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+<header class="hero">
+  <span class="hero-icon">🚴</span>
+  <h1 class="hero-title">Kerékpározás <em>Noszvaj körül</em></h1>
+  <p class="hero-sub">Noszvaj · Síkfőkút · Enyhe domborzat</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-green">✓ Könnyű</span>
+    <span class="hero-chip chip-green">Természet · Aktív</span>
+    <span class="hero-chip">⏱ 2–3 óra</span>
+    <span class="hero-chip">🏠 0 m · Cabintól indul</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">10–25</span><span class="stat-lbl">km (igény szerint)</span></div>
+  <div class="stat"><span class="stat-val">2–3 ó</span><span class="stat-lbl">program</span></div>
+  <div class="stat"><span class="stat-val">Enyhe</span><span class="stat-lbl">domborzat</span></div>
+  <div class="stat"><span class="stat-val">Bérlés</span><span class="stat-lbl">Cabinnál (érdeklődj)</span></div>
+</div>
+
+<main class="content">
+
+  <section class="section">
+    <h2 class="section-title">🚴 A programról</h2>
+    <div class="desc-card">
+      <p>Noszvaj és Síkfőkút környéke kerékpározásra kiválóan alkalmas — aszfaltozott és murvás erdei utakon, enyhe domborzaton. A terep nem igényel különösebb kerékpározási tapasztalatot: a völgyek között tekeredő utak könnyen teljesíthetők és látványosak.</p>
+      <p>Kerékpár a Cabinnál bérlési lehetséggel igénybe vehető — érdemes előre érdeklődni. A legtermészetesebbik kör Síkfőkút–Noszvaj–Egerbakta–visszafelé, de rövidebb és hosszabb változatok is tervezhetők.</p>
+      <div class="highlight">💡 Reggeli kerékpározás a legjobb: a hajnali hűvös, a madárhanggal teli erdei utak, és a forgalom szinte teljes hiánya teszi teljessé az élményt.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🗺️ Ajánlott útvonalak</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-start">🏕</div>
+        <div class="step-body">
+          <h4>Noszvaj Cabin — indulás</h4>
+          <p>A Cabintól közvetlenül indulhatsz — kerékpáros utakat nem kell külön keresni, a Síkfőkút–Noszvaj aszfaltút önmagában is jó kerékpározási terep.</p>
+          <span class="step-dist">0 km · rajt</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🌲</div>
+        <div class="step-body">
+          <h4>1. lehetőség — Rövid kör (~10 km)</h4>
+          <p>Síkfőkút → Noszvaj faluközpont (kastély érintésével) → vissza Síkfőkútra. Egyszerű, kellemes, ~1,5 óra.</p>
+          <span class="step-dist">~10 km · ~1,5 óra</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🏘</div>
+        <div class="step-body">
+          <h4>2. lehetőség — Közepes kör (~18 km)</h4>
+          <p>Síkfőkút → Noszvaj → Egerbakta → Noszvaj → Síkfőkút. Szomszéd falvak érintésével, változatos táj.</p>
+          <span class="step-dist">~18 km · ~2,5 óra</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot dot-end">🗺️</div>
+        <div class="step-body">
+          <h4>3. lehetőség — Erdei utak (~25 km)</h4>
+          <p>Síkfőkút → erdei utak (kavicsos, murvás) → Novaji-kunyhó irányába → visszafelé. Igényesebb terep, de gyönyörű.</p>
+          <span class="step-dist">~25 km · ~3 óra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">ℹ️ Gyakorlati információk</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">🚲 Kerékpár</div>
+        <div class="ic-val">Cabinnál bérlés (érdeklődj)<br><small style="color:var(--muted)">Saját bringával is jöhetsz</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">⛑️ Felszerelés</div>
+        <div class="ic-val">Kerékpár + sisak<br><small style="color:var(--muted)">Kesztyű és vízcsomag ajánlott</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">📏 Távolság</div>
+        <div class="ic-val">10–25 km (igény szerint)<br><small style="color:var(--muted)">Könnyű–közepes terhelés</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🏔️ Domborzat</div>
+        <div class="ic-val">Enyhe, dombos<br><small style="color:var(--muted)">Nem igényel komoly erőt</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🕐 Mikor?</div>
+        <div class="ic-val">Délelőtt (hűvösebb)<br><small style="color:var(--muted)">Reggeli indulás a legjobb</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">💧 Víz</div>
+        <div class="ic-val">Mindig vigyél magaddal<br><small style="color:var(--muted)">Forrásvíz az Attila-forrásnál</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Tippek & tudnivalók</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">🌅</span>
+        <div class="tip-text"><strong>Reggeli kerékpározás.</strong> Délelőtt 8–10 között a leghűvösebb, a legcsendesebb és a leglátványosabb — a hajnali köd az erdei utakon romantikus hangulatot teremt.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🗺️</span>
+        <div class="tip-text"><strong>Kombináld a kastély meglátogatásával.</strong> A rövid kerékpáros körön (~10 km) a De la Motte-kastély (o1) és a barlanglakások (o2) útba eshetnek — kultúrával töltött kerékpározás.</div>
+      </div>
+      <div class="tip tip-amber">
+        <span class="tip-icon">⚠️</span>
+        <div class="tip-text"><strong>Kerékpárbérlés — érdeklődj előre!</strong> A Cabinnál nem garantált a kerékpár rendelkezésre állása — érdemes már az érkezés előtt érdeklődni, hogy van-e bérlési lehetőség.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📱</span>
+        <div class="tip-text"><strong>Komoot vagy Wikiloc app.</strong> Kerékpáros útvonalakhoz a Komoot alkalmazás kiváló — Noszvaj és Síkfőkút területére rengeteg előre megtervezett kerékpáros útvonal érhető el.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">👁️ Látnivalók az úton</h2>
+    <div class="sights-row">
+      <a class="sight-chip" href="https://www.google.com/maps/search/Noszvaj+kerekparos+utak+Sikfokut" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Noszvaj kerékpáros utak</a>
+      <a class="sight-chip" href="https://www.google.com/maps/search/Egerbakta+falu+Bükk-alja" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Egerbakta</a>
+      <a class="sight-chip" href="https://www.google.com/maps/search/Sikfokut+erdei+utak+kerekpar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Síkfőkúti erdei utak</a>
+    </div>
+  </section>
+
+    <section class="section">
+    <h2 class="section-title">🧭 Navigáció & fotók</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Navigálj a helyszínre, majd élvezd a programot!</p>
+    <div class="nav-row">
+      <a class="nav-btn nav-maps" href="https://www.google.com/maps/dir/?api=1&destination=47.9530,20.5105&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+      <a class="nav-btn nav-waze" href="https://waze.com/ul?ll=47.9530,20.5105&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Waze</a>
+      <a class="nav-btn nav-photos" href="https://www.google.com/maps/search/Noszvaj+kerekpar+tura+Sikfokut" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🔗 Kapcsolódó programok</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">🏰</span>
+        <div class="tip-text"><strong>De la Motte-kastély (o1)</strong> — a rövid kerékpáros körön útba ejthető. Kultúra + kerékpár egy délelőttben.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🌲</span>
+        <div class="tip-text"><strong>Novaji-kunyhó kör (r3)</strong> — az erdei kerékpározás és a Novaji-kunyhó körtúra részben azonos terepen mozog. Ha megjártad kerékpárral, a túraösvény ismerős lesz.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>

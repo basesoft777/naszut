@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noszvaj Túrák · Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --med-bg:#FFF3D0; --med:#7A5000;
+  --hard-bg:#FFE8E8; --hard:#8A1A1A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+
+/* TOPBAR */
+.topbar{
+  background:var(--gd);padding:0 24px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;
+}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.logo{font-family:var(--display);font-size:22px;color:#fff;font-weight:400;}
+.logo em{font-style:italic;color:#B8D89A;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.2);padding-left:14px;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+
+/* HERO */
+.hero{
+  background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);
+  padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 25% 75%,rgba(184,216,154,.12) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(90,154,40,.15) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-icon{font-size:56px;display:block;margin-bottom:14px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(28px,5vw,46px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+
+/* FILTER BAR */
+.filter-bar{
+  background:#fff;border-bottom:1.5px solid var(--border);
+  padding:14px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:58px;z-index:90;
+}
+.filter-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:4px;}
+.fbtn{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);
+  background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.fbtn:hover{border-color:var(--gm);color:var(--gm);}
+.fbtn.active{background:var(--gl);border-color:var(--gm);color:var(--gd);}
+.fbtn.f-easy.active{background:var(--easy-bg);border-color:var(--gb);color:var(--easy);}
+.fbtn.f-med.active{background:var(--med-bg);border-color:var(--amber-border);color:var(--amber);}
+.fbtn.f-hard.active{background:var(--hard-bg);border-color:#F0B0B0;color:var(--hard);}
+
+/* CONTENT */
+.content{max-width:900px;margin:0 auto;padding:36px 20px 60px;}
+
+/* SECTION */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1.5px solid var(--gb);}
+.sec-head-icon{font-size:22px;}
+.sec-head-title{font-family:var(--display);font-size:20px;color:var(--gd);}
+.sec-head-badge{
+  font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;
+  margin-left:auto;letter-spacing:.05em;text-transform:uppercase;
+}
+.badge-easy{background:var(--easy-bg);color:var(--easy);}
+.badge-med{background:var(--med-bg);color:var(--amber);}
+.badge-hard{background:var(--hard-bg);color:var(--hard);}
+
+.section{margin-bottom:44px;}
+
+/* ROUTE CARDS */
+.routes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.routes-grid{grid-template-columns:1fr;}}
+
+.rcard{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  overflow:hidden;transition:box-shadow .15s,transform .15s;
+  display:flex;flex-direction:column;
+}
+.rcard:hover{box-shadow:0 4px 20px rgba(30,74,8,.12);transform:translateY(-2px);}
+
+.rcard-top{
+  padding:18px 18px 14px;display:flex;align-items:flex-start;gap:12px;
+}
+.rcard-icon{font-size:32px;flex-shrink:0;line-height:1;}
+.rcard-info{flex:1;min-width:0;}
+.rcard-name{font-family:var(--display);font-size:17px;color:var(--gd);line-height:1.2;margin-bottom:4px;}
+.rcard-type{font-size:12px;color:var(--muted);}
+
+.rcard-stats{
+  display:flex;border-top:1px solid var(--border);
+}
+.rstat{
+  flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--border);
+}
+.rstat:last-child{border-right:none;}
+.rstat-val{font-family:var(--serif);font-size:18px;color:var(--gm);font-weight:600;display:block;line-height:1;}
+.rstat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+
+.rcard-foot{
+  padding:12px 18px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.diff-badge{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;white-space:nowrap;}
+.diff-easy{background:var(--easy-bg);color:var(--easy);}
+.diff-med{background:var(--med-bg);color:var(--amber);}
+.diff-hard{background:var(--hard-bg);color:var(--hard);}
+
+.from-fahaz{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+
+.guide-link{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:6px 14px;border-radius:20px;
+  background:var(--gl);color:var(--gd);border:1px solid var(--gb);
+  text-decoration:none;white-space:nowrap;transition:background .15s;
+}
+.guide-link:hover{background:var(--gb);}
+.guide-link.done{background:var(--gd);color:#fff;border-color:var(--gd);}
+.guide-link.done:hover{background:#2A5A10;}
+
+.rcard-desc{padding:0 18px 16px;font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* LEGEND */
+.legend{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  padding:18px 20px;margin-bottom:32px;
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
+}
+.leg-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:4px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:13px;}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.leg-easy{background:var(--easy);}
+.leg-med{background:var(--amber);}
+.leg-hard{background:var(--hard);}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+
+/* hidden class */
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge" style="border-left:none;padding-left:0;">Noszvaj · Túra Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-icon">⛰️</span>
+  <h1 class="hero-title">Noszvaj <em>túrák</em></h1>
+  <p class="hero-sub">Síkfőkút · Bükk-alja · 9 útvonal</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🥾 5 könnyű · 2 közepes · 2 nehéz</span>
+    <span class="hero-chip">📍 Cabin mellől indul a legtöbb</span>
+    <span class="hero-chip">🌲 Bükk Nemzeti Park</span>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label">Szűrő:</span>
+  <button class="fbtn active" data-filter="all" onclick="filter(this,'all')">Összes (9)</button>
+  <button class="fbtn f-easy" data-filter="easy" onclick="filter(this,'easy')">✓ Könnyű (5)</button>
+  <button class="fbtn f-med" data-filter="med" onclick="filter(this,'med')">◑ Közepes (2)</button>
+  <button class="fbtn f-hard" data-filter="hard" onclick="filter(this,'hard')">▲ Nehéz (2)</button>
+</div>
+
+<main class="content">
+
+  <div class="legend">
+    <span class="leg-title">Nehézség:</span>
+    <span class="leg-item"><span class="leg-dot leg-easy"></span>Könnyű · Kezdő</span>
+    <span class="leg-item"><span class="leg-dot leg-med"></span>Közepes · Középhaladó</span>
+    <span class="leg-item"><span class="leg-dot leg-hard"></span>Nehéz · Haladó</span>
+  </div>
+
+  <!-- KÖNNYŰ -->
+  <section class="section" id="sec-easy">
+    <div class="sec-head">
+      <span class="sec-head-icon">🟢</span>
+      <span class="sec-head-title">Könnyű túrák</span>
+      <span class="sec-head-badge badge-easy">Kezdő szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r1 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">💧</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Attila-forrás séta</div>
+            <div class="rcard-type">↕ Oda-vissza · forrás</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A legrövidebb noszvaji séta — erdei forrás, árnyék, bármikor mehet.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">2</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">40'</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">60</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link done" href="noszvaj_r1_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r2 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🏰</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Falut kerülő kultúrtúra</div>
+            <div class="rcard-type">◯ Kör · kulturális</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Barokk kastély, barlanglakások, kilátó — kávézókkal és cukrászdákkal útközben.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">6</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">2 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">150</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link" href="noszvaj_r2_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r3 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌲</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Novaji-kunyhó kör</div>
+            <div class="rcard-type">◯ Körtúra · erdei</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Kellemes, árnyas erdei körút pihenőhelyekkel — nyáron a legjobb hűsítő séta.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">6,1</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">2 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">200</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link" href="noszvaj_r3_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r4 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🔭</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Síkfőkút – Kövesdi-kilátó kör</div>
+            <div class="rcard-type">◯ Körtúra · klasszikus</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A környék klasszikus körje — tó, két forrás, turistaház, kilátó. A Cabin mellől indul.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">7,3</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">3 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">300</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link" href="noszvaj_r4_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r5 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🗿</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Szomolyai Kaptárkövek tanösvény</div>
+            <div class="rcard-type">→ Tanösvény · különleges</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Titokzatos, fülkékbe vájt kaptárkövek — rövid, de szenzációs. Autóval 10 perc.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">4</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">1,5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">130</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🚗 ~7 km · 10 perc</span>
+          <a class="guide-link" href="noszvaj_r5_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KÖZEPES -->
+  <section class="section" id="sec-med">
+    <div class="sec-head">
+      <span class="sec-head-icon">🟡</span>
+      <span class="sec-head-title">Közepes túrák</span>
+      <span class="sec-head-badge badge-med">Középhaladó szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r6 -->
+      <div class="rcard" data-diff="med">
+        <div class="rcard-top">
+          <span class="rcard-icon">💦</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Noszvaji Forrástúra · 8 forrás</div>
+            <div class="rcard-type">◯ Körtúra · forráskeresés</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Nyolc forrást fűz fel — verses térkép és kitűző a Harmónia cukrászdából. Játékos élmény.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">7,5</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">3,5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">350</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-med">◑ Közepes</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link" href="noszvaj_r6_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r7 -->
+      <div class="rcard" data-diff="med">
+        <div class="rcard-top">
+          <span class="rcard-icon">⛰</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Kánya-hegy panorámatúra</div>
+            <div class="rcard-type">◯ Körtúra · panoráma</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Csendes patakvölgy, kék jelzés, valódi bükki hangulat. Kevesen járnak errefelé.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">9</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">3,5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">360</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-med">◑ Közepes</span>
+          <span class="from-fahaz">🏕 ~500 m a Cabintól</span>
+          <a class="guide-link" href="noszvaj_r7_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEHÉZ -->
+  <section class="section" id="sec-hard">
+    <div class="sec-head">
+      <span class="sec-head-icon">🔴</span>
+      <span class="sec-head-title">Nehéz túrák</span>
+      <span class="sec-head-badge badge-hard">Haladó szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r8 -->
+      <div class="rcard" data-diff="hard">
+        <div class="rcard-top">
+          <span class="rcard-icon">🗺</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Szomolya–Noszvaj kaptárkövek nagytúra</div>
+            <div class="rcard-type">→ Pont–pont · busz vissza</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A leglátványosabb kaptárköves útvonal — pincesor, kilátó, nagytúra. Vissza busszal.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~13</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">4,5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">420</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-hard">▲ Nehéz</span>
+          <span class="from-fahaz">🚗 ~7 km Szomolyáig</span>
+          <a class="guide-link" href="noszvaj_r8_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r9 -->
+      <div class="rcard" data-diff="hard">
+        <div class="rcard-top">
+          <span class="rcard-icon">🏔</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Nagy-Eged-hegy kihívás</div>
+            <div class="rcard-type">◯ Körtúra · csúcs</div>
+          </div>
+        </div>
+        <div class="rcard-desc">536 m, tartós meredek, körpanoráma, Európa egyik legmagasabb szőlője. Komoly program.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">10</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">4 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">560</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-hard">▲ Nehéz</span>
+          <span class="from-fahaz">🚗 ~12 km Egerig</span>
+          <a class="guide-link" href="noszvaj_r9_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="index.html">Főoldal</a> · <a href="noszvaj_tervezo.html">Tervező</a></p>
+</footer>
+
+<script>
+function filter(btn, type) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.rcard');
+  const secs = {easy:'sec-easy', med:'sec-med', hard:'sec-hard'};
+
+  cards.forEach(c => {
+    if (type === 'all' || c.dataset.diff === type) {
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+
+  // hide empty sections
+  ['easy','med','hard'].forEach(d => {
+    const sec = document.getElementById('sec-' + d);
+    if (!sec) return;
+    const visible = sec.querySelectorAll('.rcard:not(.hidden)').length;
+    sec.style.display = (type === 'all' || type === d) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
