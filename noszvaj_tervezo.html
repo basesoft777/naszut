@@ -307,7 +307,7 @@ body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--cr
     </div>
     <div class="lib-tabs">
       <button class="ltab on" data-tab="tura" onclick="switchTab(this)">⛰ Túrák (9)</button>
-      <button class="ltab" data-tab="eat" onclick="switchTab(this)">🍴 Éttermek (6)</button>
+      <button class="ltab" data-tab="eat" onclick="switchTab(this)">🍴 Éttermek (20)</button>
       <button class="ltab" data-tab="other" onclick="switchTab(this)">✦ Programok (7)</button>
     </div>
     <div class="lib-scroll" id="libScroll"></div>
@@ -619,7 +619,127 @@ const DINING = [
    hours:"Vasárnap zárva",
    phone:null,
    note:"Igényes konyha és helyi borok a Bükkalján, kellemes kerthelyiséggel.",
-   lat:47.9390, lng:20.5580, fromFahaz:"~10 km autóval"}
+   lat:47.9390, lng:20.5580, fromFahaz:"~10 km autóval"},
+
+  {id:'e11',icon:'🏨',
+   name:"Hotel Síkfőkút Étterem",
+   type:"Magyaros · tóparti terasz",
+   loc:"Síkfőkút út 17.",
+   near:"Síkfőkúti tó · ~500 m",
+   spec:"Magyaros napi ajánlat, 30 fős tóparti terasz",
+   rating:4.2, cnt:null,
+   hours:"Reggeli 8–10, ebéd/vacsora 12–21",
+   phone:"+36 36 463-097",
+   note:"Tóparti kilátás, SZÉP kártyás fizetés. Jó alternatíva reggeli vagy ebéd után a tónál.",
+   lat:47.9615, lng:20.5120, fromFahaz:"~500 m gyalog"},
+
+  {id:'e12',icon:'🛍',
+   name:"Kamra Bolt — Síkfőkút",
+   type:"Helyi bolt · angus burger",
+   loc:"Síkfőkút tórét",
+   near:"Síkfőkúti tó · ~500 m",
+   spec:"Helyi termékek, angus burger, szuvenírek",
+   rating:4.7, cnt:null,
+   hours:"Szezonálisan (tavasz–ősz)",
+   phone:"+36 30 190-5087",
+   note:"Helyi különlegességek, angus burger, noszvaji szuvenírek. Szezonális, előtte ellenőrizd!",
+   lat:47.9585, lng:20.5198, fromFahaz:"~500 m gyalog"},
+
+  {id:'e13',icon:'🏰',
+   name:"Tündérkert — De la Motte Étterem",
+   type:"Vintage bisztró · kastélykert",
+   loc:"Noszvaj, Dobó István u. 10.",
+   near:"Falut kerülő kultúrtúra",
+   spec:"Vintage bisztró, egri borok, P–Szo este svédasztal",
+   rating:4.5, cnt:null,
+   hours:"Minden nap · P–Szo vacsora 18–22 (külsősöknek)",
+   phone:"+36 36 563-303",
+   note:"Kastélykerti hangulat, élőzene pénteken–szombaton. Hétvégi vacsorához érdemes foglalni!",
+   lat:47.9538, lng:20.5065, fromFahaz:"~2 km autóval"},
+
+  {id:'e14',icon:'🍷',
+   name:"Thummerer Pince & Magtár Fogadó",
+   type:"Borvacsora · tufakő pince",
+   loc:"Noszvaj, Szomolyai út 2/A",
+   near:"Szomolya felé · ~4 km",
+   spec:"Tufakőbe vájt pince, 6-tételes borkóstoló, kemencés vacsora",
+   rating:4.8, cnt:null,
+   hours:"Sze–Szo (előzetes bejelentkezés kötelező!)",
+   phone:"+36 36 463-269",
+   note:"Különleges gasztroélmény tufapince-vacsorával. Csak foglalással, min. 8 fő csoportos.",
+   lat:47.9177, lng:20.4820, fromFahaz:"~4 km autóval"},
+
+  {id:'e15',icon:'🦌',
+   name:"Vadász Étterem — Répáshuta",
+   type:"Bükki vadkonyha",
+   loc:"Répáshuta, Kossuth u. 8.",
+   near:"Nagy-Eged / bükki túrák után",
+   spec:"Vaddisznó, szarvas, sztrapacska, knédli",
+   rating:4.6, cnt:null,
+   hours:"H–Cs 11–20, P–Szo 11–21, V 11–20",
+   phone:"+36 46 390-159",
+   note:"Bükki vadkonyha nagy adagokkal, jó ár-értékkel. SZÉP kártyás fizetés. ~28 km a Cabintól.",
+   lat:48.0220, lng:20.3980, fromFahaz:"~28 km autóval"},
+
+  {id:'e16',icon:'🌲',
+   name:"Szalajka Fogadó és Étterem",
+   type:"Pisztráng · vadhús",
+   loc:"Szilvásvárad, Egri út 2.",
+   near:"Szalajka-völgyi kirándulás",
+   spec:"Pisztráng, vadhús, bükki gomba, vegetáriánus menü",
+   rating:4.7, cnt:null,
+   hours:"H–Cs 12–20, P–Szo 12–21, V 12–20",
+   phone:"+36 36 564-020",
+   note:"Szilvásvárad legjobb étterme, kutyabarát, hétvégén érdemes foglalni. ~38 km a Cabintól.",
+   lat:48.1033, lng:20.3886, fromFahaz:"~38 km autóval"},
+
+  {id:'e17',icon:'🌲',
+   name:"Fenyő Vendéglő — Szilvásvárad",
+   type:"Pisztráng · kert",
+   loc:"Szilvásvárad, Szalajka út 2.",
+   near:"Szalajka-völgy bejárata",
+   spec:"Pisztráng, vad, vegetáriánus, 90 fős nyitott kert",
+   rating:4.5, cnt:null,
+   hours:"Kb. 10–20 (szezonálisan változik)",
+   phone:"+36 36 564-015",
+   note:"Völgy bejáratánál, kisvasút megálló közelben. Nagy kert, könnyen megközelíthető.",
+   lat:48.1020, lng:20.3901, fromFahaz:"~38 km autóval"},
+
+  {id:'e18',icon:'🐟',
+   name:"Szalajka-völgy Pisztrángbüfék",
+   type:"Büfé · szezonális",
+   loc:"Szalajka-völgy főút",
+   near:"Szalajka-völgyi séta közben",
+   spec:"Grillezett, bundás, füstölt pisztráng",
+   rating:4.4, cnt:null,
+   hours:"Máj.–szept. (H–K zárva)",
+   phone:null,
+   note:"Séta közben megállós büfék a völgyben. Szezonális — előtte ellenőrizd! ~38 km Cabintól.",
+   lat:48.1040, lng:20.3870, fromFahaz:"~38 km autóval"},
+
+  {id:'e19',icon:'⭐',
+   name:"Macok Bisztró — Eger",
+   type:"Modern magyar · MICHELIN",
+   loc:"Eger, Tinódi Sebestyén tér 4.",
+   near:"Eger belváros",
+   spec:"Modern magyar konyha, helyi alapanyagok, egri borok",
+   rating:4.9, cnt:null,
+   hours:"V–Cs 12–22, P–Szo 12–23",
+   phone:"+36 36 516-180",
+   note:"MICHELIN Bib Gourmand 2025 — a térség legjobb étterme. Foglalás kötelező! ~12 km Cabintól.",
+   lat:47.9024, lng:20.3786, fromFahaz:"~12 km autóval"},
+
+  {id:'e20',icon:'🍷',
+   name:"Eger — Szépasszony-völgy csárdák",
+   type:"Csárda · borvidéki hangulat",
+   loc:"Eger, Szépasszony-völgy",
+   near:"Eger kirándulás / visszaút",
+   spec:"Magyaros ételek, cigányzene, egri borok (Kulacs & Ködmön csárda)",
+   rating:4.3, cnt:null,
+   hours:"Naponta (szezonálisan változó)",
+   phone:"+36 36 311-375",
+   note:"Borvidéki hangulat a Szépasszony-völgyben. Visszaúton ideális megálló. ~12 km Cabintól.",
+   lat:47.9008, lng:20.3720, fromFahaz:"~12 km autóval"}
 ];
 
 const OTHER = [
@@ -933,7 +1053,7 @@ function renderLib(){
         +'<div style="flex:1;min-width:0">'
           +'<div style="font-family:DM Serif Display,serif;font-size:21px;font-weight:400;color:#1E4A08;line-height:1.2;margin-bottom:3px">'+d.name+'</div>'
           +'<div style="font-size:15px;color:#5A7A40;font-style:italic;margin-bottom:4px">'+d.type+'</div>'
-          +'<div style="font-size:16px;color:#2E6010;font-weight:600">★ '+d.rating+' <span style="font-weight:400;color:#6A6864;font-size:13px">('+d.cnt+' értékelés)</span></div>'
+          +'<div style="font-size:16px;color:#2E6010;font-weight:600">★ '+d.rating+(d.cnt?'<span style="font-weight:400;color:#6A6864;font-size:13px"> ('+d.cnt+' értékelés)</span>':'')+'</div>'
         +'</div>';
 
       const body = document.createElement('div');
@@ -1225,7 +1345,7 @@ function renderPlanner(){
       const meta = it.type==='tura'
         ? `${data.distL} km · ${data.elev} m szint · ${data.time} · ${data.diff} · ${data.fit} · 🏠 ${data.fromFahaz}`
         : it.type==='eat'
-        ? `★ ${data.rating} (${data.cnt}) · ${data.spec} · ${data.hours} · 🏠 ${data.fromFahaz}`
+        ? `★ ${data.rating}${data.cnt?' ('+data.cnt+')'  :''} · ${data.spec} · ${data.hours} · 🏠 ${data.fromFahaz}`
         : `${data.desc} · ${data.mikor||''} · 🏠 ${data.fromFahaz}`;
       const guideLinkHtml = data.guide
         ? `<a href="${data.guide}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:12px;font-weight:600;text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid #3E7A18;background:#1E4A08;color:#fff;">${it.type==='tura'?'📖 Túra guide →':'🗺 Program guide →'}</a>`
@@ -2634,7 +2754,7 @@ function doExport(){
     var specHtml = '<div style="background:#F4F9EF;border-left:3px solid #3E7A18;border-radius:0 6px 6px 0;'
       +'padding:11px 13px;margin-bottom:12px;font-size:15px;color:#1E4A08;line-height:1.5;font-style:italic;">✦ '+data.spec+'</div>';
     var detailHtml =
-        rowPlain('⭐','Értékelés', '★ '+data.rating+' <span style="color:#6A6864;font-size:13px">('+data.cnt+' értékelés)</span>')
+        rowPlain('⭐','Értékelés', '★ '+data.rating+(data.cnt?' <span style="color:#6A6864;font-size:13px">('+data.cnt+' értékelés)</span>':''))
       + rowLink('📍','Helyszín', data.loc, 'Noszvaj Síkfőkút')
       + rowPlain('🏠','Szállástól', data.fromFahaz, 'color:#3E7A18;font-weight:600')
       + rowPlain('🕐','Nyitva',   data.hours)
@@ -2647,7 +2767,7 @@ function doExport(){
       +'<div style="flex:1;">'
         +'<div style="font-family:DM Serif Display,serif;font-size:20px;color:#1E4A08;line-height:1.2;margin-bottom:2px;">'+data.name+'</div>'
         +'<div style="font-size:13px;color:#5A7A40;font-style:italic;margin-bottom:3px;">'+data.type+'</div>'
-        +'<div style="font-size:15px;color:#2E6010;font-weight:600;">★ '+data.rating+' <span style="font-weight:400;color:#6A6864;font-size:13px">('+data.cnt+' értékelés)</span></div>'
+        +'<div style="font-size:15px;color:#2E6010;font-weight:600;">★ '+data.rating+(data.cnt?' <span style="font-weight:400;color:#6A6864;font-size:13px">('+data.cnt+' értékelés)</span>':'')+'</div>'
       +'</div>'
       +'</div>'
       +'<div style="padding:14px 16px;">'
