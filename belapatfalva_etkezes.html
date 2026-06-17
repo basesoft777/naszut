@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Erdei-lak Faházikó · Étkezési lehetőségek & költségek</title>
+<title>Erdei-lak · Étkezési lehetőségek & költségek</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -29,6 +29,7 @@
 
   .wrap { max-width: 860px; margin: 0 auto; padding: 28px 40px 60px; }
 
+  /* SUMMARY BOXES */
   .summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
   .sbox { background: var(--gl); border: 1px solid var(--gb); border-radius: 8px; padding: 14px 16px; }
   .sbox .sl { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--gm); margin-bottom: 4px; }
@@ -38,7 +39,14 @@
   h2 { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--gd); margin: 24px 0 12px; }
   h3 { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 20px 0 10px; }
 
-  .rest-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 28px; }
+  /* ZONE LABEL */
+  .zone-label { display: flex; align-items: center; gap: 10px; margin: 24px 0 10px; }
+  .zone-label .zt { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gm); }
+  .zone-label .zd { font-size: 11px; color: var(--muted); }
+  .zone-label::after { content:''; flex:1; height:1px; background:var(--gb); }
+
+  /* RESTAURANT CARDS */
+  .rest-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 16px; }
   .rest-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
   .photo-links { display: flex; gap: 8px; padding: 10px 16px 0; }
   .photo-link { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 11px; font-weight: 500; text-decoration: none; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--gb); background: var(--gl); color: var(--gd); transition: background .15s, border-color .15s; }
@@ -56,6 +64,7 @@
   .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 20px; }
   .b-green { background: var(--gl); color: var(--gm); }
   .b-amber { background: var(--al); color: var(--am); }
+  .b-blue  { background: #EAF0FB; color: #1A3A6A; }
   .nav-btns { display: flex; gap: 8px; padding: 8px 16px 4px; flex-wrap: wrap; }
   .gps-btn, .waze-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; text-decoration: none; padding: 6px 11px; border-radius: 20px; transition: background .15s, border-color .15s; }
   .gps-btn { border: 1px solid #C8DFB0; background: #EBF3E0; color: #1E4A08; }
@@ -64,6 +73,8 @@
   .waze-btn:hover { background: #D4E4F7; border-color: #2B5FAF; }
   .gps-btn svg, .waze-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
+
+  /* COST TABLE */
   table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 13px; margin-bottom: 16px; }
   th { padding: 8px 12px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--gl); border-bottom: 1px solid var(--gb); text-align: left; }
   th.r { text-align: right; }
@@ -78,6 +89,7 @@
   .mb-p { background: #F0EDE6; color: #5A5650; }
   .day-cell { color: var(--muted); font-size: 11px; }
 
+  /* BARS */
   .bar-section { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
   .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .bar-row:last-child { margin-bottom: 0; }
@@ -86,40 +98,24 @@
   .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; color: white; font-weight: 600; }
   .bar-amt { font-size: 12px; color: var(--muted); min-width: 80px; text-align: right; }
 
+  /* NOTICE */
   .notice { background: var(--al); border-left: 4px solid #C8900A; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 12.5px; color: var(--am); margin-bottom: 20px; }
+
+  /* TIP BOX */
   .tip-box { background: #F4F9EF; border: 1px solid var(--gb); border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
   .tip-box strong { color: var(--gd); }
 
+  /* STAR HIGHLIGHT */
+  .star-card { background: var(--al); border: 1.5px solid var(--ab); border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; font-size: 13px; color: var(--am); }
+  .star-card .st { font-size: 13px; font-weight: 600; color: var(--am); margin-bottom: 6px; }
+
   footer { background: var(--gl); border-top: 2px solid var(--gb); text-align: center; padding: 20px; font-size: 12px; color: var(--gm); font-style: italic; }
 
-  @media(max-width:640px){
-    body { font-size: 14px; }
-    .hero { padding: 24px 16px 20px; }
-    .hero h1 { font-size: 22px; }
-    .hero-sub { font-size: 12px; }
-    .hero-gallery { gap: 6px; }
-    .hero-gallery a { font-size: 11px; padding: 5px 10px; }
-    .wrap { padding: 16px 12px 48px; }
-    .summary { grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 20px; }
-    .sbox { padding: 11px 12px; }
-    .sbox .sv { font-size: 15px; }
-    h2 { font-size: 20px; margin: 20px 0 10px; }
-    .rest-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
-    .photo-links { padding: 10px 12px 0; gap: 6px; }
-    .photo-link { font-size: 11px; padding: 7px 8px; }
-    .nav-btns { padding: 8px 12px 4px; gap: 6px; }
-    .gps-btn, .waze-btn { font-size: 12px; padding: 8px 13px; }
-    .rest-card-header { padding: 10px 12px; }
-    .rest-card-header .rn { font-size: 14px; }
-    .rest-card-header .rl { font-size: 11px; }
-    .rest-card-body { padding: 10px 12px; }
-    .rest-row { flex-direction: column; gap: 2px; margin-bottom: 9px; }
-    .rest-label { min-width: unset; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
-    .rest-val { text-align: left; font-size: 13px; }
-    table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    th { padding: 7px 10px; font-size: 10px; white-space: nowrap; }
-    td { padding: 7px 10px; white-space: nowrap; }
-    .bar-label { min-width: 100px; font-size: 11px; }
+  @media(max-width:600px){
+    .wrap { padding: 20px 16px 40px; }
+    .hero { padding: 32px 16px 24px; }
+    .rest-grid { grid-template-columns: 1fr; }
+    .summary { grid-template-columns: repeat(2,1fr); }
   }
 </style>
 </head>
@@ -129,12 +125,13 @@
   <p class="hero-ey">4 nap · 2 fő · Bükki Nemzeti Park</p>
   <h1>Erdei-lak <em>Faházikó</em> · Étkezési lehetőségek & költségek</h1>
   <div class="hero-div"></div>
-  <p class="hero-sub">Bélapátfalva · Lak-völgyi tó · Szilvásvárad</p>
+  <p class="hero-sub">Bélapátfalva · Szilvásvárad · Bükkszék · Eger</p>
   <div class="hero-gallery">
-    <a href="https://www.google.com/maps/search/Szomjas+Csuka+Vendéglő+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Szomjas Csuka</a>
-    <a href="https://www.google.com/maps/search/Bélkő+Étterem+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Bélkő Étterem</a>
-    <a href="https://www.google.com/maps/search/Pisztráng+Tanya+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Pisztráng Tanya</a>
-    <a href="https://belapatfalvaszallas.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Szállás</a>
+    <a href="https://www.szomjascsuka.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Szomjas Csuka</a>
+    <a href="https://www.google.com/maps/search/Bélkő+Étterem+Pizzéria+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Bél-kő Étterem</a>
+    <a href="https://www.csobogoetterem.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Csobogó</a>
+    <a href="https://szilvasvarad.hu/hu/pisztrang/safrany-pisztrang-elso-hazai-halfuestoelde" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Sáfrány Pisztrángudvar</a>
+    <a href="https://www.imolaudvarhaz.hu/macok-bisztro-borbar.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Macok Bisztró (Eger)</a>
   </div>
 </header>
 
@@ -142,145 +139,268 @@
 
   <div class="summary" id="summary"></div>
 
+  <!-- BÉLAPÁTFALVA -->
   <h2>Étkezési helyek</h2>
+
+  <div class="zone-label"><span class="zt">📍 Bélapátfalva</span><span class="zd">helyi, gyalog vagy autóval 1–3 km</span></div>
   <div class="rest-grid">
 
     <div class="rest-card">
       <div class="photo-links">
         <a class="photo-link" href="https://www.google.com/maps/search/Szomjas+Csuka+Vendéglő+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.szomjascsuka.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
       </div>
       <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9625,20.5242" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9625,20.5242&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9616,20.5225" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9616,20.5225&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
       </div>
       <div class="rest-card-header">
-        <div class="rn">Szomjas Csuka Vendéglő</div>
-        <div class="rl">Bélapátfalva · ~1,5 km a faházikótól</div>
+        <div class="rn">🎣 Szomjas Csuka Vendéglő</div>
+        <div class="rl">Lak-völgyi tó partján · ~150 m a faháztól</div>
       </div>
       <div class="rest-card-body">
-        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Halételek, bükki vadételek, vendéglő hangulat</span></div>
-        <div class="rest-row"><span class="rest-label">Különleges</span><span class="rest-val">Szomjas csuka helyi specialitás, harcsa, ponty</span></div>
-        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Általában 11:00–21:00 (előre érdemes hívni)</span></div>
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Hagyományos magyaros, halételek</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">K–V 11:00–19:30 · Hétfő zárva</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 30 965-7741</span></div>
         <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">8 000–12 000 Ft / 2 fő</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Közel</span> <span class="badge b-amber">Előfoglalás ajánlott</span></span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Kéktúra-pecsét</span> <span class="badge b-amber">H: zárva!</span></span></div>
       </div>
     </div>
 
     <div class="rest-card">
       <div class="photo-links">
         <a class="photo-link" href="https://www.google.com/maps/search/Bélkő+Étterem+Pizzéria+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.facebook.com/belkoetterem/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Facebook</a>
       </div>
       <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9620,20.5238" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9620,20.5238&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9575,20.5198" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9575,20.5198&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
       </div>
       <div class="rest-card-header">
-        <div class="rn">Bélkő Étterem és Pizzéria</div>
-        <div class="rl">Bélapátfalva · ~1,8 km a faházikótól</div>
+        <div class="rn">🍕 Bél-kő Étterem és Pizzéria</div>
+        <div class="rl">IV. Béla út 5/A · ~1,5 km a faháztól</div>
       </div>
       <div class="rest-card-body">
-        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Magyar ételek, pizza, bükki vadász fogások</span></div>
-        <div class="rest-row"><span class="rest-label">Különleges</span><span class="rest-val">Helyi pálinkák, erdei gombás fogások</span></div>
-        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">H–Cs 11:00–22:00 · P–V 11:00–23:00</span></div>
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Magyaros + 31 féle pizza, gyros, burger</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Minden nap 11:30–19:30 · Napi menü H–P</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 70 392-9722</span></div>
         <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">7 000–11 000 Ft / 2 fő</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Közel</span> <span class="badge b-green">Pizza is</span></span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">SZÉP kártya</span> <span class="badge b-green">9.2★ (szallas.hu)</span></span></div>
       </div>
     </div>
 
     <div class="rest-card">
       <div class="photo-links">
-        <a class="photo-link" href="https://www.google.com/maps/search/Pisztráng+Tanya+Szilvásvárad+étterem" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.google.com/maps/search/Fantázia+Pékség+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.facebook.com/p/Fantázia-Pékség-Bélapátfalva-100076015443596/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Facebook</a>
       </div>
       <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=48.1007,20.485" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=48.1007,20.485&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9578,20.5202" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9578,20.5202&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
       </div>
       <div class="rest-card-header">
-        <div class="rn">Pisztráng Tanya — Szilvásvárad</div>
-        <div class="rl">Szalajka-völgy · ~5 km autóval (8 perc)</div>
+        <div class="rn">🥐 Fantázia Pékség</div>
+        <div class="rl">Faluközpont · ~2 km a faháztól</div>
       </div>
       <div class="rest-card-body">
-        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Saját nevelésű pisztráng, völgyi hangulat</span></div>
-        <div class="rest-row"><span class="rest-label">Különleges</span><span class="rest-val">Friss pisztráng sütve / füstölve, pisztrángos saláta</span></div>
-        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Szezonálisan (tavasz–ősz), ~10:00–18:00</span></div>
-        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">10 000–14 000 Ft / 2 fő</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Szezonális</span> <span class="badge b-amber">Előfoglalás ajánlott</span></span></div>
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Helyi pékség, friss pékáruk naponta</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Reggeltől (pontos óra: Facebook-oldal)</span></div>
+        <div class="rest-row"><span class="rest-label">Bolt</span><span class="rest-val">COOP ABC · IV. Béla út 27. (mellette)</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">500–1 500 Ft / 2 fő (reggeli pékáruk)</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Reggeli bevásárláshoz tökéletes</span></span></div>
       </div>
     </div>
 
     <div class="rest-card">
       <div class="photo-links">
-        <a class="photo-link" href="https://www.google.com/maps/search/Lipicai+Csárda+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
-      </div>
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=48.0960,20.4820" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=48.0960,20.4820&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
-      <div class="rest-card-header">
-        <div class="rn">Lipicai Csárda — Szilvásvárad</div>
-        <div class="rl">Szilvásvárad főutca · ~5 km autóval (8 perc)</div>
-      </div>
-      <div class="rest-card-body">
-        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Tradicionális csárda, bükki specialitások</span></div>
-        <div class="rest-row"><span class="rest-label">Különleges</span><span class="rest-val">Vadgulyás, bükki pisztrángos fogások, rétes</span></div>
-        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Szezonálisan, általában 10:00–20:00</span></div>
-        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">8 000–13 000 Ft / 2 fő</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Hangulatos</span> <span class="badge b-amber">Szezonálisan zsúfolt</span></span></div>
-      </div>
-    </div>
-
-    <div class="rest-card">
-      <div class="photo-links">
-        <a class="photo-link" href="https://www.google.com/maps/search/Lak-völgyi+tó+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.google.com/maps/search/Erdei-lak+faházikó+Bélapátfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
         <a class="photo-link" href="https://belapatfalvaszallas.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
       </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9622,20.5230" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9622,20.5230&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
       <div class="rest-card-header">
-        <div class="rn">Lak-völgyi tó — Picnic & bogrács</div>
-        <div class="rl">Faházikó konyha + kerti bogrács · sétatávolság</div>
+        <div class="rn">🏡 Saját főzés — Erdei-lak konyha</div>
+        <div class="rl">Faházikó konyha + kerti bogrács · helyszínen</div>
       </div>
       <div class="rest-card-body">
         <div class="rest-row"><span class="rest-label">Lehetőség</span><span class="rest-val">Teljesen felszerelt konyha, bogrács, grill</span></div>
         <div class="rest-row"><span class="rest-label">Tűzifa</span><span class="rest-val">Ingyenes (bogrács + grillezés)</span></div>
-        <div class="rest-row"><span class="rest-label">Bolt távolság</span><span class="rest-val">~1,5 km (COOP ABC, 4 perc autóval)</span></div>
+        <div class="rest-row"><span class="rest-label">Bevásárlás</span><span class="rest-val">COOP ABC ~2 km, Eger ~20 km (Tesco/Lidl)</span></div>
         <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">2 500–6 000 Ft / alkalom (alapanyag)</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Legtakarékosabb</span> <span class="badge b-green">Legromantikusabb</span></span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Legtakarékosabb</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SZILVÁSVÁRAD -->
+  <div class="zone-label"><span class="zt">🐟 Szilvásvárad / Szalajka-völgy</span><span class="zd">~5 km autóval · pisztráng-paradicsom</span></div>
+
+  <div class="star-card">
+    <div class="st">⭐ Szilvásváradi pisztráng — EU eredetvédett (OEM) termék</div>
+    A szilvásváradi sebes pisztráng 2020 szeptemberétől az EU OEM (Oltalom alatt álló Eredetmegjelölés) listáján szerepel — az ország halai közül elsőként. A Sáfrány-féle kályhában sült, füstölt változat 2013 óta Bükki Nemzeti Parki Termék védjegyes. Porciónként kb. 3 300–5 000 Ft büfékben, 4 000–8 000 Ft ülős vendéglőkben.
+  </div>
+
+  <div class="rest-grid">
+
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="photo-link" href="https://www.google.com/maps/search/Sáfrány+Pisztrángudvar+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.szilvasvarad.hu/hu/pisztrang/safrany-pisztrang-elso-hazai-halfuestoelde" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
+      </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9933,20.4682" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9933,20.4682&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">🐟 Sáfrány Pisztrángudvar</div>
+        <div class="rl">Szalajka-völgy mélyén · ~30 perc gyalog a parkolótól</div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Kályhában sült + füstölt pisztráng (OEM), filé salátával</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Hétvégén 12:00–16:00 (márc.–nov.) · bolt: H–P 9–16</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 30 958-5962</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">8 000–12 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Csak H–E nyitva · előre hívj!</span></span></div>
       </div>
     </div>
 
     <div class="rest-card">
       <div class="photo-links">
-        <a class="photo-link" href="https://www.google.com/maps/search/Szilvásvárad+cukrászda+fagylalt" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.google.com/maps/search/Csobogó+Étterem+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.csobogoetterem.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
       </div>
       <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/search/cukrászda+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9910,20.4655" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9910,20.4655&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
       </div>
       <div class="rest-card-header">
-        <div class="rn">Szilvásvárad — Cukrászda & büfé</div>
-        <div class="rl">Szilvásvárad belváros · ~5 km autóval (8 perc)</div>
+        <div class="rn">💧 Csobogó Étterem</div>
+        <div class="rl">Szalajka út 2. · völgybejárat, patak mellett</div>
       </div>
       <div class="rest-card-body">
-        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Fagylalt, sütemény, kézműves lekvárok, méz</span></div>
-        <div class="rest-row"><span class="rest-label">Különleges</span><span class="rest-val">Bükki erdei gyümölcs fagylalt, helyi méz</span></div>
-        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Szezonálisan (tavasz–ősz), 9:00–18:00</span></div>
-        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">2 000–4 000 Ft / 2 fő</span></div>
-        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">Gyors megálló</span> <span class="badge b-amber">Szezonális</span></span></div>
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Kreatív pisztrángételek, kandallós belső, kert</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Minden nap 11:00–20:00 (szezonális)</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 20 952-2632</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">10 000–16 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">9.4★ (szallas.hu)</span> <span class="badge b-green">Kutyabarát</span></span></div>
+      </div>
+    </div>
+
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="photo-link" href="https://www.google.com/maps/search/Pisztráng+Büfé+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://szallas.hu/programok/pisztrang-bufe-szilvasvarad-p25186" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Szallas.hu</a>
+      </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9920,20.4670" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9920,20.4670&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">🐠 Pisztráng Büfé</div>
+        <div class="rl">Szalajka-völgy · vadbemutató közelében</div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Sült pisztráng, grillhal, gyros tál; retró büfé</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Szezonálisan (tavasz–ősz), napközben</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">8 000–12 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Völgyi árszint — nem olcsó</span></span></div>
+      </div>
+    </div>
+
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="photo-link" href="https://www.google.com/maps/search/Fenyő+Vendéglő+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://fenyovendeglo.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
+      </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9905,20.4645" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9905,20.4645&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">🌲 Fenyő Vendéglő</div>
+        <div class="rl">Szalajka út 441/3 · kisvonatállomás közelében</div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Házias vad-, hal-, szárnyas ételek; Fenyőtál</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Egész évben (szezonális nyitvatartás)</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">10 000–16 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-green">9.2★ (szallas.hu)</span> <span class="badge b-green">SZÉP kártya</span></span></div>
       </div>
     </div>
 
   </div>
 
-  <div class="notice">
-    <strong>Fontos:</strong> A Pisztráng Tanya és a szilvásváraadi helyek <strong>szezonálisan működnek</strong> — nyáron és kora ősszel nyitva, télen zárva lehetnek. A Szomjas Csuka és a Bélkő Étterem egész évben megbízható. Érdemes <strong>előre foglalni</strong>, különösen hétvégén és nyári szezonban!
+  <!-- BÜKKSZÉK -->
+  <div class="zone-label"><span class="zt">♨️ Bükkszék — gyógyfürdő</span><span class="zd">~8 km autóval · fürdő + étkezés kombó</span></div>
+  <div class="rest-grid">
+
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="photo-link" href="https://www.google.com/maps/search/Bükkszékfürdő+étterem" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://bukkszekfurdo.hu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
+      </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9421,20.4617" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9421,20.4617&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">♨️ Bükkszékfürdő — Strand Étterem & büfék</div>
+        <div class="rl">Bükkszék, Fürdő út 10. · ~8 km</div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Magyaros étterem + lángos, palacsinta, fagylalt büfék</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">Minden nap (szezonálisan; büfék nyáron)</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 30 500-3437</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">6 000–10 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-blue">Salvus gyógyvíz · 9/10 fürdő értékelés</span></span></div>
+      </div>
+    </div>
+
+    <!-- EGER -->
+    <div class="rest-card">
+      <div class="photo-links">
+        <a class="photo-link" href="https://www.google.com/maps/search/Macok+Bisztró+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a>
+        <a class="photo-link" href="https://www.imolaudvarhaz.hu/macok-bisztro-borbar.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Weboldal</a>
+      </div>
+      <div class="nav-btns">
+        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9033,20.3790" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+        <a class="waze-btn" href="https://waze.com/ul?ll=47.9033,20.3790&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+      </div>
+      <div class="rest-card-header">
+        <div class="rn">⭐ Macok Bisztró — Eger</div>
+        <div class="rl">Tinódi Sebestyén tér 4. · ~20 km · Michelin Bib Gourmand</div>
+      </div>
+      <div class="rest-card-body">
+        <div class="rest-row"><span class="rest-label">Jelleg</span><span class="rest-val">Modern magyar bisztrókonyha, helyi alapanyagok</span></div>
+        <div class="rest-row"><span class="rest-label">Nyitva</span><span class="rest-val">H–Cs 12–22 · P–Szo 12–23 · V 12–18</span></div>
+        <div class="rest-row"><span class="rest-label">Tel.</span><span class="rest-val">+36 36 516-180</span></div>
+        <div class="rest-row"><span class="rest-label">Becsült ár</span><span class="rest-val price">15 000–25 000 Ft / 2 fő</span></div>
+        <div class="rest-row"><span class="rest-label">Megjegyzés</span><span class="rest-val"><span class="badge b-amber">Foglalás kötelező!</span> <span class="badge b-blue">Michelin 2022–25</span></span></div>
+      </div>
+    </div>
+
   </div>
 
+  <div class="zone-label" style="margin-top:8px"><span class="zt">🏙 Eger (bevásárlás + vacsora)</span><span class="zd">~20 km · bevásárló körzettel kombinálható</span></div>
   <div class="tip-box">
-    💡 <strong>Bevásárlás:</strong> Élelmiszerbolt ~1,5 km a faluközpontban (COOP ABC). Nagyobb bevásárlásra (picnic, bogrács alapanyag) érdemes <strong>Egerben megállni érkezéskor</strong> (~20 km) — Tesco, Lidl, Auchan megtalálható. A bográcshoz szükséges hús, zöldség a helyi ABC-ből is beszerezhető. Szilvásváradra kiránduláskor a Szalajka ABC-ben is pótolható bármi.
+    🏙 <strong>Eger bevásárlás + vacsora kombó:</strong> Érkezéskor vagy nagyobb túra után érdemes Egerbe térni (~20 km). <strong>Bevásárlás:</strong> Tesco, Lidl, Auchan — bogrács alapanyag, picnic kellékek. <strong>Vacsora:</strong> Macok Bisztró (Michelin Bib Gourmand, 2022–2025; foglalás kötelező) vagy <strong>HBH Bajor Sörház</strong> (Bajcsy-Zsilinszky út 19., napi 11:30–22:00, +36 36 515-516, ~12 000–18 000 Ft / 2 fő, SZÉP kártya). A hónap 2. szombatján <strong>termelői piac és kézműves vásár</strong> a Piaccsarnokban (Katona István tér 2.).
   </div>
 
+  <!-- TIP -->
+  <div class="tip-box">
+    💡 <strong>Bevásárlás helyben:</strong> COOP ABC IV. Béla út 27. (~2 km). Pékség: Fantázia Pékség, naponta friss pékárú. Bogrács alapanyaghoz: helyi ABC + érkezéskori egri megálló ajánlott. Tábortűz/grillezés: az Erdei-lak saját tűzrakóhellyel és ingyenes tűzifával rendelkezik.
+  </div>
+
+  <!-- COST TABLE -->
   <h2>Napi étkezési költségek (2 fő)</h2>
-  <table>
+  <table id="cost-table">
     <thead>
-      <tr><th>Nap</th><th>Típus</th><th>Hely</th><th class="r">Min (Ft)</th><th class="r">Max (Ft)</th></tr>
+      <tr>
+        <th>Nap</th><th>Típus</th><th>Hely</th><th class="r">Min (Ft)</th><th class="r">Max (Ft)</th>
+      </tr>
     </thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -289,7 +409,7 @@
   <div class="bar-section" id="bars"></div>
 
   <p style="font-size:11px;color:var(--muted);font-style:italic;margin-top:12px">
-    * Becsült árak 2 főre, italokkal (víz, kávé) együtt, alkohol nélkül. Saját főzés esetén alapanyagköltséggel számolva. Az árak tájékoztató jellegűek.
+    * Becsült árak 2 főre, italokkal (víz, kávé) együtt, alkohol nélkül. Saját főzés esetén alapanyagköltséggel számolva. Az árak tájékoztató jellegűek (2025).
   </p>
 
 </div>
@@ -298,19 +418,16 @@
 
 <script>
 const meals = [
-  { day:"1. nap", type:"v", tl:"vacsora",  place:"Szomjas Csuka Vendéglő",           min:8000,  max:12000 },
-  { day:"2. nap", type:"r", tl:"reggeli",  place:"Faházikó konyha (saját)",           min:2500,  max:3500  },
-  { day:"2. nap", type:"e", tl:"picnic",   place:"Bél-kő csúcs (hátizsák)",          min:2000,  max:3000  },
-  { day:"2. nap", type:"v", tl:"vacsora",  place:"Bográcsozás a kertben",            min:4000,  max:6000  },
-  { day:"3. nap", type:"r", tl:"reggeli",  place:"Faházikó konyha (saját)",           min:2500,  max:3500  },
-  { day:"3. nap", type:"e", tl:"ebéd",     place:"Pisztráng Tanya (Szilvásvárad)",   min:10000, max:14000 },
-  { day:"3. nap", type:"v", tl:"vacsora",  place:"Bélkő Étterem és Pizzéria",        min:7000,  max:11000 },
-  { day:"4. nap", type:"r", tl:"reggeli",  place:"Faházikó konyha (saját)",           min:2500,  max:3500  },
-  { day:"4. nap", type:"e", tl:"ebéd",     place:"Lipicai Csárda (Szilvásvárad)",    min:8000,  max:13000 },
-  { day:"4. nap", type:"v", tl:"vacsora",  place:"Szomjas Csuka Vendéglő",           min:8000,  max:12000 },
-  { day:"5. nap", type:"r", tl:"reggeli",  place:"Faházikó konyha (saját)",           min:2500,  max:3500  },
-  { day:"5. nap", type:"e", tl:"picnic",   place:"Lak-völgyi tó (hátizsák)",         min:2000,  max:3000  },
-  { day:"5. nap", type:"v", tl:"vacsora",  place:"Faházikó grill (saját)",            min:4000,  max:6000  },
+  { day:"1. nap", type:"v",  tl:"vacsora",  place:"Szomjas Csuka Vendéglő",      min:8000,  max:12000 },
+  { day:"2. nap", type:"r",  tl:"reggeli",  place:"Fantázia Pékség + saját",     min:1500,  max:2500  },
+  { day:"2. nap", type:"e",  tl:"picnic",   place:"Bél-kő csúcs (hátizsák)",     min:2000,  max:3000  },
+  { day:"2. nap", type:"v",  tl:"vacsora",  place:"Bográcsozás a kertben",        min:4000,  max:6000  },
+  { day:"3. nap", type:"r",  tl:"reggeli",  place:"Faházikó konyha (saját)",     min:2000,  max:3000  },
+  { day:"3. nap", type:"e",  tl:"ebéd",     place:"Csobogó Étterem (Szalajka)",  min:10000, max:16000 },
+  { day:"3. nap", type:"v",  tl:"vacsora",  place:"Bél-kő Étterem és Pizzéria", min:7000,  max:11000 },
+  { day:"4. nap", type:"r",  tl:"reggeli",  place:"Faházikó konyha (saját)",     min:2000,  max:3000  },
+  { day:"4. nap", type:"e",  tl:"ebéd",     place:"Bükkszékfürdő étterem/büfé", min:6000,  max:10000 },
+  { day:"4. nap", type:"v",  tl:"vacsora",  place:"Macok Bisztró (Eger)",        min:15000, max:25000 },
 ];
 
 const fmt = n => n.toLocaleString('hu-HU');
@@ -326,7 +443,10 @@ const perDay = Math.round(tAvg/4);
   ["Napi átlag", fmt(perDay)+" Ft", "2 főre / nap"],
 ].forEach(function(item) {
   var l = item[0], v = item[1], s = item[2];
-  document.getElementById('summary').innerHTML += '<div class="sbox"><div class="sl">'+l+'</div><div class="sv">'+v+'</div><div class="ss">'+s+'</div></div>';
+  var d = document.createElement('div');
+  d.className = 'sbox';
+  d.innerHTML = '<div class="sl">'+l+'</div><div class="sv">'+v+'</div><div class="ss">'+s+'</div>';
+  document.getElementById('summary').appendChild(d);
 });
 
 const typeClass = { r:"mb-r", e:"mb-e", v:"mb-v", p:"mb-p" };
@@ -334,9 +454,14 @@ const tbody = document.getElementById('tbody');
 let lastDay = '';
 meals.forEach(function(m) {
   const tr = document.createElement('tr');
-  const dayShow = m.day !== lastDay ? m.day : '';
+  const dc = m.day !== lastDay ? m.day : '';
+  const tc = typeClass[m.type] || 'mb-e';
+  tr.innerHTML = '<td class="day-cell">'+dc+'</td>'
+    +'<td><span class="meal-badge '+tc+'">'+m.tl+'</span></td>'
+    +'<td>'+m.place+'</td>'
+    +'<td class="r">'+fmt(m.min)+'</td>'
+    +'<td class="r">'+fmt(m.max)+'</td>';
   lastDay = m.day;
-  tr.innerHTML = '<td class="day-cell">'+dayShow+'</td><td><span class="meal-badge '+(typeClass[m.type]||'mb-e')+'">'+m.tl+'</span></td><td>'+m.place+'</td><td class="r">'+fmt(m.min)+'</td><td class="r">'+fmt(m.max)+'</td>';
   tbody.appendChild(tr);
 });
 const tot = document.createElement('tr');
@@ -346,18 +471,28 @@ tbody.appendChild(tot);
 
 const cats = [
   { label:"Étterem / vendéglő", color:"#D85A30",
-    filter: function(m) { return ['Szomjas','Bélkő','Pisztráng','Lipicai'].some(function(k){ return m.place.includes(k); }); } },
+    filter: function(m){ return ['Szomjas','Csobogó','Bél-kő','Bükkszék','Macok'].some(function(k){return m.place.includes(k);}); } },
   { label:"Saját főzés / bogrács", color:"#3E7A18",
-    filter: function(m) { return ['konyha','Bogrács','grill'].some(function(k){ return m.place.toLowerCase().includes(k.toLowerCase()); }); } },
-  { label:"Picnic / hátizsák",  color:"#888",
-    filter: function(m) { return ['hátizsák'].some(function(k){ return m.place.includes(k); }); } },
+    filter: function(m){ return ['konyha','Bogrács'].some(function(k){return m.place.includes(k);}); } },
+  { label:"Picnic / hátizsák", color:"#888",
+    filter: function(m){ return m.place.includes('hátizsák'); } },
+  { label:"Pékség / reggeli",  color:"#C8900A",
+    filter: function(m){ return m.place.includes('Pékség'); } },
 ];
 const barsEl = document.getElementById('bars');
 cats.forEach(function(cat) {
   const ms = meals.filter(cat.filter);
-  const cAvg = Math.round((ms.reduce(function(s,m){return s+m.min;},0) + ms.reduce(function(s,m){return s+m.max;},0)) / 2);
+  if (!ms.length) return;
+  const cMin = ms.reduce(function(s,m){return s+m.min;},0);
+  const cMax = ms.reduce(function(s,m){return s+m.max;},0);
+  const cAvg = Math.round((cMin+cMax)/2);
   const pct = tAvg > 0 ? Math.round(cAvg/tAvg*100) : 0;
-  barsEl.innerHTML += '<div class="bar-row"><span class="bar-label">'+cat.label+'</span><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+cat.color+'">'+pct+'%</div></div><span class="bar-amt">~'+fmt(cAvg)+' Ft</span></div>';
+  var row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = '<span class="bar-label">'+cat.label+'</span>'
+    +'<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+cat.color+'">'+pct+'%</div></div>'
+    +'<span class="bar-amt">~'+fmt(cAvg)+' Ft</span>';
+  barsEl.appendChild(row);
 });
 </script>
 </body>

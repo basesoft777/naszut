@@ -14,110 +14,103 @@
     --sans:'DM Sans',sans-serif;--serif:'Cormorant Garamond',Georgia,serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--cream);font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.6;}
+  body{background:var(--cream);font-family:var(--sans);color:var(--ink);font-size:17px;line-height:1.7;}
 
-  .hero{background:linear-gradient(rgba(235,243,224,.82),rgba(235,243,224,.95)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80') center/cover;border-bottom:2px solid var(--gb);padding:40px 40px 32px;text-align:center;}
-  .hero-ey{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gm);margin-bottom:10px;}
-  .hero h1{font-family:var(--serif);font-size:clamp(26px,4.5vw,44px);color:var(--gd);font-weight:400;}
+  .hero{position:relative;background:linear-gradient(rgba(235,243,224,.80),rgba(235,243,224,.93)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80') center/cover;border-bottom:2px solid var(--gb);padding:40px 40px 32px;text-align:center;}
+  .hero-gallery{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+  .hero-gallery a{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;text-decoration:none;padding:6px 12px;border-radius:20px;border:1px solid var(--gb);background:rgba(255,255,255,.72);color:var(--gd);transition:background .15s,border-color .15s;}
+  .hero-gallery a:hover{background:#fff;border-color:var(--gm);}
+  .hero-gallery svg{width:12px;height:12px;}
+  .hero-ey{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gm);margin-bottom:10px;}
+  .hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,48px);color:var(--gd);font-weight:400;}
   .hero h1 em{font-style:italic;color:var(--gm);}
   .hero-div{width:40px;height:2px;background:var(--gb);margin:12px auto;}
-  .hero-sub{font-size:13px;color:var(--gd);}
-  .hero-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
-  .hero-chips a{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;text-decoration:none;padding:6px 12px;border-radius:20px;border:1px solid var(--gb);background:rgba(255,255,255,.75);color:var(--gd);transition:background .15s;}
-  .hero-chips a:hover{background:#fff;}
+  .hero-sub{font-size:15px;color:var(--gd);}
 
-  .wrap{max-width:900px;margin:0 auto;padding:28px 40px 60px;}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 40px 60px;}
 
-  .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
+  .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
   .sbox{background:var(--gl);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;}
-  .sbox .sl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gm);margin-bottom:4px;}
-  .sbox .sv{font-size:18px;font-weight:600;color:var(--gd);}
-  .sbox .ss{font-size:11px;color:var(--muted);margin-top:2px;}
+  .sbox .sl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gm);margin-bottom:4px;}
+  .sbox .sv{font-size:20px;font-weight:600;color:var(--gd);}
+  .sbox .ss{font-size:13px;color:var(--muted);margin-top:2px;}
 
-  h2{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--gd);margin:28px 0 14px;}
+  h2{font-family:var(--serif);font-size:26px;font-weight:400;color:var(--gd);margin:24px 0 12px;}
+  h3{font-size:15px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 10px;}
 
-  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-
-  .shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:8px;}
-  .shop-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;}
-
-  .shop-card-header{background:var(--gl);border-bottom:1px solid var(--gb);padding:13px 16px;}
-  .shop-card-header .sn{font-size:15px;font-weight:600;color:var(--gd);}
-  .shop-card-header .sl2{font-size:11px;color:var(--gm);margin-top:3px;}
-
-  .shop-card-body{padding:13px 16px;}
-  .shop-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:13px;margin-bottom:8px;gap:12px;}
+  .shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
+  .shop-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .shop-card-header{background:var(--gl);border-bottom:1px solid var(--gb);padding:12px 16px;}
+  .shop-card-header .sn{font-size:16px;font-weight:500;color:var(--gd);}
+  .shop-card-header .sl2{font-size:13px;color:var(--gm);margin-top:2px;}
+  .shop-card-body{padding:12px 16px;}
+  .shop-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:15px;margin-bottom:7px;gap:12px;}
   .shop-row:last-child{margin-bottom:0;}
-  .shop-label{color:var(--muted);min-width:88px;font-size:12px;flex-shrink:0;}
-  .shop-val{color:var(--ink);text-align:right;font-size:13px;}
-  .shop-val.dist-val{color:var(--gd);font-weight:600;}
-
-  .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin:1px 2px;}
+  .shop-label{color:var(--muted);min-width:90px;font-size:14px;flex-shrink:0;}
+  .shop-val{color:var(--ink);text-align:right;font-size:15px;}
+  .shop-val.dist-val{color:var(--gd);font-weight:500;}
+  .badge{display:inline-block;font-size:12px;padding:2px 7px;border-radius:20px;}
+  .nav-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .gps-btn,.waze-btn{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;text-decoration:none;padding:7px 13px;border-radius:20px;transition:background .15s,border-color .15s;}
+  .gps-btn{border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;}
+  .gps-btn:hover{background:#DCEBCB;border-color:#3E7A18;}
+  .waze-btn{border:1px solid #B8D0F0;background:#EAF0FB;color:#0C3E72;}
+  .waze-btn:hover{background:#D4E4F7;border-color:#2B5FAF;}
+  .gps-btn svg,.waze-btn svg{width:14px;height:14px;flex-shrink:0;}
   .b-green{background:var(--gl);color:var(--gm);}
   .b-amber{background:var(--al);color:var(--am);}
   .b-blue{background:#E3EEF9;color:#1A4A7A;}
 
-  .nav-btns{display:flex;gap:8px;padding:10px 16px 4px;flex-wrap:wrap;}
-  .gps-btn,.waze-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;text-decoration:none;padding:7px 12px;border-radius:20px;transition:background .15s;}
-  .gps-btn{border:1px solid #C8DFB0;background:#EBF3E0;color:#1E4A08;}
-  .gps-btn:hover{background:#DCEBCB;}
-  .waze-btn{border:1px solid #B8D0F0;background:#EAF0FB;color:#0C3E72;}
-  .waze-btn:hover{background:#D4E4F7;}
-  .gps-btn svg,.waze-btn svg{width:13px;height:13px;flex-shrink:0;}
-
-  .dist-pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:var(--gd);background:var(--gl);border:1px solid var(--gb);border-radius:20px;padding:2px 9px;margin-top:4px;}
-
-  table{width:100%;border-collapse:collapse;background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;font-size:13px;margin-bottom:16px;}
-  th{padding:9px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--gl);border-bottom:1px solid var(--gb);text-align:left;}
+  table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:15px;margin-bottom:16px;}
+  th{padding:10px 14px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--gl);border-bottom:1px solid var(--gb);text-align:left;}
   th.r{text-align:right;}
   td{padding:9px 12px;border-bottom:1px solid #F0EDE6;vertical-align:middle;}
   tr:last-child td{border-bottom:none;}
   td.r{text-align:right;}
-  td.dc{font-weight:600;color:var(--gd);}
-  .type-badge{font-size:11px;padding:2px 8px;border-radius:20px;}
+  td.dc{font-weight:500;color:var(--gd);}
+  .type-badge{font-size:12px;padding:1px 7px;border-radius:10px;}
   .tb-local{background:var(--gl);color:var(--gd);}
   .tb-city{background:#E3EEF9;color:#1A4A7A;}
   .tb-spec{background:#FFF0D8;color:#7A4800;}
 
   .buy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
-  .buy-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;}
-  .buy-card h4{font-size:12px;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .buy-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
+  .buy-card h4{font-size:14px;font-weight:600;color:var(--gd);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
   .buy-card ul{list-style:none;padding:0;}
-  .buy-card ul li{font-size:13px;color:var(--muted);padding:3px 0;border-bottom:1px solid #F5F2ED;}
+  .buy-card ul li{font-size:14px;color:var(--muted);padding:3px 0;border-bottom:1px solid #F5F2ED;}
   .buy-card ul li:last-child{border-bottom:none;}
   .buy-card ul li::before{content:'· ';color:var(--gm);}
 
-  .notice{background:var(--al);border-left:4px solid #C8900A;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:var(--am);margin:20px 0;}
-  .tip-box{background:#F4F9EF;border:1.5px solid var(--gb);border-radius:10px;padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.7;}
+  .notice{background:var(--al);border-left:4px solid #C8900A;border-radius:0 6px 6px 0;padding:12px 16px;font-size:15px;color:var(--am);margin-bottom:20px;}
+  .tip-box{background:#F4F9EF;border:1px solid var(--gb);border-radius:8px;padding:16px 18px;margin-bottom:20px;font-size:15px;color:var(--muted);line-height:1.7;}
   .tip-box strong{color:var(--gd);}
 
-  footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;padding:20px;font-size:12px;color:var(--gm);font-style:italic;}
+  footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;padding:20px;font-size:14px;color:var(--gm);font-style:italic;}
 
-  @media(max-width:640px){
-    .wrap{padding:16px 14px 48px;}
-    .hero{padding:28px 16px 22px;}
+  @media(max-width:620px){
+    .wrap{padding:20px 16px 40px;}
+    .hero{padding:32px 16px 24px;}
+    .shop-grid,.buy-grid{grid-template-columns:1fr;}
     .summary{grid-template-columns:repeat(2,1fr);}
-    .shop-grid{grid-template-columns:1fr;}
-    .buy-grid{grid-template-columns:1fr;}
-    .shop-row{flex-direction:column;gap:2px;}
-    .shop-label{min-width:unset;font-size:10px;text-transform:uppercase;letter-spacing:.04em;}
-    .shop-val{text-align:left;}
-    table{font-size:12px;display:block;overflow-x:auto;}
   }
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <p class="hero-ey">6 nap · 2 fő · Bükk-alja</p>
+  <p class="hero-ey">7 nap · 2 fő · Bükk-alja</p>
   <h1>Noszvaj <em>Cabin</em> · Bevásárlási lehetőségek</h1>
   <div class="hero-div"></div>
-  <p class="hero-sub">Síkfőkút · Noszvaj · Bogács · Eger</p>
-  <div class="hero-chips">
-    <a href="https://www.google.com/maps/search/Kamra+Bolt+Noszvaj+Síkfőkút" target="_blank" rel="noopener">🛒 Kamra Bolt</a>
-    <a href="https://www.google.com/maps/search/COOP+ABC+Noszvaj+Kossuth+út" target="_blank" rel="noopener">🛒 COOP Noszvaj</a>
-    <a href="https://www.google.com/maps/search/COOP+ABC+Bogács" target="_blank" rel="noopener">🛒 COOP Bogács</a>
-    <a href="https://www.google.com/maps/search/Tesco+Eger" target="_blank" rel="noopener">🛒 Tesco Eger</a>
+  <p class="hero-sub">Síkfőkút · Noszvaj faluközpont · Eger</p>
+  <div class="hero-gallery">
+    <a href="https://www.google.com/maps/search/Kamra+Bolt+Noszvaj+Síkfőkút" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Kamra Bolt</a>
+    <a href="https://www.google.com/maps/search/COOP+ABC+Noszvaj" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Noszvaj ABC</a>
+    <a href="https://www.google.com/maps/search/Patakparti+Piac+Noszvaj" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Patakparti Piac</a>
+    <a href="https://www.google.com/maps/search/Tesco+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Eger Tesco</a>
+    <a href="https://www.google.com/maps/search/Penny+Market+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Penny Eger</a>
+    <a href="https://www.google.com/maps/search/Spar+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Spar Eger</a>
+    <a href="https://www.google.com/maps/search/Thummerer+Borszaküzlet+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Borbolt Eger</a>
+    <a href="https://www.google.com/maps/search/Egri+Piaccsarnok+Katona+tér" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Egri Piac</a>
   </div>
 </header>
 
@@ -125,168 +118,303 @@
 
   <div class="summary">
     <div class="sbox"><div class="sl">Legközelebbi bolt</div><div class="sv">~500 m</div><div class="ss">Kamra Bolt, Síkfőkút</div></div>
-    <div class="sbox"><div class="sl">Falusi ABC</div><div class="sv">~2 km</div><div class="ss">COOP Noszvaj</div></div>
-    <div class="sbox"><div class="sl">Közepes bevásárlás</div><div class="sv">~8 km</div><div class="ss">COOP Bogács</div></div>
-    <div class="sbox"><div class="sl">Nagy bevásárlás</div><div class="sv">~12 km</div><div class="ss">Eger (Tesco, Lidl)</div></div>
+    <div class="sbox"><div class="sl">Falusi ABC</div><div class="sv">~2 km</div><div class="ss">Noszvaj COOP (2026 ápr. nyitott)</div></div>
+    <div class="sbox"><div class="sl">Termelői piac</div><div class="sv">~2 km</div><div class="ss">Patakparti Piac, péntekenként</div></div>
+    <div class="sbox"><div class="sl">Nagyobb bevásárlás</div><div class="sv">~12 km</div><div class="ss">Eger (Tesco, Lidl, Spar, Penny)</div></div>
+    <div class="sbox"><div class="sl">Helyi bor</div><div class="sv">~2 km</div><div class="ss">Noszvaji pincészetek</div></div>
+    <div class="sbox"><div class="sl">ATM a faluban</div><div class="sv">~2 km</div><div class="ss">MBH Bank, Kossuth Lajos út 3.</div></div>
   </div>
 
   <h2>Bevásárlóhelyek</h2>
-
-  <div class="section-label">🏕 Síkfőkút – gyalog is elérhető</div>
   <div class="shop-grid">
 
-    <!-- KAMRA BOLT -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9585,20.5198" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9585,20.5198&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
         <div class="sn">Kamra Bolt</div>
-        <div class="sl2">Síkfőkút tórét 325. · <span class="dist-pill">~500 m gyalog</span></div>
+        <div class="sl2">Síkfőkút tórét · ~500 m a Cabintól</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9585,20.5198" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9585,20.5198&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Helyi termékek, angus burger, kézműves szuvenírek, noszvaji különlegességek</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Helyi termékek, angus burger, szuvenírek</span></div>
         <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Szezonálisan (tavasz–ősz)</span></div>
         <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 30 190-5087</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~500 m gyalog</span></div>
         <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Szezonális</span> <span class="badge b-green">Helyi termék</span></span></div>
       </div>
     </div>
 
-  </div>
-
-  <div class="section-label">🌿 Noszvaj faluközpont – ~2 km autóval</div>
-  <div class="shop-grid">
-
-    <!-- COOP NOSZVAJ -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
-        <div class="sn">COOP ABC</div>
-        <div class="sl2">Kossuth út 5., Noszvaj · <span class="dist-pill">~2 km autóval</span></div>
+        <div class="sn">ABC élelmiszerbolt (COOP)</div>
+        <div class="sl2">Kossuth u. 68. · Noszvaj faluközpont</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Alapvető élelmiszerek, friss kenyér, tejtermékek, napi pótlás</span></div>
-        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P reggeltől ~18:00 · Szo ~13:00 · V zárva</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Alapvető élelmiszerek, napi pótlás</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P reggeltől ~18:00 · Szo ~13:00</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km autóval</span></div>
         <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Egész évben</span> <span class="badge b-green">Napi bevásárlás</span></span></div>
       </div>
     </div>
 
-    <!-- ZSENGE BOLT -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
-        <div class="sn">Zsenge Gourmet Bolt</div>
-        <div class="sl2">Kossuth Lajos út 68., Noszvaj · <span class="dist-pill">~2,5 km autóval</span></div>
+        <div class="sn">Zsenge – Konyha és Kávé</div>
+        <div class="sl2">Kossuth Lajos út 68. · Noszvaj</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Helyi vásárfia, különleges alapanyagok, Gourmet Box házhozszállítással</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Gourmet bolt, helyi vásárfia, különleges alapanyagok</span></div>
         <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Napközben (brunch jellegű nyitvatartás)</span></div>
         <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 30 103-4500</span></div>
-        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Gourmet</span> <span class="badge b-green">Vásárfia</span> <span class="badge b-amber">Délután zár</span></span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2,5 km autóval</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Gourmet</span> <span class="badge b-green">Vásárfia</span></span></div>
       </div>
     </div>
 
-    <!-- ROZIKA -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9538,20.5095" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9538,20.5095&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
         <div class="sn">Rozika – kézműves sütemény</div>
-        <div class="sl2">Kossuth utca 29., Noszvaj · <span class="dist-pill">~2 km autóval</span></div>
+        <div class="sl2">Kossuth utca 29. · Noszvaj</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9538,20.5095" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9538,20.5095&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Kézműves sütemények, torták, kávé, terasz</span></div>
-        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Napközben (szezonális)</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Kézműves sütemények, torták, kávé</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Napközben (terasz, udvar)</span></div>
         <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 30 708-8619</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km autóval</span></div>
         <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Kézműves</span> <span class="badge b-amber">Szezonális</span></span></div>
       </div>
     </div>
 
-  </div>
-
-  <div class="section-label">🏘 Bogács – ~8 km autóval</div>
-  <div class="shop-grid">
-
-    <!-- COOP BOGÁCS -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9031,20.5319" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9031,20.5319&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
-        <div class="sn">COOP ABC – Bogács</div>
-        <div class="sl2">Alkotmány u. 27., Bogács · <span class="dist-pill">~8 km autóval</span></div>
+        <div class="sn">Tesco Hipermarket — Eger</div>
+        <div class="sl2">Rákóczi út 100. · Eger</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9058,20.3704" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9058,20.3704&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, friss pék, tejtermékek – nagyobb választék mint Noszvajon</span></div>
-        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P reggeltől ~18:00 · Szo ~13:00</span></div>
-        <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 49 334-052</span></div>
-        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Egész évben</span> <span class="badge b-blue">Közepes bevásárlás</span></span></div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="section-label">🏙 Eger – ~12 km autóval (15 perc)</div>
-  <div class="shop-grid">
-
-    <!-- TESCO -->
-    <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9058,20.3704" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9058,20.3704&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
-      <div class="shop-card-header">
-        <div class="sn">Tesco Hipermarket</div>
-        <div class="sl2">Rákóczi út 100., Eger · <span class="dist-pill">~12 km autóval</span></div>
-      </div>
-      <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Teljes élelmiszer, háztartási cikk, friss pék, deli pult</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Teljes élelmiszer, háztartási cikk, friss pék</span></div>
         <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P 6:00–22:00 · Szo–V 7:00–21:00</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~12 km autóval (15 perc)</span></div>
         <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-blue">Nagy bevásárlás</span> <span class="badge b-green">Egész évben</span></span></div>
       </div>
     </div>
 
-    <!-- LIDL -->
     <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9033,20.3768" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?ll=47.9033,20.3768&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
       <div class="shop-card-header">
-        <div class="sn">Lidl</div>
-        <div class="sl2">Rákóczi Ferenc u. 141., Eger · <span class="dist-pill">~12 km autóval</span></div>
+        <div class="sn">Lidl — Eger</div>
+        <div class="sl2">II. Rákóczi Ferenc u. 141. · Eger</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9033,20.3768" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9033,20.3768&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
       </div>
       <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, friss pék, szezonális akciók, bio kínálat</span></div>
-        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–V 7:00–21:00 · Szo 7:00–20:00 · V 8:00–18:00</span></div>
-        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-blue">Nagy bevásárlás</span> <span class="badge b-green">Egész évben</span></span></div>
-      </div>
-    </div>
-
-    <!-- SPAR -->
-    <div class="shop-card">
-      <div class="nav-btns">
-        <a class="gps-btn" href="https://www.google.com/maps/search/Spar+Eger" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
-        <a class="waze-btn" href="https://waze.com/ul?q=Spar+Eger&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
-      </div>
-      <div class="shop-card-header">
-        <div class="sn">Spar / Penny</div>
-        <div class="sl2">Eger belváros közelében · <span class="dist-pill">~13 km autóval</span></div>
-      </div>
-      <div class="shop-card-body">
-        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, friss pék, bio és prémium termékek</span></div>
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, friss pék, szezonális akciók</span></div>
         <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–Szo 7:00–21:00 · V 8:00–18:00</span></div>
+        <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 80 020 534</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~12 km autóval (15 perc)</span></div>
         <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-blue">Nagy bevásárlás</span> <span class="badge b-green">Egész évben</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Penny Market — Eger</div>
+        <div class="sl2">II. Rákóczi Ferenc u. 96. · Eger</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9050,20.3760" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9050,20.3760&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, friss pék, saját márka termékek</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–Szo 6:30–20:00 · V 7:00–18:00</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~12 km autóval (15 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-blue">Nagy bevásárlás</span> <span class="badge b-blue">2. egység: Mátyás kir. út 139.</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Spar — Eger (City Spar)</div>
+        <div class="sl2">Dobó István tér 1. · Eger belváros</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9026,20.3771" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9026,20.3771&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Élelmiszer, delikát, friss pék — belvárosi séta közben</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Naponta ~21:00-ig</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~13 km autóval (16 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-blue">Belváros</span> <span class="badge b-green">Egész évben</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>🍷 Bor és helyi különlegességek</h2>
+  <div class="shop-grid">
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Patakparti Piac — Noszvaj</div>
+        <div class="sl2">Kossuth Lajos út 68. · Noszvaj · minden pénteken</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5109" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5109&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Szilvalekvár, méz, sajt, termelői zöldség, szörpök, kézműves termékek</span></div>
+        <div class="shop-row"><span class="shop-label">Piac</span><span class="shop-val">Minden péntek 7:00–18:00</span></div>
+        <div class="shop-row"><span class="shop-label">Bolt</span><span class="shop-val">Heti 5 napban nyitva (kávézó + bolt)</span></div>
+        <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 36 463 006</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km autóval (5 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Kiemelt vásárok</span><span class="shop-val">Szilvanap aug. 29. · Kemencés Nap szept. 12.</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Pénteken!</span> <span class="badge b-green">Helyi termelők</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Thummerer Borszaküzlet — Eger</div>
+        <div class="sl2">Szent János u. 5. · Eger belváros</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9020,20.3780" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9020,20.3780&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">~30 féle egri bor, több évjárat, múzeumi tételek</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–Szo 10:00–18:30</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~13 km autóval (16 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Egri Bikavér</span> <span class="badge b-amber">Egri Csillag</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Thummerer Magtár Borozó — Noszvaj</div>
+        <div class="sl2">Thummerer Pince · Noszvaj</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9530,20.5120" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9530,20.5120&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Saját termelésű egri borok kóstolása és vásárlása, 100 ha szőlő termése</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">Előzetes egyeztetéssel (borvacsora, pincelátogatás)</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2,5 km autóval</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Helyi pince</span> <span class="badge b-amber">Egyeztetés kell</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Egyéb noszvaji pincészetek</div>
+        <div class="sl2">Noszvaj pincesorok · Egri borvidék</div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Gazsi Pince</span><span class="shop-val">+36 30 253 9550</span></div>
+        <div class="shop-row"><span class="shop-label">Kónya Borház</span><span class="shop-val">+36 30 313 8510 · konyaborhaz.hu</span></div>
+        <div class="shop-row"><span class="shop-label">Szabó Balázs</span><span class="shop-val">+36 30 262 0481</span></div>
+        <div class="shop-row"><span class="shop-label">Fresli Borház</span><span class="shop-val">+36 20 957 3764</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2–3 km, Noszvaj pincesorai</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Előzetes egyeztetés ajánlott</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Egri Piaccsarnok</div>
+        <div class="sl2">Katona tér 2. · Eger</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9038,20.3752" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9038,20.3752&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Friss zöldség-gyümölcs, méz, gomba, tojás, tészta, sajt, hús</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P 6:00–17:00 · Szo 6:00–13:00 · V 6:00–10:00</span></div>
+        <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 36 511 777</span></div>
+        <div class="shop-row"><span class="shop-label">Különlegesség</span><span class="shop-val">Minden hónap 2. szombatján termelői és kézműves vásár</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~12 km autóval (15 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">Friss áru</span> <span class="badge b-blue">Termelői</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Noszvaji szilvalekvár — termelők</div>
+        <div class="sl2">Noszvaj helyi termelők</div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Pintérék Lekvárja</span><span class="shop-val">+36 30 516 4817 · József Attila u. 11. (900 g-os üvegtől)</span></div>
+        <div class="shop-row"><span class="shop-label">Szilvafalva</span><span class="shop-val">+36 30 932 7447 · Szomolyai út 23. (szezonálisan)</span></div>
+        <div class="shop-row"><span class="shop-label">Irén</span><span class="shop-val">+36 20 800 6009 · Deák F. út 12.</span></div>
+        <div class="shop-row"><span class="shop-label">Piacban is</span><span class="shop-val">Patakparti Piac (péntekenként)</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km, Noszvaj falun belül</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">Üstben főtt</span> <span class="badge b-amber">Hagyományos</span></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>💊 Gyógyszertár, ATM, Posta</h2>
+  <div class="shop-grid">
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">Ezüst Hárs Patika (fiók)</div>
+        <div class="sl2">Kossuth Lajos u. 20. · Noszvaj</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9543,20.5105" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9543,20.5105&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">Kínálat</span><span class="shop-val">Vény nélküli gyógyszerek, napfényvédő, kötszer, alapgyógyszerek</span></div>
+        <div class="shop-row"><span class="shop-label">Nyitva</span><span class="shop-val">H–P 9:00–11:00 (fiókgyógyszertár!)</span></div>
+        <div class="shop-row"><span class="shop-label">Tel.</span><span class="shop-val">+36 36 563 050</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km autóval (5 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Legközelebbi teljes patika</span><span class="shop-val">Cserépfalu ~4 km · Eger (Agria, Hadnagy u. 32.) ~12 km</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-amber">⚠ Csak 9–11 óra!</span></span></div>
+      </div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-card-header">
+        <div class="sn">MBH Bank ATM — Noszvaj</div>
+        <div class="sl2">Kossuth Lajos út 3. · Noszvaj</div>
+        <div class="nav-btns">
+          <a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination=47.9545,20.5108" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a>
+          <a class="waze-btn" href="https://waze.com/ul?ll=47.9545,20.5108&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="6"/><path d="M12 16v6M8 19l4 3 4-3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>
+        </div>
+      </div>
+      <div class="shop-card-body">
+        <div class="shop-row"><span class="shop-label">ATM</span><span class="shop-val">0–24 óra (bankkártya-felvétel)</span></div>
+        <div class="shop-row"><span class="shop-label">Posta</span><span class="shop-val">Kossuth Lajos út 5. · H–P nyitvatartással</span></div>
+        <div class="shop-row"><span class="shop-label">Posta készpénz</span><span class="shop-val">Havi 2× díjmentes, max. 150 000 Ft (tartalék!)</span></div>
+        <div class="shop-row"><span class="shop-label">Távolság</span><span class="shop-val dist-val">~2 km autóval (5 perc)</span></div>
+        <div class="shop-row"><span class="shop-label">Megjegyzés</span><span class="shop-val"><span class="badge b-green">0–24 ATM</span> <span class="badge b-green">A faluban van!</span></span></div>
       </div>
     </div>
 
@@ -295,42 +423,66 @@
   <h2>Távolságok a Cabintól</h2>
   <table>
     <thead>
-      <tr><th>Bolt</th><th>Cím</th><th>Típus</th><th class="r">Távolság</th><th class="r">Menetidő</th></tr>
+      <tr><th>Bolt / Helyszín</th><th>Cím</th><th>Típus</th><th class="r">Távolság</th><th class="r">Menetidő</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Kamra Bolt</strong></td><td>Síkfőkút tórét 325.</td><td><span class="type-badge tb-spec">helyi különleges</span></td><td class="r dc">~500 m</td><td class="r">6 perc gyalog</td></tr>
-      <tr><td><strong>COOP ABC</strong></td><td>Kossuth út 5., Noszvaj</td><td><span class="type-badge tb-local">falusi ABC</span></td><td class="r dc">~2 km</td><td class="r">4 perc autóval</td></tr>
-      <tr><td><strong>Zsenge Gourmet</strong></td><td>Kossuth Lajos út 68., Noszvaj</td><td><span class="type-badge tb-spec">gourmet bolt</span></td><td class="r dc">~2,5 km</td><td class="r">5 perc autóval</td></tr>
-      <tr><td><strong>Rozika sütemény</strong></td><td>Kossuth utca 29., Noszvaj</td><td><span class="type-badge tb-spec">kézműves</span></td><td class="r dc">~2 km</td><td class="r">4 perc autóval</td></tr>
-      <tr><td><strong>COOP ABC Bogács</strong></td><td>Alkotmány u. 27., Bogács</td><td><span class="type-badge tb-local">közepes ABC</span></td><td class="r dc">~8 km</td><td class="r">10 perc autóval</td></tr>
-      <tr><td><strong>Tesco Hipermarket</strong></td><td>Rákóczi út 100., Eger</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
-      <tr><td><strong>Lidl</strong></td><td>Rákóczi Ferenc u. 141., Eger</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
-      <tr><td><strong>Spar / Penny</strong></td><td>Eger belváros</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~13 km</td><td class="r">16 perc autóval</td></tr>
+      <tr><td>Kamra Bolt</td><td>Síkfőkút tórét</td><td><span class="type-badge tb-spec">helyi különleges</span></td><td class="r dc">~500 m</td><td class="r">6 perc gyalog</td></tr>
+      <tr><td>ABC élelmiszerbolt (COOP)</td><td>Kossuth u. 68., Noszvaj</td><td><span class="type-badge tb-local">falusi ABC</span></td><td class="r dc">~2 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Patakparti Piac</td><td>Kossuth Lajos út 68., Noszvaj</td><td><span class="type-badge tb-spec">termelői piac</span></td><td class="r dc">~2 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Zsenge – Konyha és Kávé</td><td>Kossuth Lajos út 68., Noszvaj</td><td><span class="type-badge tb-spec">gourmet bolt</span></td><td class="r dc">~2,5 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Rozika – kézműves sütemény</td><td>Kossuth utca 29., Noszvaj</td><td><span class="type-badge tb-spec">kézműves</span></td><td class="r dc">~2 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Thummerer Magtár Borozó</td><td>Noszvaj pince</td><td><span class="type-badge tb-spec">helyi bor</span></td><td class="r dc">~2,5 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>MBH Bank ATM</td><td>Kossuth Lajos út 3., Noszvaj</td><td><span class="type-badge tb-local">ATM (0–24)</span></td><td class="r dc">~2 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Ezüst Hárs Patika (fiók)</td><td>Kossuth Lajos u. 20., Noszvaj</td><td><span class="type-badge tb-local">gyógyszertár</span></td><td class="r dc">~2 km</td><td class="r">5 perc autóval</td></tr>
+      <tr><td>Tesco Hipermarket</td><td>Rákóczi út 100., Eger</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
+      <tr><td>Lidl</td><td>Rákóczi Ferenc u. 141., Eger</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
+      <tr><td>Penny Market</td><td>Rákóczi Ferenc u. 96., Eger</td><td><span class="type-badge tb-city">nagy bevásárlás</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
+      <tr><td>Spar City</td><td>Dobó István tér 1., Eger belváros</td><td><span class="type-badge tb-city">belváros</span></td><td class="r dc">~13 km</td><td class="r">16 perc autóval</td></tr>
+      <tr><td>Egri Piaccsarnok</td><td>Katona tér 2., Eger</td><td><span class="type-badge tb-spec">napi piac</span></td><td class="r dc">~12 km</td><td class="r">15 perc autóval</td></tr>
+      <tr><td>Thummerer Borszaküzlet</td><td>Szent János u. 5., Eger</td><td><span class="type-badge tb-spec">egri bor</span></td><td class="r dc">~13 km</td><td class="r">16 perc autóval</td></tr>
     </tbody>
   </table>
 
   <h2>Mit hol érdemes beszerezni?</h2>
   <div class="buy-grid">
     <div class="buy-card">
-      <h4>🌿 Síkfőkút / Noszvaj</h4>
+      <h4>🌿 Síkfőkút (gyalog)</h4>
       <ul>
-        <li>Noszvaji szilvalekvár</li>
-        <li>Helyi méz, befőttek</li>
-        <li>Kézműves sütemény (Rozika)</li>
         <li>Angus burger (Kamra Bolt)</li>
-        <li>Gourmet alapanyagok (Zsenge)</li>
-        <li>Vásárfia, szuvenír</li>
+        <li>Helyi különlegességek, vásárfia</li>
+        <li>Gyors snack, üdítő</li>
       </ul>
     </div>
     <div class="buy-card">
-      <h4>🛒 Eger / Bogács (érkezéskor)</h4>
+      <h4>🛒 Noszvaj (~2 km)</h4>
       <ul>
-        <li>Reggeli alapanyagok (6 napra)</li>
-        <li>Picnic kellékek (sajt, felvágott)</li>
-        <li>Friss kenyér, péktermék</li>
-        <li>Grill hús, zöldség</li>
-        <li>Víz, üdítők nagy mennyiségben</li>
-        <li>Termosz-kávé, tea</li>
+        <li>Napi élelmiszer pótlás (COOP)</li>
+        <li>Gourmet alapanyagok (Zsenge)</li>
+        <li>Kézműves sütemény (Rozika)</li>
+        <li>Szilvalekvár (termelők, Piac)</li>
+        <li>Helyi méz, sajt, szörp (Piac)</li>
+        <li>ATM (MBH Bank, 0–24)</li>
+        <li>Gyógyszertár (H–P 9–11)</li>
+      </ul>
+    </div>
+    <div class="buy-card">
+      <h4>🍷 Noszvaji pincék (~2–3 km)</h4>
+      <ul>
+        <li>Egri bor helyi termelőtől</li>
+        <li>Thummerer: kóstolás + vásárlás</li>
+        <li>Gazsi, Kónya, Szabó, Fresli</li>
+        <li>Előzetes egyeztetés ajánlott</li>
+      </ul>
+    </div>
+    <div class="buy-card">
+      <h4>🛒 Eger (érkezéskor, ~12 km)</h4>
+      <ul>
+        <li>Nagy bevásárlás hétre (Tesco)</li>
+        <li>Grill hús, zöldség, gyümölcs</li>
+        <li>Reggeli alapanyagok (7 napra)</li>
+        <li>Friss pék (Lidl, Penny, Spar)</li>
+        <li>Víz, üdítők (nagyobb mennyiség)</li>
+        <li>Picnic alapanyagok</li>
       </ul>
     </div>
     <div class="buy-card">
@@ -340,23 +492,32 @@
         <li>Csokoládé, energiaszelet</li>
         <li>Gyümölcs (alma, banán)</li>
         <li>Termoszba való kávé/tea</li>
-        <li>Napvédő (Eger – gyógyszertár)</li>
-        <li>Hidegtál elemek</li>
+        <li>Napfényvédő (patika v. Tesco)</li>
+      </ul>
+    </div>
+    <div class="buy-card">
+      <h4>🍷 Eger borvásárlás (~13 km)</h4>
+      <ul>
+        <li>Thummerer Borszaküzlet (30+ bor)</li>
+        <li>Egri Bikavér, Egri Csillag</li>
+        <li>Múzeumi évjáratok, ritkaságok</li>
+        <li>Szépasszony-völgy pincéi</li>
+        <li>H–Szo 10:00–18:30</li>
       </ul>
     </div>
   </div>
 
   <div class="notice">
-    <strong>Fontos:</strong> A <strong>Kamra Bolt szezonálisan</strong> tart nyitva — télen nem számíthatsz rá. A <strong>COOP Noszvaj vasárnap zárva</strong>. <strong>Zsenge és Rozika délután zárnak</strong>. A <strong>COOP Bogács</strong> jó középút ha a noszvaji bolt ki van fogyva. Nagyobb bevásárlásra mindig <strong>Egerben állj meg érkezéskor.</strong>
+    <strong>Fontos:</strong> A <strong>Kamra Bolt szezonálisan</strong> tart nyitva — télen nem számíthatsz rá. A <strong>noszvaji patika csak H–P 9–11</strong> között nyitva (fiókgyógyszertár)! A <strong>Patakparti Piac csak pénteken</strong> üzemel teljes kínálattal. Noszvaji pincészeteknél <strong>előzetes egyeztetés</strong> ajánlott. Nagyobb bevásárlásra mindig <strong>Egerben állj meg érkezéskor</strong>.
   </div>
 
   <div class="tip-box">
-    💡 <strong>Ajánlott menetrend:</strong> Érkezés előtt <strong>Egerben nagy bevásárlás</strong> — reggeli alapanyagok, picnic kellékek, grill hús az egész hétre. Napi pótlásra a <strong>COOP Noszvaj</strong> (~2 km, 4 perc). Ha nagyobb hiány van: <strong>COOP Bogács</strong> (~8 km, 10 perc). Különleges noszvaji termékekért a <strong>Zsenge</strong> és a <strong>Kamra Bolt</strong>. Hazafelé a <strong>Rozikában</strong> kézműves süteményt venni kötelező!
+    💡 <strong>Ajánlott menetrend:</strong> Érkezés előtt <strong>Egerben nagy bevásárlás</strong> — reggeli alapanyagok, picnic kellékek, grill hús az egész hétre. Ha pénteken érkeztek, ne hagyjátok ki a <strong>Patakparti Piacot</strong> (szilvalekvár, méz, helyi finomságok)! Napi pótlásra a <strong>noszvaji COOP</strong> (~2 km). Bor: helyi pincészetek (egyeztetéssel) vagy a <strong>Thummerer borszaküzlet</strong> Egerben. Hazafelé a <strong>Rozikában</strong> kézműves süteményt venni kötelező!
   </div>
 
 </div>
 
-<footer>Boldog nászutat! · Noszvaj Cabin, Síkfőkút · Bükk Nemzeti Park · 2025</footer>
+<footer>Boldog nászutat! · Noszvaj Cabin, Síkfőkút · Bükk Nemzeti Park</footer>
 
 </body>
 </html>
