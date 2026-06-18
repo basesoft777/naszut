@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Szilvásváradi Erdei Kisvasút · Program Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:none;padding-left:0;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(184,216,154,.12) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(90,154,40,.15) 0%,transparent 50%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(28px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);backdrop-filter:blur(4px);}
+.chip-green{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.chip-amber{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stats-bar::-webkit-scrollbar{display:none;}
+.stat{flex:1;min-width:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--gm);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+.sights-row{display:flex;flex-wrap:wrap;gap:8px;}
+.sight-chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;background:var(--gl);color:var(--gd);border:1px solid var(--gb);border-radius:20px;padding:5px 12px;text-decoration:none;transition:background .15s;}
+.sight-chip:hover{background:var(--gb);}
+.sight-chip svg{flex-shrink:0;}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;cursor:pointer;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-waze:hover{background:#D0DFFA;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.nav-photos:hover{background:#FAEFD0;}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+
+</style>
+</head>
+<body>
+<nav class="topbar"><div class="topbar-left"><span class="topbar-badge">Bélapátfalva · Program Guide</span></div><a class="back-btn" href="belapatfalva_tervezo.html">← Vissza a tervezőbe</a></nav>
+<header class="hero"><span class="hero-icon">🚂</span><h1 class="hero-title">Erdei <em>Kisvasút</em></h1><p class="hero-sub">Szilvásvárad · Szalajka-völgy · Élmény</p><div class="hero-chips"><span class="hero-chip chip-green">✓ Könnyű</span><span class="hero-chip">Élmény</span><span class="hero-chip">⏱ ~45 perc</span><span class="hero-chip">🏠 5 km a faháztól</span></div></header>
+<div class="stats-bar"><div class="stat"><span class="stat-val">~45</span><span class="stat-lbl">perc (egy irány)</span></div><div class="stat"><span class="stat-val">5 km</span><span class="stat-lbl">faháztól</span></div><div class="stat"><span class="stat-val">~900</span><span class="stat-lbl">Ft/fő</span></div><div class="stat"><span class="stat-val">Szalajka</span><span class="stat-lbl">völgyi kisvasút</span></div></div>
+<main class="content">
+<section class="section"><h2 class="section-title">🚂 A programról</h2><div class="desc-card"><p>A Szalajka-völgyi Erdei Kisvasút Magyarország egyik legszebb erdei vasútvonala — festői völgyet jár be a Szalajka-völgy bejáratától a Gloriett-tisztásig, érintve a Fátyol-vízesést és a pisztrángos tavakat.</p><p>Visszafelé is érdemes rajta menni — vagy az egyik irányt gyalogosan (r3 séta), a másikat kisvasúttal teljesíteni. Gyerekeknek és felnőtteknek egyaránt élmény.</p><div class="highlight">A Szalajka-völgyi séta (r3) egyik irányát érdemes kisvasúttal megtenni — ezzel csökkentjük a gyaloglást és növeljük az élményt.</div></div></section>
+<section class="section"><h2 class="section-title">ℹ️ Gyakorlati információk</h2><div class="info-grid"><div class="info-card"><div class="ic-label">📍 Helyszín</div><div class="ic-val">Szilvásvárad, Szalajka-völgy<br><small style="color:var(--muted)">Bejáratnál a megálló</small></div></div><div class="info-card"><div class="ic-label">💰 Jegy</div><div class="ic-val">~900 Ft / fő<br><small style="color:var(--muted)">Visszajegy külön vásárolható</small></div></div><div class="info-card"><div class="ic-label">🕐 Menetrend</div><div class="ic-val">Szezonálisan változó<br><small style="color:var(--muted)">Ellenőrizd a MÁV/erdei vasút oldalán</small></div></div><div class="info-card"><div class="ic-label">🚗 Megközelítés</div><div class="ic-val">~5 km autóval (8 perc)<br><small style="color:var(--muted)">Szilvásvárad Szalajka-völgybe</small></div></div><div class="info-card"><div class="ic-label">⏱ Menetidő</div><div class="ic-val">~45 perc (egy irány)<br><small style="color:var(--muted)">Oda-vissza ~1,5 óra</small></div></div><div class="info-card"><div class="ic-label">🎫 Jegyvásárlás</div><div class="ic-val">Pénztárnál helyszínen<br><small style="color:var(--muted)">Hétvégén sor lehet — érdemes korán érkezni</small></div></div></div></section>
+<section class="section"><h2 class="section-title">💡 Tippek & tudnivalók</h2><div class="tip-list"><div class="tip"><span class="tip-icon">🌲</span><div class="tip-text"><strong>Ablakból nézni.</strong> A kisvasút ablakából a völgy látványossága elhalad — jobbra üljetek (menet irányában), ott a legjobb kilátás.</div></div><div class="tip"><span class="tip-icon">🎫</span><div class="tip-text"><strong>Hétvégén korán.</strong> Nyáron reggel telik meg a kisvasút — érdemes az első vagy második járatra felszállni.</div></div><div class="tip"><span class="tip-icon">🥾</span><div class="tip-text"><strong>Séta + kisvasút kombó.</strong> Oda séta (r3), vissza kisvasút — így a legjobb a völgyi program.</div></div><div class="tip tip-amber"><span class="tip-icon">⚠️</span><div class="tip-text"><strong>Menetrend ellenőrzés.</strong> A kisvasút csak szezonálisan közlekedik — az indulási időpontokat előre érdemes ellenőrizni.</div></div></div></section>
+<section class="section"><h2 class="section-title">🔗 Kapcsolódó programok</h2><div class="tip-list"><div class="tip"><span class="tip-icon">🌲</span><div class="tip-text"><strong>Szalajka-völgyi séta (r3).</strong> A völgy és a kisvasút együtt: a legjobb szilvásváradi program páros.</div></div><div class="tip"><span class="tip-icon">🎢</span><div class="tip-text"><strong>Kalandpark (o8).</strong> A kisvasút végállomásától rövid séta a kalandpark — mindkettő egynapos program.</div></div></div></section>
+<section class="section"><h2 class="section-title">🧭 Navigáció & fotók</h2><p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Navigálj a helyszínre, majd élvezd a programot!</p><div class="nav-row"><a class="nav-btn nav-maps" href="https://www.google.com/maps/dir/?api=1&destination=48.098,20.485&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a><a class="nav-btn nav-waze" href="https://waze.com/ul?ll=48.098,20.485&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Waze</a><a class="nav-btn nav-photos" href="https://www.google.com/maps/search/Szalajka-völgyi+erdei+kisvasút+Szilvásvárad" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a></div></section>
+</main>
+<footer><p>Bélapátfalva Erdei-lak · 2025 aug. 3–7 · <a href="belapatfalva_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p></footer>
+</body>
+</html>
