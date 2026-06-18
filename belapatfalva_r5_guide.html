@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bél-kői tanösvény · Túra Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --mid-bg:#FFF3CC;  --mid:#7A5000;
+  --hard-bg:#FAECE7; --hard:#8B2B10;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:none;padding-left:0;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(184,216,154,.12) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(90,154,40,.15) 0%,transparent 50%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(32px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);backdrop-filter:blur(4px);}
+.chip-easy{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.chip-mid{background:var(--mid-bg);color:var(--mid);border-color:#E8D5A0;}
+.chip-hard{background:var(--hard-bg);color:var(--hard);border-color:#E8C0B0;}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stats-bar::-webkit-scrollbar{display:none;}
+.stat{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--gm);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.highlight-amber{background:var(--al);border-left:3px solid var(--amber);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--amber);margin-top:14px;font-weight:500;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:grid;grid-template-columns:40px 1fr;gap:0 16px;position:relative;}
+.step:not(:last-child) .step-line{position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--gb);z-index:0;}
+.step-dot{width:40px;height:40px;flex-shrink:0;background:var(--gm);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;position:relative;z-index:1;box-shadow:0 2px 8px rgba(62,122,24,.3);}
+.step-dot.dot-start{background:var(--gd);}
+.step-dot.dot-end{background:var(--gd);}
+.step-dot.dot-mid{background:var(--gm2);width:34px;height:34px;font-size:14px;margin:3px;}
+.step-body{padding:8px 0 24px;}
+.step-body h4{font-size:15px;font-weight:600;color:var(--gd);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--muted);line-height:1.6;}
+.step-dist{display:inline-block;font-size:12px;font-weight:600;background:var(--gl);color:var(--gm);border:1px solid var(--gb);padding:2px 8px;border-radius:10px;margin-top:4px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+.tip.tip-red{border-color:#E8C0B0;background:var(--hard-bg);}
+.tip.tip-red .tip-text strong{color:var(--hard);}
+.sights-row{display:flex;flex-wrap:wrap;gap:8px;}
+.sight-chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;background:var(--gl);color:var(--gd);border:1px solid var(--gb);border-radius:20px;padding:5px 12px;text-decoration:none;transition:background .15s;}
+.sight-chip:hover{background:var(--gb);}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;cursor:pointer;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-waze:hover{background:#D0DFFA;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.nav-photos:hover{background:#FAEFD0;}
+.elev-wrap{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:20px 20px 14px;overflow:hidden;}
+.elev-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.elev-svg{width:100%;height:90px;display:block;}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge">Bélapátfalva · Túra Guide</span>
+  </div>
+  <a class="back-btn" href="belapatfalva_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-icon">⛰</span>
+  <h1 class="hero-title">Bél-kői <em>tanösvény</em></h1>
+  <p class="hero-sub">Bélapátfalva · Bükki Nemzeti Park · 815 m</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-mid">◆ Közepes</span>
+    <span class="hero-chip chip-mid">Középhaladó szint</span>
+    <span class="hero-chip">↕ Oda-vissza · 7 állomás</span>
+    <span class="hero-chip">🚗 ~1,5 km a faháztól</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">~11</span><span class="stat-lbl">km · oda-vissza</span></div>
+  <div class="stat"><span class="stat-val">3–4,5ó</span><span class="stat-lbl">menetidő</span></div>
+  <div class="stat"><span class="stat-val">500</span><span class="stat-lbl">m szintkülönbség</span></div>
+  <div class="stat"><span class="stat-val">🔵▢</span><span class="stat-lbl">Kék átló jelzés</span></div>
+</div>
+
+<main class="content">
+
+  <section class="section">
+    <h2 class="section-title">🌿 A túráról</h2>
+    <div class="desc-card">
+      <p>A Bél-kői tanösvény a bélapátfalvai természetjárás koronája — 7 állomáson vezet fel a Bél-kő 815 m-es csúcsára, ahol az Alföld és a Mátra is belátható. Útba esik a Pala-bánya ejtőaknája és a Szász-bérc különleges párnaláva-kőzete is.</p>
+      <p>A 11 km-es (oda-vissza) túra 500 m szintemelkedéssel közepes nehézségű. Az út első kétharmada aszfaltozott bányaúton vezet, az utolsó szakasz meredek köves ösvényen.</p>
+      <div class="highlight-amber">⚠️ Az utolsó szakasz esős időben csúszós lehet. Túracipő kötelező!</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">📍 Útvonal lépései</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-start">🏰</div>
+        <div class="step-body">
+          <h4>Ciszterci apátság — indulópont</h4>
+          <p>A faháztól ~1,5 km autóval (3 perc). Az apátság előtti parkolótól indul a kék átló jelzés. Érdemes az apátságot visszafelé megnézni.</p>
+          <span class="step-dist">0 km · rajt · 315 m t.sz.f.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">⛏️</div>
+        <div class="step-body">
+          <h4>Pala-bánya ejtőakna</h4>
+          <p>A régi palapáti bányászat emléke — egy mély, körülkerített ejtőakna a bányaút mentén. A tanösvény-tábla elmagyarázza a pala keletkezését és bányászatát.</p>
+          <span class="step-dist">~2–3 km · 450 m t.sz.f.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">🪨</div>
+        <div class="step-body">
+          <h4>Szász-bérc párnaláva</h4>
+          <p>Különleges vulkanikus kőzet: párnaláva-struktúrák, ahol a tengerfenéken kikristályosodott bazalt párnás, gömbölyített formákat öltött. Ritka geológiai látnivaló.</p>
+          <span class="step-dist">~4 km · 580 m t.sz.f.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot dot-mid">⚠️</div>
+        <div class="step-body">
+          <h4>Meredek köves ösvény — utolsó szakasz</h4>
+          <p>Az utolsó 1-2 km meredek köves ösvényen vezet. Esős időben csúszós — óvatosan, lassan haladj felfelé és különösen visszafelé.</p>
+          <span class="step-dist">~5 km · 700+ m</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot dot-end">🏔️</div>
+        <div class="step-body">
+          <h4>Bél-kő csúcs — 815 m, 7. állomás</h4>
+          <p>A tanösvény végpontja — lélegzetelállító panoráma az Alföldre, a Mátrára, tiszta időben a Tátrára is. Ebéd a csúcson, majd visszafelé ugyanazon az úton.</p>
+          <span class="step-dist">~5,5 km · 815 m t.sz.f.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">📈 Magassági profil</h2>
+    <div class="elev-wrap">
+  <div class="elev-title">Közelítő szintvonal · 500 m emelkedés · oda-vissza</div>
+  <svg class="elev-svg" viewBox="0 0 700 90" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3E7A18" stop-opacity=".25"/>
+        <stop offset="100%" stop-color="#3E7A18" stop-opacity=".03"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,82 C60,78 120,70 200,58 C280,46 360,36 440,24 C500,16 540,12 560,10 C580,12 620,18 700,30 L700,90 L0,90 Z" fill="url(#elevGrad)"/>
+    <path d="M0,82 C60,78 120,70 200,58 C280,46 360,36 440,24 C500,16 540,12 560,10 C580,12 620,18 700,30" fill="none" stroke="#3E7A18" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="0" cy="85" r="5" fill="#1E4A08"/>
+    <circle cx="560" cy="10" r="5" fill="#3E7A18"/>
+    <circle cx="700" cy="55" r="5" fill="#1E4A08"/>
+    <text x="4" y="78" font-size="10" fill="#6A6864" font-family="DM Sans,sans-serif">Apátság</text>
+    <text x="530" y="2" font-size="10" fill="#3E7A18" font-family="DM Sans,sans-serif">Bél-kő 815m</text>
+    <text x="660" y="50" font-size="10" fill="#6A6864" font-family="DM Sans,sans-serif">vissza</text>
+    <line x1="186" y1="86" x2="186" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="186" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">2 km</text><line x1="373" y1="86" x2="373" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="373" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">4 km</text><line x1="560" y1="86" x2="560" y2="90" stroke="#DDD9D0" stroke-width="1"/><text x="560" y="90" font-size="9" fill="#6A6864" font-family="DM Sans,sans-serif" text-anchor="middle">csúcs</text>
+  </svg>
+</div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">ℹ️ Gyakorlati információk</h2>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">🏁 Indulópont</div><div class="ic-val">Ciszterci apátság<br><small style="color:var(--muted)">~1,5 km autóval (3 perc)</small></div></div>
+      <div class="info-card"><div class="ic-label">🎯 Jelzés</div><div class="ic-val">Kék átló (fehér négyzetben)<br><small style="color:var(--muted)">7 állomásos tanösvény</small></div></div>
+      <div class="info-card"><div class="ic-label">🌄 Terep</div><div class="ic-val">Bányaút + köves ösvény<br><small style="color:var(--muted)">Utolsó szakasz csúszós lehet</small></div></div>
+      <div class="info-card"><div class="ic-label">🕐 Mikor menjünk?</div><div class="ic-val">Kora reggel indulni<br><small style="color:var(--muted)">Csúcson ebéd, délutánra vissza</small></div></div>
+      <div class="info-card"><div class="ic-label">👟 Felszerelés</div><div class="ic-val">Túracipő kötelező, 2L víz<br><small style="color:var(--muted)">Szendvics, esőkabát ajánlott</small></div></div>
+      <div class="info-card"><div class="ic-label">⛰️ Csúcs</div><div class="ic-val">815 m, 7. állomás<br><small style="color:var(--muted)">Alföld és Mátra panoráma</small></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Tippek & tudnivalók</h2>
+    <div class="tip-list">
+      <div class="tip"><span class="tip-icon">🌅</span><div class="tip-text"><strong>Korán indulj!</strong> A 3–4,5 órás odaút és a visszaút miatt reggel 7–8 órakor érdemes indulni, hogy a csúcson elég idő legyen, és napfénnyel le is érj.</div></div>
+      <div class="tip"><span class="tip-icon">🪨</span><div class="tip-text"><strong>A Szász-bérc párnaláva egyedi jelenség.</strong> Ilyen kőzetstruktúrát ritkán látni a Bükkben — a tengerfenéken kikristályosodott bazalt párnás formái különleges geológiai ritkaságok.</div></div>
+      <div class="tip tip-red"><span class="tip-icon">⚠️</span><div class="tip-text"><strong>Esős időben kerüld el!</strong> Az utolsó szakasz meredek köves ösvényen vezet, ami esős időben rendkívül csúszóssá válik. Csak száraz időben teljesítsd.</div></div>
+      <div class="tip tip-amber"><span class="tip-icon">🎒</span><div class="tip-text"><strong>Csomagolj szendvicset és legalább 2 liter vizet.</strong> A csúcsra étterem nem esik útba — a panorámával megterített ebéd a csúcson az egyik legjobb élmény.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">👁️ Látnivalók az úton</h2>
+    <div class="sights-row"><a class="sight-chip" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+B%C3%A9lap%C3%A1tfalva+Ciszterci+apátság+(1232)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Ciszterci apátság (1232)</a><a class="sight-chip" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+B%C3%A9lap%C3%A1tfalva+Pala-bánya+ejtőakna" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Pala-bánya ejtőakna</a><a class="sight-chip" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+B%C3%A9lap%C3%A1tfalva+Szász-bérc+párnaláva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Szász-bérc párnaláva</a><a class="sight-chip" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+B%C3%A9lap%C3%A1tfalva+Bél-kő+815+m+kilátó" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Bél-kő 815 m kilátó</a><a class="sight-chip" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+B%C3%A9lap%C3%A1tfalva+Kőfejtő" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Kőfejtő</a></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🧭 Navigáció & fotók</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Navigálj a Ciszterci Apátsághoz — a parkolótól indul a kék átló jelzés.</p>
+    <div class="nav-row"><a class="nav-btn nav-maps" href="https://www.google.com/maps/dir/?api=1&destination=47.9644,20.5301&travelmode=driving" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Google Maps</a><a class="nav-btn nav-waze" href="https://waze.com/ul?ll=47.9644,20.5301&navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Waze</a><a class="nav-btn nav-photos" href="https://www.google.com/maps/search/B%C3%A9l-k%C5%91+tan%C3%B6sv%C3%A9ny+B%C3%A9lap%C3%A1tfalva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Fotók (Google)</a></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🔗 Kapcsolódó túrák</h2>
+    <div class="tip-list">
+      <div class="tip"><span class="tip-icon">🗺</span><div class="tip-text"><strong>Bél-kői körtúra (r6)</strong> — ugyanaz a felfelé vezető út, de visszafelé a Katonasírok és a Lak-völgyi tó érintésével tér vissza. Változatosabb, de hosszabb (13 km).</div></div>
+      <div class="tip"><span class="tip-icon">🔭</span><div class="tip-text"><strong>Kalapat-kilátó (program)</strong> — ha a Bél-kő csúcs helyett könnyebb kilátó-élmény kell, autóval is szinte a Kalapat-kilátóig lehet menni.</div></div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p>Bélapátfalva Erdei-lak · 2025 aug. 13–17 · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>
