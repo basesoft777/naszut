@@ -250,6 +250,16 @@ footer strong{color:var(--gd);}
             <span class="nl-text">Bevásárlási guide<span class="nl-label">Boltok, nyitvatartás, távolságok</span></span>
             <span class="nl-arrow">→</span>
           </a>
+          <a class="nav-link" href="belapatfalva_turak.html">
+            <span class="nl-icon">🥾</span>
+            <span class="nl-text">Túrák összefoglalója<span class="nl-label">9 útvonal · Bél-kő, Istállós-kő, Szalajka-völgy…</span></span>
+            <span class="nl-arrow">→</span>
+          </a>
+          <a class="nav-link" href="belapatfalva_programok.html">
+            <span class="nl-icon">🌟</span>
+            <span class="nl-text">Programok & látnivalók<span class="nl-label">12 program · kisvasút, ménesudvar, kalandpark…</span></span>
+            <span class="nl-arrow">→</span>
+          </a>
         </nav>
       </div>
     </div>
@@ -282,8 +292,6 @@ footer strong{color:var(--gd);}
           src="https://basesoft777.github.io/naszut/idojaras.html"
           scrolling="no"
           title="Időjárás előrejelzés"
-          onload="frameLoaded()"
-          onerror="frameError()"
         ></iframe>
       </div>
     </div>
@@ -317,6 +325,9 @@ function frameError() {
     '<a href="https://basesoft777.github.io/naszut/idojaras.html" target="_blank" rel="noopener">Megnyitás külön ablakban →</a>' +
     '</div>';
 }
+
+frame.addEventListener('load', frameLoaded);
+frame.addEventListener('error', frameError);
 
 window.addEventListener('message', function(e) {
   if (e.data && e.data.type === 'iframeHeight') {
