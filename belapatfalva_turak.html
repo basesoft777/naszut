@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bélapátfalva Túrák · Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --med-bg:#FFF3D0; --med:#7A5000;
+  --hard-bg:#FFE8E8; --hard:#8A1A1A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+
+/* TOPBAR */
+.topbar{
+  background:var(--gd);padding:0 24px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;
+}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;border-left:none;padding-left:0;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+
+/* HERO */
+.hero{
+  background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#3A7A20 100%);
+  padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 25% 75%,rgba(184,216,154,.12) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(90,154,40,.15) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-icon{font-size:56px;display:block;margin-bottom:14px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(28px,5vw,46px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+
+/* FILTER BAR */
+.filter-bar{
+  background:#fff;border-bottom:1.5px solid var(--border);
+  padding:14px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:58px;z-index:90;
+}
+.filter-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:4px;}
+.fbtn{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);
+  background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.fbtn:hover{border-color:var(--gm);color:var(--gm);}
+.fbtn.active{background:var(--gl);border-color:var(--gm);color:var(--gd);}
+.fbtn.f-easy.active{background:var(--easy-bg);border-color:var(--gb);color:var(--easy);}
+.fbtn.f-med.active{background:var(--med-bg);border-color:var(--amber-border);color:var(--amber);}
+.fbtn.f-hard.active{background:var(--hard-bg);border-color:#F0B0B0;color:var(--hard);}
+
+/* CONTENT */
+.content{max-width:900px;margin:0 auto;padding:36px 20px 60px;}
+
+/* SECTION */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1.5px solid var(--gb);}
+.sec-head-icon{font-size:22px;}
+.sec-head-title{font-family:var(--display);font-size:20px;color:var(--gd);}
+.sec-head-badge{
+  font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;
+  margin-left:auto;letter-spacing:.05em;text-transform:uppercase;
+}
+.badge-easy{background:var(--easy-bg);color:var(--easy);}
+.badge-med{background:var(--med-bg);color:var(--amber);}
+.badge-hard{background:var(--hard-bg);color:var(--hard);}
+
+.section{margin-bottom:44px;}
+
+/* ROUTE CARDS */
+.routes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.routes-grid{grid-template-columns:1fr;}}
+
+.rcard{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  overflow:hidden;transition:box-shadow .15s,transform .15s;
+  display:flex;flex-direction:column;
+}
+.rcard:hover{box-shadow:0 4px 20px rgba(30,74,8,.12);transform:translateY(-2px);}
+
+.rcard-top{
+  padding:18px 18px 14px;display:flex;align-items:flex-start;gap:12px;
+}
+.rcard-icon{font-size:32px;flex-shrink:0;line-height:1;}
+.rcard-info{flex:1;min-width:0;}
+.rcard-name{font-family:var(--display);font-size:17px;color:var(--gd);line-height:1.2;margin-bottom:4px;}
+.rcard-type{font-size:12px;color:var(--muted);}
+
+.rcard-stats{
+  display:flex;border-top:1px solid var(--border);
+}
+.rstat{
+  flex:1;padding:10px 8px;text-align:center;border-right:1px solid var(--border);
+}
+.rstat:last-child{border-right:none;}
+.rstat-val{font-family:var(--serif);font-size:18px;color:var(--gm);font-weight:600;display:block;line-height:1;}
+.rstat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+
+.rcard-foot{
+  padding:12px 18px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.diff-badge{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;white-space:nowrap;}
+.diff-easy{background:var(--easy-bg);color:var(--easy);}
+.diff-med{background:var(--med-bg);color:var(--amber);}
+.diff-hard{background:var(--hard-bg);color:var(--hard);}
+
+.from-fahaz{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+
+.guide-link{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;
+  padding:6px 14px;border-radius:20px;
+  background:var(--gl);color:var(--gd);border:1px solid var(--gb);
+  text-decoration:none;white-space:nowrap;transition:background .15s;
+}
+.guide-link:hover{background:var(--gb);}
+.guide-link.done{background:var(--gd);color:#fff;border-color:var(--gd);}
+.guide-link.done:hover{background:#2A5A10;}
+
+.rcard-desc{padding:0 18px 16px;font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* LEGEND */
+.legend{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  padding:18px 20px;margin-bottom:32px;
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
+}
+.leg-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:4px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:13px;}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.leg-easy{background:var(--easy);}
+.leg-med{background:var(--amber);}
+.leg-hard{background:var(--hard);}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-badge">Bélapátfalva · Túra Guide</span>
+  </div>
+  <a class="back-btn" href="belapatfalva_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-icon">⛰️</span>
+  <h1 class="hero-title">Bélapátfalva <em>túrák</em></h1>
+  <p class="hero-sub">Lak-völgyi tó · Bükki Nemzeti Park · 9 útvonal</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🥾 5 könnyű · 3 közepes · 1 nehéz</span>
+    <span class="hero-chip">🏠 4 túra a faháztól indul</span>
+    <span class="hero-chip">🌲 Bükki Nemzeti Park</span>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label">Szűrő:</span>
+  <button class="fbtn active" data-filter="all" onclick="filter(this,'all')">Összes (9)</button>
+  <button class="fbtn f-easy" data-filter="easy" onclick="filter(this,'easy')">✓ Könnyű (5)</button>
+  <button class="fbtn f-med" data-filter="med" onclick="filter(this,'med')">◑ Közepes (3)</button>
+  <button class="fbtn f-hard" data-filter="hard" onclick="filter(this,'hard')">▲ Nehéz (1)</button>
+</div>
+
+<main class="content">
+
+  <div class="legend">
+    <span class="leg-title">Nehézség:</span>
+    <span class="leg-item"><span class="leg-dot leg-easy"></span>Könnyű · Kezdő</span>
+    <span class="leg-item"><span class="leg-dot leg-med"></span>Közepes · Középhaladó</span>
+    <span class="leg-item"><span class="leg-dot leg-hard"></span>Nehéz · Haladó</span>
+  </div>
+
+  <!-- KÖNNYŰ -->
+  <section class="section" id="sec-easy">
+    <div class="sec-head">
+      <span class="sec-head-icon">🟢</span>
+      <span class="sec-head-title">Könnyű túrák</span>
+      <span class="sec-head-badge badge-easy">Kezdő szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r1 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🏞</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Apátság & Lak-völgyi tó körséta</div>
+            <div class="rcard-type">◯ Tókerülő + oda-vissza</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Sík tókerülő a ciszterci apátság és a Lak-völgyi tó körül — érkezés napján is tökéletes.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~4</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">1–1,5ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">50</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏠 ~150 m a faháztól</span>
+          <a class="guide-link done" href="belapatfalva_r1_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r2 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌄</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Millenniumi tanösvény</div>
+            <div class="rcard-type">↕ Oda-vissza · kilátóig</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Folyamatosan emelkedő erdei ösvény a Millenniumi kilátóig — tiszta időben a Magas-Tátra is látszik.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">2,3</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">1 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">250</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🚗 ~5 km · 8 perc</span>
+          <a class="guide-link done" href="belapatfalva_r2_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r3 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">💧</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Szalajka-völgyi tanösvény</div>
+            <div class="rcard-type">↕ Oda-vissza · kisvasút</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Pisztrángos tavak, Fátyol-vízesés, erdei múzeum, barlang — a Bükk leglátogatottabb völgye. Visszafelé kisvasúttal.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">4,2</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">1,5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">210</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🚗 ~5 km · 8 perc</span>
+          <a class="guide-link done" href="belapatfalva_r3_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r4 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌿</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Kelemen-széke tanösvény</div>
+            <div class="rcard-type">◯ Körtúra · 9 állomás</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Vaskori sáncvár, rejtélyes geoglifa, erdei tavak — a faháztól indul. Régészeti ritkaságok a Bükkben.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">9,5</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">2–4 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">239</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏠 Faháztól indul</span>
+          <a class="guide-link done" href="belapatfalva_r4_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r8 -->
+      <div class="rcard" data-diff="easy">
+        <div class="rcard-top">
+          <span class="rcard-icon">🌲</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Bélapátfalva–Szalajka-völgy összekötő</div>
+            <div class="rcard-type">↕ Oda-vissza / egyirányú</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Lak-völgyi tóból Lóczy-forráson és Katonasírokon át a Fátyol-vízesésig. Kisvasút visszafelé.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">8</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">2,5–3,5ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">320</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-easy">✓ Könnyű</span>
+          <span class="from-fahaz">🏠 Tóparttól indul</span>
+          <a class="guide-link done" href="belapatfalva_r8_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KÖZEPES -->
+  <section class="section" id="sec-med">
+    <div class="sec-head">
+      <span class="sec-head-icon">🟡</span>
+      <span class="sec-head-title">Közepes túrák</span>
+      <span class="sec-head-badge badge-med">Középhaladó szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r5 -->
+      <div class="rcard" data-diff="med">
+        <div class="rcard-top">
+          <span class="rcard-icon">⛰</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Bél-kői tanösvény</div>
+            <div class="rcard-type">↕ Oda-vissza · 7 állomás · kilátóig</div>
+          </div>
+        </div>
+        <div class="rcard-desc">7 állomás a Bél-kő 815 m-es csúcsáig — pala-bánya, párnaláva, Alföld-panoráma. Kora reggel indulj.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~11</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">3–4,5ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">500</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-med">◑ Közepes</span>
+          <span class="from-fahaz">🚗 ~1,5 km · 3 perc</span>
+          <a class="guide-link done" href="belapatfalva_r5_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r6 -->
+      <div class="rcard" data-diff="med">
+        <div class="rcard-top">
+          <span class="rcard-icon">🗺</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Bél-kői körtúra</div>
+            <div class="rcard-type">◯ Körtúra · kilátón át</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Bél-kő csúcs, Katonasírok, Lak-völgyi tó — körtúra, nem kell visszafele ugyanazon az úton. Legemlékezetesebb egész napos program.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~13</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">4–5 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">520</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-med">◑ Közepes</span>
+          <span class="from-fahaz">🚗 ~1,5 km · 3 perc</span>
+          <a class="guide-link done" href="belapatfalva_r6_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- r7 -->
+      <div class="rcard" data-diff="med">
+        <div class="rcard-top">
+          <span class="rcard-icon">🧭</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Bélapátfalvai barangolás</div>
+            <div class="rcard-type">◯ Körtúra · nagytúra</div>
+          </div>
+        </div>
+        <div class="rcard-desc">A leghosszabb körút: Bél-kő, Mész-völgyi-patak szurdoka, Homonna-tető, Gilitka-völgy. Haladó fittség szükséges.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">15,4</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">5–6 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">640</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-med">◑ Közepes</span>
+          <span class="from-fahaz">🚶 ~0,5 km gyalog</span>
+          <a class="guide-link done" href="belapatfalva_r7_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEHÉZ -->
+  <section class="section" id="sec-hard">
+    <div class="sec-head">
+      <span class="sec-head-icon">🔴</span>
+      <span class="sec-head-title">Nehéz túrák</span>
+      <span class="sec-head-badge badge-hard">Haladó szint</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- r9 -->
+      <div class="rcard" data-diff="hard">
+        <div class="rcard-top">
+          <span class="rcard-icon">🏔</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Istállós-kő csúcs</div>
+            <div class="rcard-type">↕ Oda-vissza · nehéz csúcstúra</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Bükk 2. legmagasabb csúcsa (958 m) — 44 000 éves barlang, Kalapat-kilátó, meredek visszaút. Csak haladóknak.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~16</span><span class="rstat-lbl">km</span></div>
+          <div class="rstat"><span class="rstat-val">6–8 ó</span><span class="rstat-lbl">idő</span></div>
+          <div class="rstat"><span class="rstat-val">759</span><span class="rstat-lbl">m szint</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="diff-badge diff-hard">▲ Nehéz</span>
+          <span class="from-fahaz">🚗 ~5 km · 8 perc</span>
+          <a class="guide-link done" href="belapatfalva_r9_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Bélapátfalva Erdei-lak · 2025 aug. 13–17 · <a href="index.html">Főoldal</a> · <a href="belapatfalva_tervezo.html">Tervező</a></p>
+</footer>
+
+<script>
+function filter(btn, type) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.rcard');
+  cards.forEach(c => {
+    if (type === 'all' || c.dataset.diff === type) {
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+
+  ['easy','med','hard'].forEach(d => {
+    const sec = document.getElementById('sec-' + d);
+    if (!sec) return;
+    sec.style.display = (type === 'all' || type === d) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
