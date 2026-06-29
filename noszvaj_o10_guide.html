@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kövér Pálinkafőzde · Program Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,#2A1A08 0%,#5A3010 55%,#7A4818 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(220,180,100,.1) 0%,transparent 60%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(32px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#F0C870;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+.chip-amber{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stat{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--amber);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--al);border-left:3px solid var(--amber);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--amber);margin-top:14px;font-weight:500;}
+.palinka-list{display:flex;flex-direction:column;gap:10px;}
+.palinka-item{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;}
+.palinka-icon{font-size:24px;flex-shrink:0;}
+.palinka-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.palinka-text strong{color:var(--amber);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;cursor:pointer;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div style="display:flex;align-items:center;">
+    <span class="topbar-badge">Noszvaj · Program Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+<header class="hero">
+  <span class="hero-icon">🥃</span>
+  <h1 class="hero-title">Kövér <em>Pálinkafőzde</em></h1>
+  <p class="hero-sub">Noszvaj · Díjnyertes bérfőzde · Helyi különlegesség</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-amber">✓ Gasztronómia</span>
+    <span class="hero-chip">🏆 Brillante 2024 győztes</span>
+    <span class="hero-chip">⏱ ~1 óra</span>
+    <span class="hero-chip">🚗 ~2 km · 5 perc</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">2024</span><span class="stat-lbl">Brillante győztes</span></div>
+  <div class="stat"><span class="stat-val">Szilva</span><span class="stat-lbl">birs · som · cseresznye</span></div>
+  <div class="stat"><span class="stat-val">~2 km</span><span class="stat-lbl">a Cabintól</span></div>
+  <div class="stat"><span class="stat-val">Előfog-</span><span class="stat-lbl">lalás ajánlott</span></div>
+</div>
+
+<main class="content">
+
+  <section class="section">
+    <h2 class="section-title">🥃 A főzdéről</h2>
+    <div class="desc-card">
+      <p>A Kövér Pálinkafőzde a noszvaji borvidék legrangosabb pálinkás különlegessége. A Brillante-2024 Nemzetközi Pálinka- és Párlatversenyen — ahol rekord, 1353 mintát értékeltek — a főzde elnyerte a <strong>„2024 legeredményesebb bérfőzdéje"</strong> díjat. Besztercei szilva pálinkájuk az Országos Pálinka- és Törkölypálinka Versenyen lett a legjobb.</p>
+      <p>A főzde saját márkás pálinkát is forgalmaz: birs, Stanley-szilva, som és a helyi szomolyai feketecseresznye — ez utóbbi igazi noszvaj-specifikus kuriózum. Kóstolóra és vásárlásra egyeztetéssel van lehetőség.</p>
+      <div class="highlight">📞 Egyeztetés kötelező: +36 30 169 2772, koverpalinka@gmail.com · koverpalinkafozde.hu</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🏆 Különleges pálinkák</h2>
+    <div class="palinka-list">
+      <div class="palinka-item">
+        <span class="palinka-icon">🍑</span>
+        <div class="palinka-text"><strong>Besztercei szilva</strong> — Országos versenygyőztes; a noszvaji környék hagyományos szilvafajtájából, telt aromával, hosszú utóízzel. A főzde zászlóshajója.</div>
+      </div>
+      <div class="palinka-item">
+        <span class="palinka-icon">🍐</span>
+        <div class="palinka-text"><strong>Birs pálinka</strong> — A birs lassan érik, nehezen dolgozható, de a kész pálinka illata és karaktere párját ritkítja. Gyümölcsös, összetett, elegáns.</div>
+      </div>
+      <div class="palinka-item">
+        <span class="palinka-icon">🍒</span>
+        <div class="palinka-text"><strong>Szomolyai feketecseresznye</strong> — Helyi kuriózum: a szomolyai meggy különleges fajtájából készített pálinka, amelyet csak innen szerezhetsz be. Intenzív, mélyvörös aromák.</div>
+      </div>
+      <div class="palinka-item">
+        <span class="palinka-icon">🫐</span>
+        <div class="palinka-text"><strong>Som pálinka</strong> — A som (Cornus mas) erdei gyümölcs, amelyet a Bükk-alja erdeiben szednek; savanyú-gyümölcsös, vadabb karakter, igazi erdei különlegesség.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">ℹ️ Gyakorlati információk</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">📍 Helyszín</div>
+        <div class="ic-val">Noszvaj külterület 0214/10<br><small style="color:var(--muted)">Thummerer Pincét elhagyva</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">📞 Elérhetőség</div>
+        <div class="ic-val">+36 30 169 2772<br><small style="color:var(--muted)">koverpalinka@gmail.com</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">💰 Tájékoztató ár</div>
+        <div class="ic-val">~3 000–6 000 Ft/üveg<br><small style="color:var(--muted)">Kóstolóért telefonon érdeklődj</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🕐 Nyitvatartás</div>
+        <div class="ic-val">Egyeztetéssel<br><small style="color:var(--muted)">Spontán látogatás nem biztos hogy működik</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🚗 Megközelítés</div>
+        <div class="ic-val">~2 km, 5 perc autóval<br><small style="color:var(--muted)">GPS: 47.922, 20.478</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🎁 Ajándék</div>
+        <div class="ic-val">Kiváló nászúti szuvenír<br><small style="color:var(--muted)">Hazavinni különleges helyi termék</small></div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <a class="nav-btn nav-maps" href="https://maps.google.com/?q=Kövér+Pálinkafőzde+Noszvaj" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Google Maps
+      </a>
+      <a class="nav-btn nav-waze" href="https://waze.com/ul?ll=47.922,20.478&navigate=yes" target="_blank">Waze</a>
+      <a class="nav-btn nav-photos" href="https://www.google.com/search?q=Kövér+Pálinkafőzde+Noszvaj&tbm=isch" target="_blank">📷 Fotók (Google)</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Tippek</h2>
+    <div class="tip-list">
+      <div class="tip tip-amber">
+        <span class="tip-icon">📞</span>
+        <div class="tip-text"><strong>Hívj előre!</strong> A főzde nem nyilvános nyitvatartással működik — csak előzetes bejelentkezés után érdemes kijönni. Kövér úr +36 30 169 2772.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🎁</span>
+        <div class="tip-text"><strong>Kiváló nászúti szuvenír.</strong> A szomolyai feketecseresznye pálinka különleges, csak itt kapható termék — tökéletes emlék a noszvaji napokra.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🍷</span>
+        <div class="tip-text"><strong>Kombináld a Thummerer borkóstolóval (o9).</strong> Bor + pálinka = a Noszvaj-Szomolya gasztro-körút. Egyik délelőtt bor, másik délután pálinka.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>

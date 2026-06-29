@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patakparti Piac · Program Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,var(--gd) 0%,#2A6010 55%,#4A8A20 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(184,216,154,.12) 0%,transparent 60%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(32px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#B8D89A;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+.chip-green{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.chip-amber{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stat{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--gm);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.product-grid{grid-template-columns:1fr;}}
+.product-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;}
+.product-icon{font-size:28px;margin-bottom:8px;}
+.product-name{font-size:14px;font-weight:600;color:var(--gd);margin-bottom:4px;}
+.product-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.vasarok-list{display:flex;flex-direction:column;gap:10px;}
+.vasar-item{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.vasar-date{font-family:var(--serif);font-size:20px;color:var(--amber);font-weight:600;min-width:48px;flex-shrink:0;line-height:1.1;}
+.vasar-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.vasar-text strong{color:var(--gd);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;padding:10px 18px;border-radius:24px;text-decoration:none;border:1.5px solid;cursor:pointer;transition:all .15s;}
+.nav-maps{background:var(--gl);color:var(--gd);border-color:var(--gb);}
+.nav-maps:hover{background:var(--gb);}
+.nav-waze{background:#EAF0FB;color:#1A3A7A;border-color:#BCCEF0;}
+.nav-photos{background:var(--al);color:var(--amber);border-color:var(--amber-border);}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div style="display:flex;align-items:center;">
+    <span class="topbar-badge">Noszvaj · Program Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+<header class="hero">
+  <span class="hero-icon">🛒</span>
+  <h1 class="hero-title">Patakparti <em>Piac</em></h1>
+  <p class="hero-sub">Noszvaj · Helyi termelői piac · Pénteki vásár</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-green">✓ Gasztronómia</span>
+    <span class="hero-chip chip-amber">🗓 Csak pénteken!</span>
+    <span class="hero-chip">⏱ 1–2 óra</span>
+    <span class="hero-chip">🏘 Faluközpont · gyalog</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">Péntek</span><span class="stat-lbl">7:00–18:00</span></div>
+  <div class="stat"><span class="stat-val">Gyalog</span><span class="stat-lbl">faluközpontban</span></div>
+  <div class="stat"><span class="stat-val">Helyi</span><span class="stat-lbl">termelők</span></div>
+  <div class="stat"><span class="stat-val">Ingyenes</span><span class="stat-lbl">belépő</span></div>
+</div>
+
+<main class="content">
+
+  <section class="section">
+    <h2 class="section-title">🛒 A piacról</h2>
+    <div class="desc-card">
+      <p>A Noszvaj felújított Patakparti Piac a helyi és Heves vármegyei termelők heti találkozóhelye — minden pénteken 7:00-tól 18:00-ig várja a látogatókat Noszvaj faluközpontjában. A piac nem csupán vásárlási lehetőség, hanem a noszvaji életforma egyik autentikus darabja: a termelőkkel való csevegés, a friss helyi méz és a házi szilvalékvár megkóstolása itt része a programnak.</p>
+      <p>A kínálat szezonálisan változik: nyáron friss zöldség, gyümölcs és virág, egész évben élelmiszer-különlegességek (méz, lekvár, szörp, savanyúság, sajtok, füstölt húsok, gyógynövények) és kézműves termékek.</p>
+      <div class="highlight">📅 Csak pénteken! Ha a tartózkodás péntekre esik, ne hagyd ki — egyébként a szezonális vásárok (Szilvanap, Birsünnep) pótolják.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🧺 Mit találsz a piacon?</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-icon">🍯</div>
+        <div class="product-name">Noszvaji méz</div>
+        <div class="product-desc">Bálint István és más helyi méhészek akác-, erdei és virágmézei — frissen, közvetlenül a termelőtől.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🫙</div>
+        <div class="product-name">Házi lekvárok</div>
+        <div class="product-desc">Szilva, birs, som, kökény, csipkebogyó — a noszvaji lekvárfőzők különlegességei. A birsalmasajt is elmaradhatatlan.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🥬</div>
+        <div class="product-name">Friss zöldség-gyümölcs</div>
+        <div class="product-desc">Szezonális helyi termés: nyáron paradicsom, paprika, uborka, szilva, őszibarack — a Bükk-alja kertjeiből.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🧀</div>
+        <div class="product-name">Sajt & füstölt húsok</div>
+        <div class="product-desc">Házi sajtok, kolbász, szalonna és füstölt mangalica termékek vidéki termelőktől.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🌿</div>
+        <div class="product-name">Gyógynövények & szörpök</div>
+        <div class="product-desc">Bodzaszörp, csipkebogyó-tea, kamilla, borsmenta és egyéb bükkaljai gyógynövény különlegességek.</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🎨</div>
+        <div class="product-name">Kézműves termékek</div>
+        <div class="product-desc">Helyi kézművesek portékái: kerámia, szövött textil, gyertya, ékszer — szezonálisan változó kínálat.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🎪 Szezonális vásárok & ünnepek</h2>
+    <div class="vasarok-list">
+      <div class="vasar-item">
+        <div class="vasar-date">Nyár</div>
+        <div class="vasar-text"><strong>Anna-napi Vásár</strong> — Nyár közepén, Anna napján (júl. 26.) tartott hagyományos falusi vásár, népi mesterségek bemutatóival és helyi gasztronómiai finomságokkal.</div>
+      </div>
+      <div class="vasar-item">
+        <div class="vasar-date">Ősz</div>
+        <div class="vasar-text"><strong>Szilvanap</strong> — A noszvaji szilva ünnepe: helyi szilvatermékek (lekvár, pálinka, szárított szilva), kemencés ételek, népi programok. A Bükk-alja egyik legkedveltebb falusi fesztiválja.</div>
+      </div>
+      <div class="vasar-item">
+        <div class="vasar-date">Okt.</div>
+        <div class="vasar-text"><strong>Birsünnep</strong> — A birs aratásának ünnepe a Patakparti Piacon; birsalmasajtok, birslikőrök, birslekvár-kóstolók, receptverseny. 2026: tájékozódj helyben az időpontról.</div>
+      </div>
+      <div class="vasar-item">
+        <div class="vasar-date">Nov.</div>
+        <div class="vasar-text"><strong>Márton-napi Vásár</strong> — Lúd, bor és sült gesztenye fesztiválja — az ősz végi noszvaji hangulat tetőpontja.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">ℹ️ Gyakorlati információk</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">📍 Helyszín</div>
+        <div class="ic-val">3325 Noszvaj, Kossuth Lajos út 68.<br><small style="color:var(--muted)">Faluközpont, patakmeder mellett</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🕐 Nyitvatartás</div>
+        <div class="ic-val">Minden pénteken 7:00–18:00<br><small style="color:var(--muted)">Szezonális vásárok: külön időpontban</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">📞 Infó</div>
+        <div class="ic-val">+36 36 463 006<br><small style="color:var(--muted)">infonoszvaji@gmail.com · noszvajipiac.hu</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">💰 Belépő</div>
+        <div class="ic-val">Ingyenes<br><small style="color:var(--muted)">Csak a vásárolt termékekre költ</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🚶 Megközelítés</div>
+        <div class="ic-val">Gyalog a faluközpontból<br><small style="color:var(--muted)">Parkoló a közelben</small></div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">💳 Fizetés</div>
+        <div class="ic-val">Készpénz ajánlott<br><small style="color:var(--muted)">Termelőknél nem mindig van kártyaolvasó</small></div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <a class="nav-btn nav-maps" href="https://maps.google.com/?q=Noszvaj+Kossuth+Lajos+út+68" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Google Maps
+      </a>
+      <a class="nav-btn nav-waze" href="https://waze.com/ul?ll=47.9600,20.5148&navigate=yes" target="_blank">Waze</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Tippek</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">💵</span>
+        <div class="tip-text"><strong>Hozz készpénzt!</strong> A termelők többsége nem fogad kártyát — néhány ezer forint aprópénz bőven elég egy jó vásárláshoz.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🌅</span>
+        <div class="tip-text"><strong>Érkezz korán!</strong> A legjobb helyi termékek (friss méz, házi lekvár, különleges sajtok) hamar elfogynak. 9:00 előtt a legtöbb standnál teljes kínálat van.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🫙</span>
+        <div class="tip-text"><strong>Nászúti szuvenír.</strong> A noszvaji szilva- és birslekvár, a helyi méz és a kézműves termékek tökéletes hazavihető emléktárgyak — valódi helyi különlegességek.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🗣️</span>
+        <div class="tip-text"><strong>Csevegj a termelőkkel!</strong> A noszvaji termelők szívesen mesélnek a kertjükről, a szilvaültetvényről, a méhészetről — autentikus élmény.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>

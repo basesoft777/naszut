@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masszázs & Wellness · Program Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gd:#1E4A08; --gm:#3E7A18; --gl:#EBF3E0; --gb:#C8DFB0;
+  --gm2:#5A9A28;
+  --amber:#7A5000; --al:#FFF8E8; --amber-border:#E8D5A0;
+  --ink:#1A1916; --muted:#6A6864; --border:#DDD9D0;
+  --cream:#FAF8F4; --white:#fff;
+  --easy-bg:#DFF0CC; --easy:#2E6010;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cream);min-height:100vh;}
+.topbar{background:var(--gd);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.3);position:sticky;top:0;z-index:100;}
+.topbar-badge{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:background .15s;}
+.back-btn:hover{background:rgba(255,255,255,.2);}
+.hero{background:linear-gradient(160deg,#1A1030 0%,#2A1848 55%,#3A2060 100%);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(200,150,220,.12) 0%,transparent 60%);pointer-events:none;}
+.hero-icon{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3));}
+.hero-title{font-family:var(--display);font-size:clamp(32px,6vw,52px);color:#fff;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:#D8B8F0;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);}
+.chip-green{background:var(--easy-bg);color:var(--easy);border-color:var(--gb);}
+.stats-bar{background:#fff;border-bottom:1.5px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
+.stat{flex:1;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid var(--border);gap:4px;}
+.stat:last-child{border-right:none;}
+.stat-val{font-family:var(--serif);font-size:26px;font-weight:600;color:#5A3A7A;line-height:1;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.content{max-width:760px;margin:0 auto;padding:36px 20px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:var(--display);font-size:22px;color:var(--gd);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--gb);display:flex;align-items:center;gap:8px;}
+.desc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;line-height:1.7;color:var(--ink);font-size:15px;}
+.desc-card p+p{margin-top:12px;}
+.highlight{background:var(--gl);border-left:3px solid var(--gm);padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px;color:var(--gd);margin-top:14px;font-weight:500;}
+.option-list{display:flex;flex-direction:column;gap:14px;}
+.option-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.option-head{padding:14px 18px;background:var(--gl);display:flex;align-items:center;gap:12px;}
+.option-icon{font-size:28px;}
+.option-name{font-family:var(--display);font-size:17px;color:var(--gd);}
+.option-badge{margin-left:auto;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:#fff;color:var(--gm);border:1px solid var(--gb);}
+.option-body{padding:14px 18px;}
+.option-desc{font-size:14px;line-height:1.6;color:var(--ink);margin-bottom:10px;}
+.option-detail{font-size:13px;color:var(--muted);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;}
+.info-card .ic-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.info-card .ic-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;}
+.tip-list{display:flex;flex-direction:column;gap:10px;}
+.tip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:14px;line-height:1.6;color:var(--ink);}
+.tip-text strong{color:var(--gd);}
+.tip.tip-amber{border-color:var(--amber-border);background:var(--al);}
+.tip.tip-amber .tip-text strong{color:var(--amber);}
+footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
+footer a{color:var(--gb);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <div style="display:flex;align-items:center;">
+    <span class="topbar-badge">Noszvaj · Program Guide</span>
+  </div>
+  <a class="back-btn" href="noszvaj_tervezo.html">← Vissza a tervezőbe</a>
+</nav>
+<header class="hero">
+  <span class="hero-icon">💆</span>
+  <h1 class="hero-title">Masszázs & <em>Wellness</em></h1>
+  <p class="hero-sub">Noszvaj · Treehouses · Oxigén Hotel · Pihenés</p>
+  <div class="hero-chips">
+    <span class="hero-chip chip-green">✓ Pihenés</span>
+    <span class="hero-chip">🏊 Szauna & medence</span>
+    <span class="hero-chip">⏱ 1–3 óra</span>
+    <span class="hero-chip">🏕 0–3 km</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">wellness opció</span></div>
+  <div class="stat"><span class="stat-val">0–3 km</span><span class="stat-lbl">a Cabintól</span></div>
+  <div class="stat"><span class="stat-val">Előfog-</span><span class="stat-lbl">lalás ajánlott</span></div>
+  <div class="stat"><span class="stat-val">Pihenés</span><span class="stat-lbl">nászúti tipp</span></div>
+</div>
+
+<main class="content">
+
+  <section class="section">
+    <h2 class="section-title">💆 A programról</h2>
+    <div class="desc-card">
+      <p>Egy nászúton elengedhetetlen a teljes testi-lelki kikapcsolódás — a Bükk-alja erdeinek csendje tökéletes háttér, de az aktív túrák után jól esik egy profi masszázs vagy egy szauna-körözés is. Három lehetőség közül választhatsz, mindkét opció a Cabin közelében:</p>
+      <div class="highlight">💡 A legjobb nászúti kombináció: délelőtt erdei túra → délután masszázs → este grillezés & csillagos égbolt. Tökéletes egyensúly aktivitás és pihenés között.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🌿 Wellness lehetőségek</h2>
+    <div class="option-list">
+      <div class="option-card">
+        <div class="option-head">
+          <span class="option-icon">🏡</span>
+          <span class="option-name">Treehouses — Házi masszázs</span>
+          <span class="option-badge">⭐ Legjobb</span>
+        </div>
+        <div class="option-body">
+          <div class="option-desc">A Cabin-ban kért személyes masszázs Dóra masszőrtől — svéd, relaxáló és nyak-hát célzott kezelések. A lombház saját teraszán vagy belül, a természet hangjainak kíséretével. Ez a leghangulatosabb opció egy nászúton.</div>
+          <div class="option-detail">📞 A Treehouses recepcióján foglalható · Ár: helyszínen egyeztethető · Kb. 0 km (Cabinban)</div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-head">
+          <span class="option-icon">🏊</span>
+          <span class="option-name">Oxigén Family Hotel — Zen Spa</span>
+          <span class="option-badge">Spa hotel</span>
+        </div>
+        <div class="option-body">
+          <div class="option-desc">A Hotel Oxigén Zen Spa-ja finn és infraszaunát, úszó- és gyermekmedencét, gőz- és aromakabin, sókamrát, japánkert-panorámát és professzionális masszázs-kínálatot (svéd, lávaköves, shiatsu) nyújt. Napközben külső vendégeknek is nyitott.</div>
+          <div class="option-detail">📍 Noszvaj, Szomolyai út · Kérj napijegyet a recepcióján · ~1,5 km · oxigenhotel.hu</div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-head">
+          <span class="option-icon">🌊</span>
+          <span class="option-name">Panoráma Hotel — wellness részleg</span>
+          <span class="option-badge">Alternatíva</span>
+        </div>
+        <div class="option-body">
+          <div class="option-desc">A noszvaji Panoráma Hotel pezsgőfürdővel, gőzfürdővel, két szaunával, sókamrával és masszázzsal várja a vendégeket — a panorámaterasz kilátással a Bükk-aljára.</div>
+          <div class="option-detail">📍 Noszvaj, a faluban · Egyeztetéssel látogatható napijegyekkel · ~2 km</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">💡 Tippek</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">🏡</span>
+        <div class="tip-text"><strong>Nászúton a házi masszázs a legjobb.</strong> A Treehouses Dórájának masszázsa közvetlenül a Cabinban vagy a teraszon a leghangulatosabb élmény — nincs autó, nincs hotelfolyosó, csak az erdő és a csend.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📅</span>
+        <div class="tip-text"><strong>Foglalj napijegyet előre az Oxigénbe.</strong> A Zen Spa kedvelt a nyári hónapokban — hétvégén különösen zsúfolt lehet. Hétköznap delel a legjobb választás.</div>
+      </div>
+      <div class="tip tip-amber">
+        <span class="tip-icon">⏱</span>
+        <div class="tip-text"><strong>Tervezz be pihenőnapot.</strong> Ha az összes 6 napot aktív túrával töltitek, a test is kimerül. Egy wellness-nap a hét közepén (3-4. nap) tökéletes feltöltődés a maradék túrákra.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">🔗 Kapcsolódó programok</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-icon">🔥</span>
+        <div class="tip-text"><strong>Grillezés & tábortűz (o5)</strong> — a masszázs utáni este grillezős vacsora tökéletes zárása egy pihenőnapnak.</div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🌿</span>
+        <div class="tip-text"><strong>Síkfőkúti tó (o4)</strong> — a masszázs előtt egy tóparti séta, utána pihenés: tökéletes sorrend egy regeneráló naphoz.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>
+  <p>Noszvaj Cabin · 2025 júl. 13–19 · <a href="noszvaj_tervezo.html">Tervező</a> · <a href="index.html">Főoldal</a></p>
+</footer>
+</body>
+</html>

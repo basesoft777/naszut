@@ -15,6 +15,7 @@
   --kultur-bg:#EEF2FF; --kultur:#3A40A0; --kultur-border:#C0C8F0;
   --pihen-bg:#FFF3D0; --pihen:#7A5000; --pihen-border:#E8D5A0;
   --termeszet-bg:#DFF0CC; --termeszet:#2E6010; --termeszet-border:#C8DFB0;
+  --gasztro-bg:#FFF0E8; --gasztro:#7A3000; --gasztro-border:#E8C0A0;
   --serif:'Cormorant Garamond',Georgia,serif;
   --display:'DM Serif Display',Georgia,serif;
   --sans:'DM Sans',sans-serif;
@@ -70,6 +71,7 @@ body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cr
 .fbtn.f-kultur.active{background:var(--kultur-bg);border-color:var(--kultur-border);color:var(--kultur);}
 .fbtn.f-termeszet.active{background:var(--termeszet-bg);border-color:var(--termeszet-border);color:var(--termeszet);}
 .fbtn.f-pihen.active{background:var(--pihen-bg);border-color:var(--pihen-border);color:var(--pihen);}
+.fbtn.f-gasztro.active{background:var(--gasztro-bg);border-color:var(--gasztro-border);color:var(--gasztro);}
 
 /* CONTENT */
 .content{max-width:900px;margin:0 auto;padding:36px 20px 60px;}
@@ -85,6 +87,7 @@ body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cr
 .badge-kultur{background:var(--kultur-bg);color:var(--kultur);}
 .badge-termeszet{background:var(--termeszet-bg);color:var(--termeszet);}
 .badge-pihen{background:var(--pihen-bg);color:var(--pihen);}
+.badge-gasztro{background:var(--gasztro-bg);color:var(--gasztro);}
 
 .section{margin-bottom:44px;}
 
@@ -126,6 +129,7 @@ body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cr
 .type-kultur{background:var(--kultur-bg);color:var(--kultur);}
 .type-termeszet{background:var(--termeszet-bg);color:var(--termeszet);}
 .type-pihen{background:var(--pihen-bg);color:var(--pihen);}
+.type-gasztro{background:var(--gasztro-bg);color:var(--gasztro);}
 
 .from-fahaz{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
 
@@ -153,6 +157,7 @@ body{font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--cr
 .leg-kultur{background:var(--kultur);}
 .leg-termeszet{background:var(--termeszet);}
 .leg-pihen{background:var(--pihen);}
+.leg-gasztro{background:var(--gasztro);}
 
 /* FOOTER */
 footer{background:var(--gd);color:rgba(255,255,255,.5);text-align:center;padding:18px;font-size:13px;}
@@ -173,9 +178,9 @@ footer a{color:var(--gb);text-decoration:none;}
 <header class="hero">
   <span class="hero-icon">🎯</span>
   <h1 class="hero-title">Noszvaj <em>programok</em></h1>
-  <p class="hero-sub">Síkfőkút · Bükk-alja · 7 program</p>
+  <p class="hero-sub">Síkfőkút · Bükk-alja · 14 program</p>
   <div class="hero-chips">
-    <span class="hero-chip">🏰 2 kultúra · 🌿 3 természet · 🔥 2 pihenés</span>
+    <span class="hero-chip">🏰 2 kultúra · 🌿 6 természet · 🔥 3 pihenés · 🍷 3 gasztronómia</span>
     <span class="hero-chip">📍 Legtöbb a Cabin közelében</span>
     <span class="hero-chip">🌲 Nászút hangulat</span>
   </div>
@@ -183,10 +188,11 @@ footer a{color:var(--gb);text-decoration:none;}
 
 <div class="filter-bar">
   <span class="filter-label">Szűrő:</span>
-  <button class="fbtn active" onclick="filter(this,'all')">Összes (7)</button>
+  <button class="fbtn active" onclick="filter(this,'all')">Összes (14)</button>
   <button class="fbtn f-kultur" onclick="filter(this,'kultur')">🏰 Kultúra (2)</button>
-  <button class="fbtn f-termeszet" onclick="filter(this,'termeszet')">🌿 Természet (3)</button>
-  <button class="fbtn f-pihen" onclick="filter(this,'pihen')">🔥 Pihenés (2)</button>
+  <button class="fbtn f-termeszet" onclick="filter(this,'termeszet')">🌿 Természet (6)</button>
+  <button class="fbtn f-pihen" onclick="filter(this,'pihen')">🔥 Pihenés (3)</button>
+  <button class="fbtn f-gasztro" onclick="filter(this,'gasztro')">🍷 Gasztronómia (3)</button>
 </div>
 
 <main class="content">
@@ -196,6 +202,7 @@ footer a{color:var(--gb);text-decoration:none;}
     <span class="leg-item"><span class="leg-dot leg-kultur"></span>Kultúra · Történelem</span>
     <span class="leg-item"><span class="leg-dot leg-termeszet"></span>Természet · Aktív</span>
     <span class="leg-item"><span class="leg-dot leg-pihen"></span>Pihenés · Hangulat</span>
+    <span class="leg-item"><span class="leg-dot leg-gasztro"></span>Gasztronómia · Helyi</span>
   </div>
 
   <!-- KULTÚRA -->
@@ -329,6 +336,72 @@ footer a{color:var(--gb);text-decoration:none;}
         </div>
       </div>
 
+      <!-- o8 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🐴</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Lovaglás — Agria Lovasklub</div>
+            <div class="rcard-type">Természet · Kaland · Állatsimogató</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Tereplovaglás és állatsimogató (szamár, kecske, merinójuh) a Thummerer Pince szomszédságában — a Bükk-alja dombjain lovon.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">1–2 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">~2 km</span><span class="rstat-lbl">a Cabintól</span></div>
+          <div class="rstat"><span class="rstat-val">Előfog-</span><span class="rstat-lbl">lalás kell</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link done" href="noszvaj_o8_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o12 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🎣</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Horgászat & Csónakázás</div>
+            <div class="rcard-type">Természet · Vízparti · Pihenős aktív</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Síkfőkúti Alsó-tó horgászat (ponty, csuka, keszeg) és Felső-tó csónakázás, vízibiciklizés — kellemes vízparti nap.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">2–4 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">~2 km</span><span class="rstat-lbl">a Cabintól</span></div>
+          <div class="rstat"><span class="rstat-val">Napijegy</span><span class="rstat-lbl">szükséges</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link done" href="noszvaj_o12_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o13 -->
+      <div class="rcard" data-cat="termeszet">
+        <div class="rcard-top">
+          <span class="rcard-icon">🚙</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Erdei terepjárós vadles-túra</div>
+            <div class="rcard-type">Természet · Kaland · Vadmegfigyelés</div>
+          </div>
+        </div>
+        <div class="rcard-desc">UAZ terepjárós erdei túra helyi fővadász vezetésével — szarvas, dámvad, vaddisznó a Bükk-alján. A Cabintól indul, ~3 óra.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">~3 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">UAZ</span><span class="rstat-lbl">terepjáró</span></div>
+          <div class="rstat"><span class="rstat-val">0 km</span><span class="rstat-lbl">Cabintól indul</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-termeszet">🌿 Természet</span>
+          <span class="from-fahaz">🏕 0 m · Cabintól indul</span>
+          <a class="guide-link done" href="noszvaj_o13_guide.html">Guide →</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -385,6 +458,106 @@ footer a{color:var(--gb);text-decoration:none;}
         </div>
       </div>
 
+      <!-- o14 -->
+      <div class="rcard" data-cat="pihen">
+        <div class="rcard-top">
+          <span class="rcard-icon">💆</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Masszázs & Wellness</div>
+            <div class="rcard-type">Pihenés · Regeneráló · Spa</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Házi masszázs a Cabinban (Treehouses Dóra) vagy Zen Spa az Oxigén Hotelben — szauna, medence, masszázs egy pihenőnapra.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">1–3 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">0–2 km</span><span class="rstat-lbl">a Cabintól</span></div>
+          <div class="rstat"><span class="rstat-val">Előfog-</span><span class="rstat-lbl">lalás ajánlott</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-pihen">🔥 Pihenés</span>
+          <span class="from-fahaz">🏕 0–2 km · Cabin / hotel</span>
+          <a class="guide-link done" href="noszvaj_o14_guide.html">Guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GASZTRONÓMIA -->
+  <section class="section" id="sec-gasztro">
+    <div class="sec-head">
+      <span class="sec-head-icon">🍷</span>
+      <span class="sec-head-title">Gasztronómia & Helyi termékek</span>
+      <span class="sec-head-badge badge-gasztro">Borvidék</span>
+    </div>
+    <div class="routes-grid">
+
+      <!-- o9 -->
+      <div class="rcard" data-cat="gasztro">
+        <div class="rcard-top">
+          <span class="rcard-icon">🍷</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Thummerer Borkóstoló</div>
+            <div class="rcard-type">Gasztronómia · Egri borvidék · Tufapince</div>
+          </div>
+        </div>
+        <div class="rcard-desc">4 200 m²-es tufapince bejárása + 6 borfajta kóstolás borkorcsolyával — az Egri borvidék többszörösen díjazott pincészete. Csak előfoglalással.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">4 200</span><span class="rstat-lbl">m² pince</span></div>
+          <div class="rstat"><span class="rstat-val">6+</span><span class="rstat-lbl">borfajta</span></div>
+          <div class="rstat"><span class="rstat-val">~1,5 km</span><span class="rstat-lbl">a Cabintól</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-gasztro">🍷 Gasztro</span>
+          <span class="from-fahaz">🚗 ~1,5 km · 3 perc</span>
+          <a class="guide-link done" href="noszvaj_o9_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o10 -->
+      <div class="rcard" data-cat="gasztro">
+        <div class="rcard-top">
+          <span class="rcard-icon">🥃</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Kövér Pálinkafőzde</div>
+            <div class="rcard-type">Gasztronómia · Helyi különlegesség · Díjnyertes</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Brillante-2024 díjnyertes noszvaji bérfőzde — szilva, birs, som és szomolyai feketecseresznye pálinka kóstolás és vásárlás.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">2024</span><span class="rstat-lbl">Brillante győztes</span></div>
+          <div class="rstat"><span class="rstat-val">~1 ó</span><span class="rstat-lbl">időtartam</span></div>
+          <div class="rstat"><span class="rstat-val">~2 km</span><span class="rstat-lbl">a Cabintól</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-gasztro">🥃 Gasztro</span>
+          <span class="from-fahaz">🚗 ~2 km · 5 perc</span>
+          <a class="guide-link done" href="noszvaj_o10_guide.html">Guide →</a>
+        </div>
+      </div>
+
+      <!-- o11 -->
+      <div class="rcard" data-cat="gasztro">
+        <div class="rcard-top">
+          <span class="rcard-icon">🛒</span>
+          <div class="rcard-info">
+            <div class="rcard-name">Patakparti Piac</div>
+            <div class="rcard-type">Gasztronómia · Termelői piac · Pénteki vásár</div>
+          </div>
+        </div>
+        <div class="rcard-desc">Helyi termelői piac Noszvaj faluközpontjában — méz, házi lekvár, friss zöldség, sajt, gyógynövény, kézművesáru. Csak pénteken, 7–18h.</div>
+        <div class="rcard-stats">
+          <div class="rstat"><span class="rstat-val">Péntek</span><span class="rstat-lbl">7:00–18:00</span></div>
+          <div class="rstat"><span class="rstat-val">Ingyen</span><span class="rstat-lbl">belépő</span></div>
+          <div class="rstat"><span class="rstat-val">~500 m</span><span class="rstat-lbl">a Cabintól</span></div>
+        </div>
+        <div class="rcard-foot">
+          <span class="type-badge type-gasztro">🛒 Gasztro</span>
+          <span class="from-fahaz">🚶 ~500 m · gyalog</span>
+          <a class="guide-link done" href="noszvaj_o11_guide.html">Guide →</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -408,7 +581,7 @@ function filter(btn, type) {
     }
   });
 
-  ['kultur','termeszet','pihen'].forEach(cat => {
+  ['kultur','termeszet','pihen','gasztro'].forEach(cat => {
     const sec = document.getElementById('sec-' + cat);
     if (!sec) return;
     const visible = sec.querySelectorAll('.rcard:not(.hidden)').length;
