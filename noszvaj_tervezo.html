@@ -269,16 +269,6 @@ body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--cr
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 /* ── LEGEND BAR ── */
-.legend-bar{background:#FAFAF7;border-top:1px solid var(--border);padding:5px 16px;display:flex;align-items:center;gap:5px;flex-shrink:0;flex-wrap:wrap;}
-.legend-bar-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-.legend-sep{width:1px;height:22px;background:var(--border);flex-shrink:0;margin:0 6px;}
-.legend-items{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1;}
-.legend-item{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--muted);line-height:1.3;}
-.legend-item strong{font-weight:600;color:var(--ink);}
-.legend-pill{font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-.lb-auto{background:var(--gl);border:1.5px dashed var(--gb);color:var(--gd);}
-.lb-suggest{background:#FFFBF0;border:1.5px dashed #C8900A;color:#7A5000;}
-.lb-placed{background:var(--cream);border:1.5px solid var(--border);color:var(--muted);}
 </style>
 </head>
 <body>
@@ -804,70 +794,7 @@ const OTHER = [
    felszereles:"Kerékpár (Cabinnál bérlés lehetséges), sisak",
    details:"Kerékpárbérlés: érdeklődj a Cabinnál · Enyhe domborzat",
    fromFahaz:"0 m (Cabintól indul)",
-   guide:"noszvaj_o7_guide.html"},
-
-  {id:'o8',icon:'🐴',name:"Lovaglás — Agria Lovasklub",type:"Természet",
-   timeH:2.0, time:"1–2 óra", diff:"Könnyű",
-   desc:"Tereplovaglás és állatsimogató (szamár, kecske, juh) a Thummerer Pince szomszédságában — előfoglalással.",
-   mikor:"Délelőtt, előzetes egyeztetéssel",
-   felszereles:"Hosszú nadrág, zárt cipő, sisak helyszínen",
-   details:"Noszvaj, Szomolyai út · Thummerer Ildikó: +36 30 5030 515 · agrialovasklub.hu",
-   fromFahaz:"~2 km autóval (5 perc)",
-   guide:"noszvaj_o8_guide.html"},
-
-  {id:'o9',icon:'🍷',name:"Thummerer Borkóstoló",type:"Gasztronómia",
-   timeH:1.5, time:"1,5–2 óra", diff:"Pihenés",
-   desc:"4200 m²-es tufapince bejárása + 6 borfajta kóstolás borkorcsolyával — az Egri borvidék egyik legrangosabb pincészete.",
-   mikor:"Délután, előzetes bejelentkezéssel (hétfő-kedd szünnap)",
-   felszereles:"Vékony kabát (pincében hűvös), autóban 1 vezető ne igyon",
-   details:"Noszvaj, Szomolyai út · Tel: +36 36 463 269 · thummerer.hu · CSAK foglalással!",
-   fromFahaz:"~1,5 km autóval (3 perc)",
-   guide:"noszvaj_o9_guide.html"},
-
-  {id:'o10',icon:'🥃',name:"Kövér Pálinkafőzde",type:"Gasztronómia",
-   timeH:1.0, time:"~1 óra", diff:"Pihenés",
-   desc:"Brillante-2024 díjnyertes bérfőzde — szilva, birs, som, szomolyai feketecseresznye pálinka kóstolás és vásárlás.",
-   mikor:"Előzetes egyeztetéssel, egész évben",
-   felszereles:"Semmi különös",
-   details:"Noszvaj külterület · +36 30 169 2772 · koverpalinka@gmail.com · koverpalinkafozde.hu",
-   fromFahaz:"~2 km autóval (5 perc)",
-   guide:"noszvaj_o10_guide.html"},
-
-  {id:'o11',icon:'🛒',name:"Patakparti Piac",type:"Gasztronómia",
-   timeH:1.5, time:"1–2 óra", diff:"Könnyű",
-   desc:"Helyi termelői piac Noszvaj faluközpontjában — méz, lekvár, friss zöldség, sajt, kézművesáru. Csak pénteken!",
-   mikor:"Pénteken 7:00–18:00 (szezonális vásárok: Szilvanap, Birsünnep)",
-   felszereles:"Készpénz, bevásárló táska",
-   details:"3325 Noszvaj, Kossuth Lajos út 68. · +36 36 463 006 · noszvajipiac.hu",
-   fromFahaz:"~500 m gyalog (faluközpont)",
-   guide:"noszvaj_o11_guide.html"},
-
-  {id:'o12',icon:'🎣',name:"Horgászat & Csónakázás",type:"Természet",
-   timeH:3.0, time:"2–4 óra", diff:"Könnyű",
-   desc:"Síkfőkúti Alsó-tó horgászat (ponty, csuka, keszeg) + Felső-tó csónakázás és vízibicikli — pihenős vízparti nap.",
-   mikor:"Délelőtt (horgászat), délután (csónakázás)",
-   felszereles:"Horgászkészség vagy bérelt, napvédő, víz",
-   details:"Hotel Síkfőkút közelében · Napijegy a recepcióján · Állami horgászjegy szükséges",
-   fromFahaz:"~2 km autóval (5 perc)",
-   guide:"noszvaj_o12_guide.html"},
-
-  {id:'o13',icon:'🚙',name:"Erdei terepjárós vadles-túra",type:"Természet",
-   timeH:3.0, time:"~3 óra", diff:"Könnyű",
-   desc:"UAZ terepjárós erdei túra helyi fővadász vezetésével — szarvas, dámvad, vaddisznó megfigyelése a Bükk-alján. Cabintól indul.",
-   mikor:"Délelőtt vagy szürkületkor (őszi szarvasbőgés idején különleges)",
-   felszereles:"Hosszú nadrág, zárt cipő, kamera zoomlencsével",
-   details:"Foglalás: Treehouses recepció · Cabintól indul · Kb. 3 óra · Előfoglalás szükséges",
-   fromFahaz:"0 m (Cabintól indul)",
-   guide:"noszvaj_o13_guide.html"},
-
-  {id:'o14',icon:'💆',name:"Masszázs & Wellness",type:"Pihenés",
-   timeH:2.0, time:"1–3 óra", diff:"Pihenés",
-   desc:"Házi masszázs a Cabinban (Treehouses Dóra) vagy Zen Spa az Oxigén Family Hotelben — szauna, medence, masszázs.",
-   mikor:"Pihenőnapon, délután — az aktív napok között ideális",
-   felszereles:"Fürdőruha (hotelnél), semmi extra (házi masszázshoz)",
-   details:"Treehouses recepció (házi) · Oxigén Hotel: oxigenhotel.hu · Panoráma Hotel alternatíva",
-   fromFahaz:"0–2 km (Cabinban ill. Szomolyai úton)",
-   guide:"noszvaj_o14_guide.html"}
+   guide:"noszvaj_o7_guide.html"}
 ];
 
 // Shared sights across multiple routes
@@ -3033,28 +2960,5 @@ renderLib();
 renderPlanner();
 
 </script>
-
-<div class="legend-bar">
-  <span class="legend-bar-title">Jelmagyarázat</span>
-  <div class="legend-sep"></div>
-  <div class="legend-items">
-    <div class="legend-item">
-      <div class="legend-pill lb-auto">Automatikus</div>
-      <span>reggeli &amp; ebéd — program alapján számítva</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-pill lb-suggest">💡 Javaslat</div>
-      <span>vacsora — az útvonal alapján; húzz rá éttermet a cseréhez</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-pill lb-placed">Saját elem</div>
-      <span>húzd be a könyvtárból — átrendezhető, törölhető</span>
-    </div>
-    <div class="legend-item">
-      <span style="font-size:13px">🔄</span>
-      <span><strong>Átfedő látnivaló</strong> — több útvonalon is elérhető</span>
-    </div>
-  </div>
-</div>
 </body>
 </html>
