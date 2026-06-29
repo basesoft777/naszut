@@ -20,7 +20,7 @@ header {
 }
 header h1 { font-size: 1.35rem; font-weight: 700; color: #2d3748; }
 header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
-
+ 
 /* CARD */
 .card {
   background: #fff;
@@ -43,7 +43,7 @@ header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
 .card-header .meta { font-size: .78rem; opacity: .85; margin-top: .15rem; }
 .card-header.aktiv { background: #276749; }
 .card-header.aktualis { background: #2c7a7b; }
-
+ 
 /* NARRÁCIÓS BLOKK */
 .narracio {
   background: #ebf8ff;
@@ -56,7 +56,7 @@ header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
   border-radius: 0 8px 8px 0;
 }
 .narracio.aktiv { background: #f0fff4; border-color: #276749; color: #1c4532; }
-
+ 
 /* ELŐREJELZÉS TÁBLÁZAT */
 .table-wrap {
   padding: .75rem;
@@ -96,7 +96,7 @@ tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e
 .pill-sun  { background: #fefcbf; color: #744210; }
 .pill-rain { background: #bee3f8; color: #2c5282; }
 .pill-cloud{ background: #e2e8f0; color: #4a5568; }
-
+ 
 /* AKTUÁLIS KÁRTYA GRID */
 .stat-grid {
   display: grid;
@@ -123,7 +123,7 @@ tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e
   font-weight: 700;
   color: #2d3748;
 }
-
+ 
 footer {
   text-align: center;
   font-size: .75rem;
@@ -137,7 +137,51 @@ footer {
     <h1>🗓 Napi időjárás-előrejelzés</h1>
     <p>Frissítve: 2026-06-29 · Open-Meteo · Claude AI összefoglaló</p>
   </header>
+  
+<div class="card">
+  <div class="card-header ">
+    <span class="emoji">📅</span>
+    <div>
+      <h2>Noszvaj</h2>
+      <div class="meta">🔮 14 nap múlva – előrejelzés</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nap</th><th>Idő</th><th>Max / Min</th>
+          <th>Eső %</th><th>Csap.</th><th>Szél</th><th>UV</th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td>2026-07-13</td>
+      <td><span class="pill pill-sun">☀️ Napos</span></td>
+      <td><strong>38.6°</strong> / 27.1°</td>
+      <td>30%</td>
+      <td>0.0 mm</td>
+      <td>12.4 km/h</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>2026-07-14</td>
+      <td><span class="pill pill-sun">☀️ Napos</span></td>
+      <td><strong>34.0°</strong> / 21.7°</td>
+      <td>18%</td>
+      <td>0.0 mm</td>
+      <td>12.0 km/h</td>
+      <td>5.8</td>
+    </tr></tbody>
+    </table>
+  </div>
+  <div class="narracio"># Időjárás-összefoglaló Noszvajra (július 13-14.)
 
+Noszvajban július második felében **intenzív nyári forróság** vár rá, amely igazi kirándulásra nem ideális, de a szervezés szempontjából jól megjósolható. A **13. július** lesz a melegebb nap 38,6°C-os csúccsal és szinte száraz idővel, míg a **14. július** kicsit enyhébb (34°C), vagyis ez lesz a "tűrhető" nap, ha már ki kell mozdulnod. Mindkét nap szinte esőmentes lesz, csupán kisebb záporesés lehetősége (30%, illetve 18%), így az eső nem lesz gond.
+
+**Praktikus tanácsok:** Ifjonlyúl ilyen hőségben a korai reggelt vagy késő délutánt/estét válaszd ki a gyalogláshoz – a nap delejen maradj árnyékban! Vigyél magaddal bőséges vizet (legalább 2-3 liter), naptejjel, kalappal és napszemüveggel védd magad, hiszen az UV-sugárzás nagyon intenzív (6,8). A szél enyhe, így nem számíthatsz hűvösítésre, de legalább nem lesz fullasztó. Ha tehetted, halaszd el a kirándulást hűvösebb időszakra! 🌞</div>
+  <div style="height:.75rem"></div>
+</div>
 <div class="card">
   <div class="card-header aktualis">
     <span class="emoji">📍</span>
@@ -154,25 +198,11 @@ footer {
     <div class="stat-box"><div class="lbl">Szél</div><div class="val">9.7 km/h</div></div>
     <div class="stat-box"><div class="lbl">UV index</div><div class="val">7.0</div></div>
   </div>
-  <div class="narracio"># Időjárás-összefoglaló – Bélapátfalva, 2026. június 29.
+  <div class="narracio"># Időjárás-összefoglaló – Bélapátfalva (2026-06-29)
 
-Szuper időre számíthatsz Bélapátfalván: nagyszerű napsütés vár ránk 37 fokos maximummal, szinte csapadékmentes kond­íciók mellett! Az UV-sugárzás elég intenzív lesz, és az enyhe szellő garantálja a kellemes hőérzetet. Az eseményed hamarosan kezdődik, szóval érdemes napvédőt magaddal vinni és bőven inni az alatt – garantáltan gyönyörű időnk lesz! 🌞</div>
+Remek időnk lesz Bélapátfalván! A nap igen meleg lesz – 37 fokig melegszik fel, gyakorlatilag száraz időre számíthatunk (csapadék majdnem biztos, hogy nem lesz), és csak gyenge szél fúj majd. Az esemény hamarosan kezdődik, szóval érdemes megfelelő hidratálásról és napvédelemről gondoskodni – az UV sugárzás erős lesz!</div>
   <div style="height:.75rem"></div>
 </div>
   <footer>open-meteo.com · Anthropic Claude</footer>
-<script>
-function sendHeight() {
-  var h = document.body.scrollHeight;
-  window.parent.postMessage({type:'iframeHeight', height: h}, '*');
-}
-window.addEventListener('load', function() {
-  sendHeight();
-  setTimeout(sendHeight, 800);
-  setTimeout(sendHeight, 2000);
-});
-window.addEventListener('message', function(e) {
-  if (e.data === 'getHeight') sendHeight();
-});
-</script>
 </body>
 </html>
