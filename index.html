@@ -1,344 +1,164 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nászút & Kirándulás · Bükk 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --gd:#1E4A08;--gm:#3E7A18;--gl:#EBF3E0;--gb:#C8DFB0;
-  --am:#7A5000;--al:#FFF8E8;
-  --ink:#1A1916;--muted:#6A6864;--border:#DDD9D0;
-  --cream:#FAF8F4;--white:#FFFFFF;
-  --sans:'DM Sans',sans-serif;
-  --serif:'DM Serif Display',Georgia,serif;
-  --cg:'Cormorant Garamond',Georgia,serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Időjárás – 2026-06-30</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #eef2f7;
+  color: #1a202c;
+  padding: 1.25rem;
+  max-width: 740px;
+  margin: 0 auto;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--cream);font-family:var(--sans);color:var(--ink);font-size:16px;line-height:1.7;min-height:100vh;}
-
-/* ── HERO ── */
-.hero {
-  background:linear-gradient(160deg,rgba(30,74,8,.90) 0%,rgba(62,122,24,.78) 55%,rgba(200,223,176,.35) 100%),
-            url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80') center/cover no-repeat;
-  padding:48px 24px 40px;
-  text-align:center;
-  border-bottom:2px solid var(--gb);
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
-.hero-eyebrow {
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gb);margin-bottom:12px;font-weight:500;
+header h1 { font-size: 1.35rem; font-weight: 700; color: #2d3748; }
+header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
+ 
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #cbd5e0;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
-.hero h1 {
-  font-family:var(--serif);font-size:clamp(28px,5vw,52px);font-weight:400;
-  color:#fff;line-height:1.1;margin-bottom:6px;
+.card-header {
+  background: #2b6cb0;
+  color: #fff;
+  padding: .9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
 }
-.hero h1 em{font-style:italic;color:var(--gb);}
-.hero-divider{width:40px;height:2px;background:var(--gb);margin:14px auto;}
-.hero-sub{font-size:15px;color:rgba(255,255,255,.82);max-width:420px;margin:0 auto;}
-.hero-dates{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center;}
-.hero-date-pill{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.22);
-  border-radius:20px;padding:6px 14px;font-size:13px;color:#fff;font-weight:500;
+.card-header .emoji { font-size: 1.6rem; line-height: 1; }
+.card-header h2    { font-size: 1.05rem; font-weight: 700; }
+.card-header .meta { font-size: .78rem; opacity: .85; margin-top: .15rem; }
+.card-header.aktiv { background: #276749; }
+.card-header.aktualis { background: #2c7a7b; }
+ 
+/* NARRÁCIÓS BLOKK */
+.narracio {
+  background: #ebf8ff;
+  border-left: 5px solid #2b6cb0;
+  padding: .85rem 1.1rem;
+  font-size: .92rem;
+  line-height: 1.7;
+  color: #1a365d;
+  margin: .75rem .75rem 0;
+  border-radius: 0 8px 8px 0;
 }
-.hero-date-pill svg{width:13px;height:13px;opacity:.75;}
-
-/* ── WRAP ── */
-.wrap{max-width:920px;margin:0 auto;padding:32px 24px 64px;}
-
-/* ── SECTION HEADER ── */
-.sec-head{margin-bottom:20px;}
-.sec-title{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:400;color:var(--gd);margin-bottom:4px;}
-.sec-sub{font-size:13px;color:var(--muted);}
-.sec-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--gb),transparent);margin:14px 0 22px;}
-
-/* ── LOCATION CARDS ── */
-.location-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px;margin-bottom:44px;}
-@media(max-width:480px){.location-grid{grid-template-columns:1fr;}}
-
-.loc-card{
-  background:var(--white);border:1.5px solid var(--border);
-  border-radius:12px;overflow:hidden;
-  box-shadow:0 2px 10px rgba(30,74,8,.05);
-  transition:box-shadow .2s,transform .15s;
+.narracio.aktiv { background: #f0fff4; border-color: #276749; color: #1c4532; }
+ 
+/* ELŐREJELZÉS TÁBLÁZAT */
+.table-wrap {
+  padding: .75rem;
+  overflow-x: auto;
 }
-.loc-card:hover{box-shadow:0 5px 20px rgba(30,74,8,.10);transform:translateY(-2px);}
-
-.loc-header{
-  background:linear-gradient(115deg,var(--gd),var(--gm));
-  padding:18px 20px 14px;color:#fff;
-  display:flex;align-items:flex-start;gap:12px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .84rem;
 }
-.loc-icon{font-size:28px;line-height:1;flex-shrink:0;margin-top:2px;}
-.loc-header h2{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.2;}
-.loc-meta{font-size:12px;opacity:.8;margin-top:3px;}
-
-.loc-body{padding:16px 20px 18px;}
-.nav-links{display:flex;flex-direction:column;gap:7px;}
-
-.nav-link{
-  display:flex;align-items:center;gap:10px;
-  text-decoration:none;padding:10px 13px;
-  border-radius:8px;border:1.5px solid var(--border);
-  background:var(--white);color:var(--ink);
-  font-size:14px;font-weight:500;
-  transition:background .14s,border-color .14s,color .14s;
+thead tr { background: #f7fafc; }
+th {
+  padding: .45rem .7rem;
+  text-align: left;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #4a5568;
+  border-bottom: 2px solid #cbd5e0;
 }
-.nav-link:hover{background:var(--gl);border-color:var(--gb);color:var(--gd);}
-.nav-link .nl-icon{font-size:17px;flex-shrink:0;width:26px;text-align:center;}
-.nav-link .nl-text{flex:1;}
-.nav-link .nl-label{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:1px;}
-.nav-link .nl-arrow{color:var(--muted);font-size:15px;flex-shrink:0;}
-.nav-link:hover .nl-arrow{color:var(--gm);}
-.nav-link.featured{background:var(--gd);border-color:var(--gd);color:#fff;}
-.nav-link.featured:hover{background:#2a6010;border-color:#2a6010;}
-.nav-link.featured .nl-label{color:rgba(255,255,255,.68);}
-.nav-link.featured .nl-arrow{color:rgba(255,255,255,.55);}
-
-/* ── IDŐJÁRÁS SZEKCIÓ ── */
-.weather-section{margin-bottom:44px;}
-
-/* Seamless keret — nincs kék sáv, illeszkedik az oldalba */
-.weather-card{
-  background:var(--white);border:1.5px solid var(--border);
-  border-radius:12px;overflow:hidden;
-  box-shadow:0 2px 10px rgba(30,74,8,.05);
+td {
+  padding: .45rem .7rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
 }
-.weather-card-header{
-  background:var(--gl);border-bottom:1.5px solid var(--gb);
-  padding:14px 20px;display:flex;align-items:center;gap:10px;
+tr:last-child td { border-bottom: none; }
+tr.ma td { background: #fffbeb; font-weight: 600; }
+tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e2e; }
+.pill {
+  display: inline-block;
+  padding: .15rem .55rem;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
 }
-.weather-card-header svg{width:18px;height:18px;color:var(--gm);flex-shrink:0;}
-.weather-card-header h3{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--gd);}
-.weather-card-header .wh-meta{font-size:12px;color:var(--muted);margin-left:auto;}
-
-#weather-body{position:relative;min-height:120px;}
-
-.weather-loading{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:40px 24px;gap:10px;color:var(--muted);font-size:14px;
+.pill-sun  { background: #fefcbf; color: #744210; }
+.pill-rain { background: #bee3f8; color: #2c5282; }
+.pill-cloud{ background: #e2e8f0; color: #4a5568; }
+ 
+/* AKTUÁLIS KÁRTYA GRID */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: .6rem;
+  padding: .75rem;
 }
-.spin{
-  width:28px;height:28px;border:2.5px solid var(--gb);
-  border-top-color:var(--gm);border-radius:50%;
-  animation:spin .8s linear infinite;
+.stat-box {
+  background: #f7fafc;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 10px;
+  padding: .6rem .8rem;
 }
-@keyframes spin{to{transform:rotate(360deg);}}
-
-.weather-error{
-  padding:24px;text-align:center;color:var(--muted);font-size:14px;
+.stat-box .lbl {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #718096;
+  margin-bottom: .2rem;
 }
-.weather-error a{color:var(--gm);text-decoration:none;font-weight:500;}
-.weather-error a:hover{text-decoration:underline;}
-
-/* Az iframe maga teljesen beolvad — nincs keret, nincs scrollbar */
-#idojaras-frame{
-  width:100%;border:none;display:none;
-  height:1400px;transition:height .35s ease;
-  background:transparent;
+.stat-box .val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2d3748;
 }
-
-/* ── FOOTER ── */
-footer{
-  text-align:center;padding:20px;
-  border-top:1px solid var(--border);
-  font-size:13px;color:var(--muted);background:var(--white);
-}
-footer strong{color:var(--gd);}
-
-@media(max-width:600px){
-  .hero{padding:36px 18px 30px;}
-  .wrap{padding:22px 14px 48px;}
+ 
+footer {
+  text-align: center;
+  font-size: .75rem;
+  color: #a0aec0;
+  margin-top: 1.25rem;
 }
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <p class="hero-eyebrow">Bükki Nemzeti Park · 2025 nyár</p>
-  <h1><em>Nászút</em> & Kirándulás</h1>
-  <div class="hero-divider"></div>
-  <p class="hero-sub">Két varázslatos helyszín a Bükkben — tervező, étkezés és bevásárlás egyben.</p>
-  <div class="hero-dates">
-    <span class="hero-date-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Noszvaj · júl. 13–19.
-    </span>
-    <span class="hero-date-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Bélapátfalva · aug. 3–7.
-    </span>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <!-- HELYSZÍNEK -->
-  <div class="sec-head">
-    <p class="sec-title">Helyszínek & Tervező</p>
-    <p class="sec-sub">Válassz helyszínt a programok, étkezés és bevásárlás oldalakhoz.</p>
-  </div>
-  <div class="sec-divider"></div>
-
-  <div class="location-grid">
-
-    <!-- NOSZVAJ -->
-    <div class="loc-card">
-      <div class="loc-header">
-        <div class="loc-icon">🌲</div>
-        <div>
-          <h2>Noszvaj Cabin</h2>
-          <div class="loc-meta">Síkfőkút · Bükk-alja · 6 éjszaka</div>
-        </div>
-      </div>
-      <div class="loc-body">
-        <nav class="nav-links">
-          <a class="nav-link featured" href="noszvaj_tervezo.html">
-            <span class="nl-icon">📅</span>
-            <span class="nl-text">Program tervező<span class="nl-label">Drag & drop naptár · 6 nap</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="noszvaj_etkezes.html">
-            <span class="nl-icon">🍽️</span>
-            <span class="nl-text">Étkezési lehetőségek & költségek<span class="nl-label">Éttermek, árak, navigáció</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="noszvaj_bevasarlas.html">
-            <span class="nl-icon">🛒</span>
-            <span class="nl-text">Bevásárlási guide<span class="nl-label">Boltok, nyitvatartás, távolságok</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="noszvaj_turak.html">
-            <span class="nl-icon">🥾</span>
-            <span class="nl-text">Túrák összefoglalója<span class="nl-label">9 útvonal · nehézség szerint</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="noszvaj_programok.html">
-            <span class="nl-icon">🌟</span>
-            <span class="nl-text">Programok & látnivalók<span class="nl-label">14 program · kastély, lovaglás, borkóstoló, vadles-túra…</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-
-    <!-- BÉLAPÁTFALVA -->
-    <div class="loc-card">
-      <div class="loc-header">
-        <div class="loc-icon">🏔️</div>
-        <div>
-          <h2>Erdei-lak Faházikó</h2>
-          <div class="loc-meta">Bélapátfalva · Bükki NP · 4 éjszaka</div>
-        </div>
-      </div>
-      <div class="loc-body">
-        <nav class="nav-links">
-          <a class="nav-link featured" href="belapatfalva_tervezo.html">
-            <span class="nl-icon">📅</span>
-            <span class="nl-text">Program tervező<span class="nl-label">Drag & drop naptár · 4 nap</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="belapatfalva_etkezes.html">
-            <span class="nl-icon">🍽️</span>
-            <span class="nl-text">Étkezési lehetőségek & költségek<span class="nl-label">Éttermek, árak, navigáció</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="belapatfalva_bevasarlas.html">
-            <span class="nl-icon">🛒</span>
-            <span class="nl-text">Bevásárlási guide<span class="nl-label">Boltok, nyitvatartás, távolságok</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="belapatfalva_turak.html">
-            <span class="nl-icon">🥾</span>
-            <span class="nl-text">Túrák összefoglalója<span class="nl-label">9 útvonal · Bél-kő, Istállós-kő, Szalajka-völgy…</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-          <a class="nav-link" href="belapatfalva_programok.html">
-            <span class="nl-icon">🌟</span>
-            <span class="nl-text">Programok & látnivalók<span class="nl-label">12 program · kisvasút, ménesudvar, kalandpark…</span></span>
-            <span class="nl-arrow">→</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- IDŐJÁRÁS -->
-  <div class="weather-section">
-    <div class="sec-head">
-      <p class="sec-title">🌤 Időjárás előrejelzés</p>
-      <p class="sec-sub">Naponta frissül · Noszvaj & Bélapátfalva · Open-Meteo + AI narráció</p>
-    </div>
-    <div class="sec-divider"></div>
-
-    <div class="weather-card">
-      <div class="weather-card-header">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-        </svg>
-        <h3>Élő előrejelzés</h3>
-        <span class="wh-meta" id="weather-date"></span>
-      </div>
-      <div id="weather-body">
-        <div class="weather-loading" id="weather-loading">
-          <div class="spin"></div>
-          <span>Előrejelzés betöltése…</span>
-        </div>
-        <iframe
-          id="idojaras-frame"
-          src="https://basesoft777.github.io/naszut/idojaras.html"
-          scrolling="no"
-          title="Időjárás előrejelzés"
-        ></iframe>
-      </div>
+  <header>
+    <h1>🗓 Napi időjárás-előrejelzés</h1>
+    <p>Frissítve: 2026-06-30 · Open-Meteo · Claude AI összefoglaló</p>
+  </header>
+  
+<div class="card">
+  <div class="card-header aktualis">
+    <span class="emoji">📍</span>
+    <div>
+      <h2>Bélapátfalva</h2>
+      <div class="meta">⏳ 34 nap múlva kezdődik · Jelenlegi időjárás</div>
     </div>
   </div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="lbl">Max hőmérséklet</div><div class="val">34.9°C</div></div>
+    <div class="stat-box"><div class="lbl">Min hőmérséklet</div><div class="val">22.7°C</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék esély</div><div class="val">65%</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék</div><div class="val">0.0 mm</div></div>
+    <div class="stat-box"><div class="lbl">Szél</div><div class="val">29.2 km/h</div></div>
+    <div class="stat-box"><div class="lbl">UV index</div><div class="val">7.0</div></div>
+  </div>
+  <div class="narracio"># Időjárás-összefoglaló: Bélapátfalva - 2026. június 30.
 
-</main>
-
-<footer>
-  <strong>Nászút & Kirándulás · 2025</strong> &nbsp;·&nbsp;
-  Bükk · Noszvaj Cabin · Bélapátfalva Erdei-lak
-</footer>
-
-<script>
-const frame = document.getElementById('idojaras-frame');
-const loading = document.getElementById('weather-loading');
-const dateEl = document.getElementById('weather-date');
-
-dateEl.textContent = new Date().toLocaleDateString('hu-HU', {year:'numeric',month:'long',day:'numeric'});
-
-function frameLoaded() {
-  loading.style.display = 'none';
-  frame.style.display = 'block';
-  setTimeout(function() {
-    frame.contentWindow.postMessage('getHeight', '*');
-  }, 400);
-}
-
-function frameError() {
-  loading.innerHTML = '<div class="weather-error">' +
-    '⚠️ Az előrejelzés jelenleg nem elérhető.<br>' +
-    '<a href="https://basesoft777.github.io/naszut/idojaras.html" target="_blank" rel="noopener">Megnyitás külön ablakban →</a>' +
-    '</div>';
-}
-
-frame.addEventListener('load', frameLoaded);
-frame.addEventListener('error', frameError);
-
-window.addEventListener('message', function(e) {
-  if (e.data && e.data.type === 'iframeHeight') {
-    var h = parseInt(e.data.height);
-    if (h > 100) frame.style.height = (h + 40) + 'px';
-  }
-});
-
-setTimeout(function() {
-  if (frame.style.display === 'none') { frameError(); }
-}, 10000);
-</script>
+Nagyon meleg és szeles időre számíthatsz Bélapátfilván! 🌡️ A hőmérséklet 23 és 35 fok között alakul majd, erős, 29 km/h-s szél kíséri a napot, és bár csapadék nem valószínű, az UV sugárzás elég intenzív lesz. Az időszak hamarosan kezdődik, szóval ne felejtsd el a napszemüveget és a hidratálást!</div>
+  <div style="height:.75rem"></div>
+</div>
+  <footer>open-meteo.com · Anthropic Claude</footer>
 </body>
 </html>
