@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Időjárás – 2026-06-30</title>
+  <title>Időjárás – 2026-07-12</title>
   <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -20,7 +20,7 @@ header {
 }
 header h1 { font-size: 1.35rem; font-weight: 700; color: #2d3748; }
 header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
- 
+
 /* CARD */
 .card {
   background: #fff;
@@ -43,7 +43,7 @@ header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
 .card-header .meta { font-size: .78rem; opacity: .85; margin-top: .15rem; }
 .card-header.aktiv { background: #276749; }
 .card-header.aktualis { background: #2c7a7b; }
- 
+
 /* NARRÁCIÓS BLOKK */
 .narracio {
   background: #ebf8ff;
@@ -56,7 +56,7 @@ header p  { font-size: .85rem; color: #718096; margin-top: .2rem; }
   border-radius: 0 8px 8px 0;
 }
 .narracio.aktiv { background: #f0fff4; border-color: #276749; color: #1c4532; }
- 
+
 /* ELŐREJELZÉS TÁBLÁZAT */
 .table-wrap {
   padding: .75rem;
@@ -96,7 +96,7 @@ tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e
 .pill-sun  { background: #fefcbf; color: #744210; }
 .pill-rain { background: #bee3f8; color: #2c5282; }
 .pill-cloud{ background: #e2e8f0; color: #4a5568; }
- 
+
 /* AKTUÁLIS KÁRTYA GRID */
 .stat-grid {
   display: grid;
@@ -123,7 +123,7 @@ tr.ma td:first-child::after { content: " ◀ ma"; font-size: .7rem; color: #d69e
   font-weight: 700;
   color: #2d3748;
 }
- 
+
 footer {
   text-align: center;
   font-size: .75rem;
@@ -135,28 +135,117 @@ footer {
 <body>
   <header>
     <h1>🗓 Napi időjárás-előrejelzés</h1>
-    <p>Frissítve: 2026-06-30 · Open-Meteo · Claude AI összefoglaló</p>
+    <p>Frissítve: 2026-07-12 · Open-Meteo · Claude AI összefoglaló</p>
   </header>
   
+<div class="card">
+  <div class="card-header ">
+    <span class="emoji">📅</span>
+    <div>
+      <h2>Noszvaj</h2>
+      <div class="meta">🔮 1 nap múlva – előrejelzés</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nap</th><th>Idő</th><th>Max / Min</th>
+          <th>Eső %</th><th>Csap.</th><th>Szél</th><th>UV</th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td>2026-07-13</td>
+      <td><span class="pill pill-sun">☀️ Napos</span></td>
+      <td><strong>28.1°</strong> / 16.3°</td>
+      <td>20%</td>
+      <td>0.0 mm</td>
+      <td>12.6 km/h</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <td>2026-07-14</td>
+      <td><span class="pill pill-rain">🌧 Esős</span></td>
+      <td><strong>30.1°</strong> / 16.5°</td>
+      <td>74%</td>
+      <td>0.0 mm</td>
+      <td>11.5 km/h</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <td>2026-07-15</td>
+      <td><span class="pill pill-rain">🌧 Esős</span></td>
+      <td><strong>28.7°</strong> / 19.3°</td>
+      <td>90%</td>
+      <td>1.2 mm</td>
+      <td>17.4 km/h</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>2026-07-16</td>
+      <td><span class="pill pill-cloud">⛅ Változékony</span></td>
+      <td><strong>30.6°</strong> / 20.0°</td>
+      <td>46%</td>
+      <td>0.0 mm</td>
+      <td>13.6 km/h</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>2026-07-17</td>
+      <td><span class="pill pill-cloud">⛅ Változékony</span></td>
+      <td><strong>32.4°</strong> / 21.5°</td>
+      <td>51%</td>
+      <td>0.0 mm</td>
+      <td>13.9 km/h</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <td>2026-07-18</td>
+      <td><span class="pill pill-cloud">⛅ Változékony</span></td>
+      <td><strong>29.0°</strong> / 22.3°</td>
+      <td>45%</td>
+      <td>0.3 mm</td>
+      <td>10.0 km/h</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>2026-07-19</td>
+      <td><span class="pill pill-cloud">⛅ Változékony</span></td>
+      <td><strong>26.5°</strong> / 21.2°</td>
+      <td>54%</td>
+      <td>1.2 mm</td>
+      <td>6.4 km/h</td>
+      <td>6.8</td>
+    </tr></tbody>
+    </table>
+  </div>
+  <div class="narracio"># Noszvaj időjárás-előrejelzés (2026.07.13-19)
+
+A következő héten **július 13. és 16-17. napjai** ideálisak lesznek a kiránduláshoz – tiszta ég, napsütés és kellemes hőmérséklet jellemzi majd ezeket a napokat. Azonban **július 15-én számítanod kell záporokra** (90% esély), valamint 18-19-én is előfordulhat kisebb csapadék, ezeket inkább spórolj ki vagy csak rövid túrázásra szánnod. Az időszak általában meleg és nyárias lesz (28-32°C között), erős UV-sugárzással (6-7), csak szigetesen jelentkezik majd csapadék.
+
+**Praktikus tanácsok:** Kötelező a napszemüveg, napkrém (SPF 50+) és elegendő ivóvíz – a hőség miatt! A 15-ét azonban hagyj ki vagy vigyél vízálló kabátot és húzz fel vízálló cipőt; ha mégsem akarod kihagyni. A 16-17. között érdemes összekoncentrálni a nagyobb túrákat. Könnyű, légáteresztő ruhákat javasolt viselni, de reggel-este még egy felső sem árt, mivel a hajnali hőmérséklet 16-22°C között mozog.</div>
+  <div style="height:.75rem"></div>
+</div>
 <div class="card">
   <div class="card-header aktualis">
     <span class="emoji">📍</span>
     <div>
       <h2>Bélapátfalva</h2>
-      <div class="meta">⏳ 34 nap múlva kezdődik · Jelenlegi időjárás</div>
+      <div class="meta">⏳ 22 nap múlva kezdődik · Jelenlegi időjárás</div>
     </div>
   </div>
   <div class="stat-grid">
-    <div class="stat-box"><div class="lbl">Max hőmérséklet</div><div class="val">34.9°C</div></div>
-    <div class="stat-box"><div class="lbl">Min hőmérséklet</div><div class="val">22.7°C</div></div>
-    <div class="stat-box"><div class="lbl">Csapadék esély</div><div class="val">65%</div></div>
+    <div class="stat-box"><div class="lbl">Max hőmérséklet</div><div class="val">21.7°C</div></div>
+    <div class="stat-box"><div class="lbl">Min hőmérséklet</div><div class="val">14.6°C</div></div>
+    <div class="stat-box"><div class="lbl">Csapadék esély</div><div class="val">73%</div></div>
     <div class="stat-box"><div class="lbl">Csapadék</div><div class="val">0.0 mm</div></div>
-    <div class="stat-box"><div class="lbl">Szél</div><div class="val">29.2 km/h</div></div>
-    <div class="stat-box"><div class="lbl">UV index</div><div class="val">7.0</div></div>
+    <div class="stat-box"><div class="lbl">Szél</div><div class="val">12.2 km/h</div></div>
+    <div class="stat-box"><div class="lbl">UV index</div><div class="val">6.7</div></div>
   </div>
-  <div class="narracio"># Időjárás-összefoglaló Bélapátfalvára
+  <div class="narracio"># Időjárás Bélapátfalvában
 
-Szép nyári időre számíthatsz Bélapátfalván: meleg, napos idő várható maximum 35°C-kal és szinte csapadékmentes körülményekkel, bár érdemes egy könnyű szél miatt figyelni (kb. 29 km/h). Az UV-sugárzás igen erős lesz, szóval ne feledkezz meg a naptejről – és hamarosan jön az esemény, szóval érdemes előre szervezkedni! 😊</div>
+Szép nyári nap vár ránk Bélapátfalvában – 21 fok körüli maximum hőmérséklet, friss szellő és száraz időjárás lesz a jellemző. Bár az előrejelzés 73%-os csapadékelőrejelzést mutat, a szimbolum szerint nem számítunk esőre, így az időszak tiszta égbolt alatt fog kezdődni! Érdemes azonban magunkkal vinni egy kabátot, hiszen este még 14-15 fokra lehűl az idő.</div>
   <div style="height:.75rem"></div>
 </div>
   <footer>open-meteo.com · Anthropic Claude</footer>
