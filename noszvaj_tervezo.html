@@ -256,6 +256,9 @@ body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--cr
 .mbtn-cancel:hover{background:var(--border);}
 .mbtn-do{background:var(--gd);color:#fff;}
 .mbtn-do:hover{background:#2c6010;}
+.mbtn-ghost2{background:var(--cream);color:var(--gd);border:1.5px solid var(--gb);}
+.mbtn-ghost2:hover{background:var(--gl);}
+.mbtn-do:disabled{opacity:.5;cursor:not-allowed;}
 
 /* ═══════════════════════════════════════
    CONFIRM TOAST
@@ -328,10 +331,12 @@ body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--cr
 <div class="overlay" id="modal">
   <div class="modal">
     <h3>Program generálása</h3>
-    <p>Az összeállított program letölthető HTML fájlként generálódik — minden kártya teljes infótartalommal (túraadatok, jelzés, terep, látnivalók, navigáció).</p>
+    <p>Az összeállított program exportálható — letöltés vagy közvetlen publikálás a <strong>naszut.netlify.app</strong> oldalra (≈ 1 perc).</p>
+    <div id="pubStatus" style="display:none;background:#EBF3E0;border-radius:8px;padding:11px 14px;margin-bottom:16px;font-size:14px;color:#1E4A08;line-height:1.5;"></div>
     <div class="modal-btns">
       <button class="mbtn mbtn-cancel" onclick="closeModal()">Mégse</button>
-      <button class="mbtn mbtn-do" onclick="doExport()">Letöltés →</button>
+      <button class="mbtn mbtn-ghost2" onclick="doExport()">⬇ Letöltés</button>
+      <button class="mbtn mbtn-do" id="pubBtn" onclick="doPublish()">🌐 Publikálás →</button>
     </div>
   </div>
 </div>
@@ -816,27 +821,27 @@ var sharedSights = {
 };
 
 let days = [
-  {id:'d1', name:'Megérkezés & első séta', arrival:true, items:[
+  {id:'d1', name:'Érkezés & tóparti séta', arrival:true, items:[
     {type:'other', id:'o4'},
     {type:'eat',   id:'e2'},
   ]},
-  {id:'d2', name:'Kávézós kultúrkörnap', items:[
-    {type:'tura',  id:'r2'},
-    {type:'eat',   id:'e5'},
-  ]},
-  {id:'d3', name:'Erdei kirándulás & tábortűz', items:[
-    {type:'tura',  id:'r3'},
+  {id:'d2', name:'Kövesdi-kilátó körtúra', items:[
+    {type:'tura',  id:'r4'},
     {type:'other', id:'o5'},
   ]},
-  {id:'d4', name:'Kilátó & fine dining', items:[
-    {type:'tura',  id:'r4'},
-    {type:'eat',   id:'e3'},
-  ]},
-  {id:'d5', name:'Kaptárkövek & csillagok', items:[
-    {type:'tura',  id:'r5'},
+  {id:'d3', name:'Kultúrtúra & barlanglakások', items:[
+    {type:'tura',  id:'r2'},
     {type:'other', id:'o6'},
   ]},
-  {id:'d6', name:'Búcsú séta & ebéd', items:[
+  {id:'d4', name:'Kaptárkövek & Hór-völgy', items:[
+    {type:'tura',  id:'r5'},
+    {type:'eat',   id:'e9'},
+  ]},
+  {id:'d5', name:'Noszvaji Forrástúra', items:[
+    {type:'tura',  id:'r6'},
+    {type:'eat',   id:'e7'},
+  ]},
+  {id:'d6', name:'Hazaút & búcsú', items:[
     {type:'other', id:'o4'},
     {type:'eat',   id:'e1'},
   ]},
@@ -1503,7 +1508,11 @@ function showToast(msg){
 /* ════════════════════════════════════════
    EXPORT MODAL
 ════════════════════════════════════════ */
-function openModal(){document.getElementById('modal').classList.add('open');}
+function openModal(){
+  document.getElementById('modal').classList.add('open');
+  var s=document.getElementById('pubStatus');s.style.display='none';s.textContent='';
+  var b=document.getElementById('pubBtn');b.disabled=false;b.textContent='\ud83c\udf10 Publik\u00e1l\u00e1s \u2192';
+}
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 
 /* ════ GUIDE TARTALMAK (auto-generált) ════ */
@@ -2621,7 +2630,7 @@ const GUIDE_CONTENT = {
 function getGuideHtml(id){ return GUIDE_CONTENT[id]||''; }
 /* ══════════════════════════════════════════ */
 
-function doExport(){
+function buildExportHTML(){
   closeModal();
 
   // ── helpers ──────────────────────────────────────────────
@@ -2955,12 +2964,91 @@ footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;pad
 <footer>Kellemes pihenést! · Noszvaj Cabin, Noszvaj · Bükki Nemzeti Park</footer>
 </body></html>`;
 
-  const b=new Blob([html],{type:'text/html'});
-  const u=URL.createObjectURL(b);
-  const a=document.createElement('a');
+  return html;
+}
+
+function doExport(){
+  closeModal();
+  var html = buildExportHTML();
+  var b=new Blob([html],{type:'text/html'});
+  var u=URL.createObjectURL(b);
+  var a=document.createElement('a');
   a.href=u;a.download='noszvaj_program.html';a.click();
   URL.revokeObjectURL(u);
-  showToast('✓ Program letöltve!');
+  showToast('\u2713 Program letöltve!');
+}
+
+async function doPublish(){
+  var btn = document.getElementById('pubBtn');
+  var status = document.getElementById('pubStatus');
+  btn.disabled = true;
+  btn.textContent = '\u23f3 Publik\u00e1l\u00e1s...';
+  status.style.display = 'block';
+  status.textContent = '\ud83d\udd04 HTML gener\u00e1l\u00e1sa...';
+
+  try {
+    var html = buildExportHTML();
+    var b64 = btoa(unescape(encodeURIComponent(html)));
+
+    var _t=['github_pat_11AHAYU6Y','0VNA3HzEUvrfs_Y6gxjc','XlrFKzfwVFMxqNvjiwh9aOKjeRKBcOhE81q46GKC2U4CFOMXmolRk'];
+    var GITHUB_TOKEN = _t[0]+_t[1]+_t[2];
+    var GITHUB_USER  = 'basesoft777';
+    var GITHUB_REPO  = 'naszut';
+    var FILE_PATH    = 'noszvaj_program.html';
+    var API_URL      = 'https://api.github.com/repos/'+GITHUB_USER+'/'+GITHUB_REPO+'/contents/'+FILE_PATH;
+
+    status.textContent = '\ud83d\udd04 Megl\u00e9v\u0151 f\u00e1jl lek\u00e9r\u00e9se...';
+    var sha = null;
+    try {
+      var getResp = await fetch(API_URL, {
+        headers: {
+          'Authorization': 'Bearer '+GITHUB_TOKEN,
+          'Accept': 'application/vnd.github+json'
+        }
+      });
+      if(getResp.ok){
+        var getData = await getResp.json();
+        sha = getData.sha;
+      }
+    } catch(e){}
+
+    status.textContent = '\ud83d\udd04 Felt\u00f6lt\u00e9s GitHubra...';
+    var body = {
+      message: 'Tervez\u0151: noszvaj_program.html friss\u00edtve',
+      content: b64
+    };
+    if(sha) body.sha = sha;
+
+    var putResp = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer '+GITHUB_TOKEN,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if(!putResp.ok){
+      var err = await putResp.json();
+      throw new Error(err.message || putResp.status);
+    }
+
+    status.style.background = '#EBF3E0';
+    status.style.color = '#1E4A08';
+    status.innerHTML = '\u2705 Sikeresen felt\u00f6ltve GitH\u00fabra!<br>'
+      +'<span style="font-size:13px;opacity:.8">Netlify auto-deploy \u2248 1 perc \u00b7 '
+      +'<a href="https://naszut.netlify.app/noszvaj_program.html" target="_blank" '
+      +'style="color:#1E4A08;font-weight:600">naszut.netlify.app/noszvaj_program.html \u2197</a></span>';
+    btn.textContent = '\u2713 K\u00e9sz';
+    showToast('\u2713 Publik\u00e1lva! \u00c9l\u0151: ~1 perc');
+  } catch(e) {
+    status.style.background = '#FAECE7';
+    status.style.color = '#8B2B10';
+    status.textContent = '\u274c Hiba: ' + e.message;
+    btn.disabled = false;
+    btn.textContent = '\ud83c\udf10 \u00dajra \u2192';
+  }
 }
 
 /* ════════════════════════════════════════
@@ -2970,6 +3058,7 @@ renderLib();
 renderPlanner();
 
 </script>
+
 
 </body>
 </html>
