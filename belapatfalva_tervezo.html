@@ -894,7 +894,7 @@ function renderLib(){
       const btns = document.createElement('div');
       btns.style.cssText = 'display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;';
       btns.innerHTML =
-        '<a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&destination='+d.lat+','+d.lng+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+        '<a class="gps-btn" href="https://www.google.com/maps/dir/?api=1&origin=48.0578,20.3718&destination='+d.lat+','+d.lng+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
           +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Maps</a>'
         +'<a class="waze-btn" href="https://waze.com/ul?ll='+d.lat+','+d.lng+'&navigate=yes" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
           +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="10" r="6"/><path d="M12 16v6"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13" cy="8" r="1" fill="currentColor"/><path d="M9 12c1 1.5 5 1.5 6 0"/></svg> Waze</a>'
@@ -1363,7 +1363,7 @@ function doExport(){
         const photoUrl = it.type==='tura'
           ? 'https://www.google.com/maps/search/'+encodeURIComponent(data.name+' Bélapátfalva Szilvásvárad')
           : it.type==='eat'
-          ? 'https://www.google.com/maps/dir/?api=1&destination='+data.lat+','+data.lng
+          ? 'https://www.google.com/maps/dir/?api=1&origin=48.0578,20.3718&destination='+data.lat+','+data.lng
           : 'https://www.google.com/maps/search/'+encodeURIComponent(data.name+' Bélapátfalva Szilvásvárad');
         return{name:data.name,icon:data.icon||'',tag:tagLabel[it.type],tc:it.type==='tura'?'t':it.type==='eat'?'e':'k',
                desc, rowsHtml, sightsHtml, photoUrl, time:'', auto:false};
