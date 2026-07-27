@@ -483,7 +483,7 @@ const DINING = [
    hours:"K–V 11–19 · hétfő zárva",
    phone:"+36 30 124 6562",
    note:"Csak készpénz (bankkártya nincs). A tó partján, gyönyörű kilátással.",
-   lat:47.9625, lng:20.5247, fromFahaz:"~150 m gyalog"},
+   lat:48.0593, lng:20.3685, fromFahaz:"~150 m gyalog"},
   {id:'e2',timeH:1.5, icon:'🍕',
    name:"Bélkő Étterem-Pizzéria",
    type:"Magyaros + pizza",
@@ -494,7 +494,7 @@ const DINING = [
    hours:"Naponta 10–20",
    phone:"+36 70 392-9722",
    note:"A falu központjában, túra után kényelmes választás. Angol étlap is van.",
-   lat:47.9612, lng:20.5231, fromFahaz:"~1,5 km autóval"},
+   lat:48.0581, lng:20.3530, fromFahaz:"~1,5 km autóval"},
   {id:'e3',timeH:1.5, icon:'🏡',
    name:"Netovább Kisvendéglő",
    type:"Házias kisvendéglő",
@@ -505,7 +505,7 @@ const DINING = [
    hours:"K–Szo 10–18 · vas/hétfő zárva",
    phone:"+36 20 332 6401",
    note:"Kicsi, családias hely kiváló értékelésekkel. Kutyabarát.",
-   lat:47.9608, lng:20.5228, fromFahaz:"~1,5 km autóval"},
+   lat:48.0498, lng:20.3457, fromFahaz:"~1,5 km autóval"},
   {id:'e4',timeH:1.5, icon:'🐟',
    name:"Sáfrány Pisztrángudvar",
    type:"Füstölt pisztráng",
@@ -516,7 +516,7 @@ const DINING = [
    hours:"Cs–V 12–16",
    phone:"+36 30 958 5962",
    note:"A pisztrángtelep mellett; a füstölt hal minősége kiemelkedő. Szűk nyitvatartás — érdemes előre hívni.",
-   lat:48.1007, lng:20.4850, fromFahaz:"~5 km autóval"},
+   lat:48.0821, lng:20.4061, fromFahaz:"~5 km autóval"},
   {id:'e5',timeH:1.5, icon:'🐟',
    name:"Pisztráng Vendéglő",
    type:"Pisztráng-specialista",
@@ -527,7 +527,7 @@ const DINING = [
    hours:"Naponta 11–19 (hétvégén 20-ig)",
    phone:"+36 30 578 7153",
    note:"A patak közvetlenül az asztalok mellett folyik; a pisztráng a térség jellegzetes hala.",
-   lat:48.0965, lng:20.4888, fromFahaz:"~5 km autóval"},
+   lat:48.0961, lng:20.3933, fromFahaz:"~5 km autóval"},
   {id:'e6',timeH:1.5, icon:'🥘',
    name:"Ida mama étterem",
    type:"Házias magyaros",
@@ -538,7 +538,7 @@ const DINING = [
    hours:"Naponta 12–21 (hétvégén 22-ig)",
    phone:"+36 36 355 108",
    note:"Hétfőn is nyitva; a helyiek kedvence, távol a turistasávtól.",
-   lat:48.0960, lng:20.4875, fromFahaz:"~5 km autóval"}
+   lat:48.1033, lng:20.3869, fromFahaz:"~5 km autóval"}
 ]
 const OTHER = [
   {id:'o7',icon:'🏊',name:"Lak-völgyi tó körséta",type:"Természet",
@@ -650,18 +650,19 @@ let days = [
   {id:'d1', name:'Érkezés & ismerkedés', arrival:true, items:[
     {type:'other', id:'o7'},
     {type:'other', id:'o1'},
-    {type:'other', id:'o6'},
+    {type:'eat',   id:'e2'},
   ]},
-  {id:'d2', name:'Millenniumi tanösvény & Szilvásvárad', items:[
-    {type:'tura',  id:'r2'},
-    {type:'other', id:'o11'},
-    {type:'other', id:'o9'},
-  ]},
-  {id:'d3', name:'Szalajka-völgy & bográcsos este', items:[
-    {type:'tura',  id:'r3'},
+  {id:'d2', name:'Kelemen-széke tanösvény', items:[
+    {type:'tura',  id:'r4'},
+    {type:'other', id:'o4'},
     {type:'other', id:'o5'},
   ]},
-  {id:'d4', name:'Búcsú reggel', items:[
+  {id:'d3', name:'Szalajka-völgy & Kalandpark', items:[
+    {type:'tura',  id:'r3'},
+    {type:'other', id:'o8'},
+    {type:'eat',   id:'e5'},
+  ]},
+  {id:'d4', name:'Hazaút', items:[
     {type:'other', id:'o7'},
     {type:'eat',   id:'e1'},
   ]},
@@ -1452,6 +1453,27 @@ footer{background:var(--gl);border-top:2px solid var(--gb);text-align:center;pad
 renderLib();
 renderPlanner();
 </script>
-
+<div class="legend-bar">
+  <span class="legend-bar-title">Jelmagyarázat</span>
+  <div class="legend-sep"></div>
+  <div class="legend-items">
+    <div class="legend-item">
+      <div class="legend-pill lb-auto">Automatikus</div>
+      <span>reggeli &amp; ebéd — program alapján számítva</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pill lb-suggest">💡 Javaslat</div>
+      <span>vacsora — az útvonal alapján; húzz rá éttermet a cseréhez</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-pill lb-placed">Saját elem</div>
+      <span>húzd be a könyvtárból — átrendezhető, törölhető</span>
+    </div>
+    <div class="legend-item">
+      <span style="font-size:13px">🔄</span>
+      <span><strong>Átfedő látnivaló</strong> — több útvonalon is elérhető</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
